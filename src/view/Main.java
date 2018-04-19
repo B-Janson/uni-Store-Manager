@@ -1,9 +1,17 @@
 package view;
 
+import java.io.IOException;
+
+import controller.Utilities;
+
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("spaghetti");
+		try {
+			Utilities.readCSV("test.csv");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
