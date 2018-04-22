@@ -1,18 +1,18 @@
 package test.java;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
-class TestSomething {
+public class TestSomething {
 
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 	}
 
 	@Test
-	void test() {
+	public void test() {
 		assertTrue(true);
 	}
 
