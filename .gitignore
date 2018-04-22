@@ -3,3 +3,11 @@
 .project
 test.csv
 /build/
+
+\.gradle/buildOutputCleanup/
+
+\.gradle/4\.7/fileContent/
+
+\.gradle/4\.7/fileHashes/
+
+\.gradle/4\.7/taskHistory/
