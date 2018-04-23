@@ -15,12 +15,12 @@ public class TestDataClasses {
 	@Before
 	public void setUp() throws Exception {
 	}
-	
+
 	@Test
 	public void testCSVRead() {
 		try {
 			String[] testStrings = Utilities.readCSV("item_properties.csv");
-			String[] expected = {"rice,2,3,225,300"};
+			String[] expected = { "rice,2,3,225,300" };
 			assertEquals(expected[0], testStrings[0]);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -38,7 +38,7 @@ public class TestDataClasses {
 		testItem.setCurrentAmount(50);
 		assertTrue(testItem.requiresOrder());
 	}
-	
+
 	@Test
 	public void testItemClassNoReorder() {
 		String name = "beans";

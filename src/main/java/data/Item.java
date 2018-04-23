@@ -1,10 +1,15 @@
 package main.java.data;
 
+/**
+ * Data class to hold information about Items
+ * 
+ * @author Brandon Janson
+ *
+ */
 public class Item {
 	String name;
 	double cost;
 	double price;
-	double temperature;
 	int reorderPoint;
 	int reorderAmount;
 	int currAmount;
@@ -17,7 +22,12 @@ public class Item {
 		this.reorderAmount = reorderAmount;
 		this.currAmount = 0;
 	}
-	
+
+	/**
+	 * 
+	 * @return <code>true</code> if this item requires a re-order, else
+	 *         <code>false</code>
+	 */
 	public boolean requiresOrder() {
 		return currAmount < reorderPoint;
 	}
@@ -62,18 +72,10 @@ public class Item {
 		this.reorderAmount = reorderAmount;
 	}
 
-	public double getTemperature() {
-		return temperature;
-	}
-
-	public void setTemperature(double temperature) {
-		this.temperature = temperature;
-	}
-	
 	public int getCurrentAmount() {
 		return currAmount;
 	}
-	
+
 	public void setCurrentAmount(int currAmount) {
 		this.currAmount = currAmount;
 	}

@@ -35,6 +35,17 @@ public class Utilities {
 		return sBuilder.toString().split("\n");
 	}
 
+	/**
+	 * Writes a string to the specified file name
+	 * 
+	 * @param fileName
+	 *            name of the file to write to
+	 * @param content
+	 *            content to write to the file
+	 * @return true if successful, false otherwise
+	 * @throws IOException
+	 *             if cannot find file or any other IOException
+	 */
 	public static boolean writeCSV(String fileName, String content) throws IOException {
 		File output = new File(fileName);
 		if (!output.exists()) {
