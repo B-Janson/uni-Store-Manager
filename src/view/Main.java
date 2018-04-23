@@ -9,7 +9,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			String[] testStrings = Utilities.readCSV("test.csv");
+			String[] testStrings = Utilities.readCSV("item_properties.csv");
+			for (String string : testStrings) {
+				System.out.println(string);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -2,9 +2,12 @@ package test.java;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import controller.Utilities;
 import data.Item;
 
 public class TestDataClasses {
@@ -15,7 +18,13 @@ public class TestDataClasses {
 	
 	@Test
 	public void testCSVRead() {
-		fail("not implemented");
+		try {
+			String[] testStrings = Utilities.readCSV("item_properties.csv");
+			String[] expected = {"rice,2,3,225,300"};
+			assertEquals(expected[0], testStrings[0]);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test
