@@ -1,9 +1,8 @@
-package view;
+package main.java.view;
 
 import java.io.IOException;
-import java.util.Random;
 
-import controller.Utilities;
+import main.java.controller.Utilities;
 
 public class Main {
 

@@ -7,8 +7,8 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import controller.Utilities;
-import data.Item;
+import main.java.controller.Utilities;
+import main.java.data.Item;
 
 public class TestDataClasses {
 
