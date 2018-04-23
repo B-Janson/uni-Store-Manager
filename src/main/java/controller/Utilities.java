@@ -1,8 +1,10 @@
 package main.java.controller;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Utilities {
 
@@ -33,8 +35,15 @@ public class Utilities {
 		return sBuilder.toString().split("\n");
 	}
 
-	public static boolean writeCSV(String fileName, String content) {
-		return false;
+	public static boolean writeCSV(String fileName, String content) throws IOException {
+		File output = new File(fileName);
+		if (!output.exists()) {
+			output.createNewFile();
+		}
+		PrintWriter pWriter = new PrintWriter(output);
+		pWriter.write(content);
+		pWriter.close();
+		return true;
 	}
 
 }

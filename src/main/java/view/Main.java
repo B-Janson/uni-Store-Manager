@@ -12,6 +12,8 @@ public class Main {
 			for (String string : testStrings) {
 				System.out.println(string);
 			}
+
+			Utilities.writeCSV("newtest.csv", "test,test");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
