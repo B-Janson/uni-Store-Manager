@@ -3,6 +3,8 @@ package main.java.stock;
 import java.util.HashMap;
 import java.util.Map;
 
+import sun.reflect.generics.tree.ReturnType;
+
 public class Stock {
 	
 	private StockType type;
@@ -45,6 +47,10 @@ public class Stock {
 				itemList.get(item.getName()).adjustAmount(-item.getCurrentAmount());
 			}
 		}
+	}
+	
+	public boolean contains(Item item) {
+		return itemList.containsKey(item.getName());
 	}
 
 }
