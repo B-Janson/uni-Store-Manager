@@ -1,8 +1,7 @@
 package main.java.controller;
 
-import com.sun.org.apache.xml.internal.security.signature.Manifest;
-
-import main.java.data.Stock;
+import main.java.delivery.Truck;
+import main.java.stock.Stock;
 
 /**
  * @author Chris Martin
@@ -11,16 +10,20 @@ public class Store {
 	private Store() {
 	}
 
-	private double capital;
-	private Stock inventory;
-	private String name;
-
 	/**
 	 * Internal class to enable singleton
 	 */
 	private static class StoreHolder {
 		private final static Store INSTANCE = new Store();
 	}
+
+	public static Store getInstance() {
+		return StoreHolder.INSTANCE;
+	}
+
+	private double capital;
+	private Stock inventory;
+	private String name;
 
 	public double getCapital() {
 		return capital;
@@ -51,13 +54,9 @@ public class Store {
 			inventory.adjustBy(truck.getCargo(), false);
 		}
 	}
-	
-	public void updateCapital (Manifest trucks) {
-		capital = capital - trucks.getCost();
-	}
 
-	public static Store getInstance() {
-		return StoreHolder.INSTANCE;
+	public void updateCapital(Manifest trucks) {
+		capital = capital - trucks.getCost();
 	}
 
 }
