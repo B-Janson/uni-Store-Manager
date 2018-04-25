@@ -84,5 +84,9 @@ public class Item {
 	public void setCurrentAmount(int currAmount) {
 		this.currAmount = currAmount;
 	}
+	
+	public void adjustAmount(int amount) {
+		this.currAmount += amount;
+	}
 
 }
