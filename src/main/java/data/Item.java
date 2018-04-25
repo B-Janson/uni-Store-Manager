@@ -1,7 +1,5 @@
 package main.java.data;
 
-import com.sun.xml.internal.bind.v2.runtime.Name;
-
 /**
  * Data class to hold information about Items
  * 

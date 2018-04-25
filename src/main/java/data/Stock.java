@@ -23,5 +23,13 @@ public class Stock {
 	public int size() {
 		return itemList.size();
 	}
+	
+	public StockType getStockType() {
+		return type;
+	}
+	
+	public void setStockType(StockType stockType) {
+		this.type = stockType);
+	}
 
 }
