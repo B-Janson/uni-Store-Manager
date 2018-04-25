@@ -104,8 +104,11 @@ public class Item {
 		return currAmount;
 	}
 
-	public void setCurrentAmount(int currAmount) {
-		this.currAmount = currAmount;
+	public void setCurrentAmount(int amount) throws StockException {
+		if (amount < 0) {
+			throw new StockException();
+		}
+		this.currAmount = amount;
 	}
 
 }

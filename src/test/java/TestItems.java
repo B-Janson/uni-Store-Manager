@@ -3,25 +3,30 @@ package test.java;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import main.java.controller.Utilities;
+import main.java.exceptions.StockException;
 import main.java.stock.ColdItem;
 import main.java.stock.Item;
 
 public class TestItems {
+	
+	private Random random;
 
-	Item rice;
-	Item mushroom;
+	private Item rice;
+	private Item mushroom;
 
-	int riceIndex = 0;
-	int mushroomIndex = 8;
+	private int riceIndex = 0;
+	private int mushroomIndex = 8;
 
 	@Before
 	public void setUp() throws Exception {
 		String[] csvLines = {};
+		random = new Random();
 
 		try {
 			csvLines = Utilities.readCSV("item_properties.csv");
@@ -55,31 +60,19 @@ public class TestItems {
 	}
 
 	@Test
-	public void testItemClassRequiresReorder() {
-		String name = "rice";
-		int cost = 2;
-		int price = 3;
-		int reorderPoint = 225;
-		int reorderAmount = 300;
-		Item testItem = new Item(name, cost, price, reorderPoint, reorderAmount);
-		testItem.setCurrentAmount(50);
-		assertTrue("requiresOrder not working correctly", testItem.requiresOrder());
+	public void testItemRequiresReorder() throws StockException {
+		rice.setCurrentAmount(50);
+		assertTrue("requiresOrder not working correctly", rice.requiresOrder());
 	}
 
 	@Test
-	public void testItemClassNoReorder() {
-		String name = "beans";
-		int cost = 4;
-		int price = 6;
-		int reorderPoint = 450;
-		int reorderAmount = 525;
-		Item testItem = new Item(name, cost, price, reorderPoint, reorderAmount);
-		testItem.setCurrentAmount(reorderPoint + 50);
-		assertTrue("requiresOrder not working correctly", !testItem.requiresOrder());
+	public void testItemNoReorder() throws StockException {
+		rice.setCurrentAmount(rice.getReorderAmount() + 50);
+		assertTrue("requiresOrder not working correctly", !rice.requiresOrder());
 	}
 
 	@Test
-	public void testItemPrint() {
+	public void testItemPrint() throws StockException {
 		String name = "bread";
 		double cost = 1.5;
 		double price = 2.8;
@@ -92,7 +85,7 @@ public class TestItems {
 	}
 
 	@Test
-	public void testColdItemPrint() {
+	public void testColdItemPrint() throws StockException {
 		String name = "milk";
 		double cost = 2.0;
 		double price = 3.5;
@@ -103,6 +96,16 @@ public class TestItems {
 		testItem.setCurrentAmount(623);
 		assertEquals("printProperties does not return string correctly.", testItem.printProperties(),
 				"milk, 2.0, 3.5, 350, 500, 623, 3.0");
+	}
+	
+	@Test
+	public void testPositiveAdjustAmount() throws StockException {
+		rice.adjustAmount(random.nextInt(100));
+	}
+	
+	@Test(expected = StockException.class)
+	public void testNegativeAdjustAmount() throws StockException {
+		rice.adjustAmount(-1 * random.nextInt(100));
 	}
 
 }
