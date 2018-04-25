@@ -1,4 +1,6 @@
-package main.java.data;
+package main.java.delivery;
+
+import main.java.stock.Stock;
 
 public class ColdTruck extends Truck {
 	double temperature;
@@ -16,8 +18,10 @@ public class ColdTruck extends Truck {
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
-	
-	
-	
 
+	@Override
+	public double getCost() {
+		return 0;
+	}
+	
 }

@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.java.data.Stock;
+import main.java.delivery.OrdinaryTruck;
+import main.java.stock.Stock;
 
 public class TestTrucks {
 
@@ -23,7 +24,7 @@ public class TestTrucks {
 	public void testOrdinaryTruckCapacity() {
 		double cost = 500;
 		int capacity = 0;
-		Stock cargo = "insert cargo here"
+		Stock cargo = new Cargo();
 		OrdinaryTruck testTruck = new OrdinaryTruck(cost, capacity, cargo);
 		assertEquals(1000, testTruck.getCapacity());
 	}
