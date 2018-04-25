@@ -13,19 +13,44 @@ import main.java.stock.Item;
 
 public class TestItems {
 
+	Item rice;
+	Item mushroom;
+
+	int riceIndex = 0;
+	int mushroomIndex = 8;
+
 	@Before
 	public void setUp() throws Exception {
-	}
+		String[] csvLines = {};
 
-	@Test
-	public void testCSVRead() {
 		try {
-			String[] testStrings = Utilities.readCSV("item_properties.csv");
+			csvLines = Utilities.readCSV("item_properties.csv");
 			String[] expected = { "rice,2,3,225,300" };
-			assertEquals(expected[0], testStrings[0]);
+			assertEquals("CSV read failed", expected[0], csvLines[0]);
 		} catch (IOException e) {
-			e.printStackTrace();
+			fail("IO Exception");
 		}
+
+		String[] riceProperties = csvLines[riceIndex].split(",");
+		String name = riceProperties[0];
+		double cost = Double.parseDouble(riceProperties[1]);
+		double price = Double.parseDouble(riceProperties[1]);
+		int reorderPoint = Integer.parseInt(riceProperties[3]);
+		int reorderAmount = Integer.parseInt(riceProperties[4]);
+		rice = new Item(name, cost, price, reorderPoint, reorderAmount);
+		assertEquals("Making item from csv failed", rice.printProperties(),
+				name + cost + price + reorderPoint + reorderAmount);
+
+		String[] mushroomProperties = csvLines[mushroomIndex].split(",");
+		name = mushroomProperties[0];
+		cost = Double.parseDouble(mushroomProperties[1]);
+		price = Double.parseDouble(mushroomProperties[1]);
+		reorderPoint = Integer.parseInt(mushroomProperties[3]);
+		reorderAmount = Integer.parseInt(mushroomProperties[4]);
+		double temperature = Double.parseDouble(mushroomProperties[5]);
+		mushroom = new ColdItem(name, cost, price, reorderPoint, reorderAmount, temperature);
+		assertEquals("Making item from csv failed", mushroom.printProperties(),
+				name + cost + price + reorderPoint + reorderAmount);
 	}
 
 	@Test

@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * @author Brandon Janson
@@ -58,6 +60,12 @@ public class Utilities {
 		pWriter.write(content);
 		pWriter.close();
 		return true;
+	}
+	
+	public static double roundTo(double input, int places) {
+		BigDecimal bDecimal = new BigDecimal(input);
+		bDecimal = bDecimal.setScale(places, RoundingMode.HALF_UP);
+		return bDecimal.doubleValue();
 	}
 
 }

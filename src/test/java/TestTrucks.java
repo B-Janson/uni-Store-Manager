@@ -2,13 +2,12 @@ package test.java;
 
 import static org.junit.Assert.*;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import main.java.controller.Utilities;
 import main.java.delivery.ColdTruck;
 import main.java.delivery.OrdinaryTruck;
 import main.java.delivery.Truck;
@@ -19,10 +18,10 @@ public class TestTrucks {
 
 	private static final int ORDINARY_TRUCK_CAPACITY = 1000;
 	private static final int COLD_TRUCK_CAPACITY = 800;
-	
+
 	private static final double FLOATING_POINT_TOLERANCE = 0.001;
 	private static final int DECIMAL_PLACES = 2;
-	
+
 	private static final int TEMPERATURE_RANGE = 100;
 
 	private Random random;
@@ -37,11 +36,7 @@ public class TestTrucks {
 		cargo = new Stock(StockType.TruckCargo);
 
 		double temp = random.nextDouble() * random.nextInt(TEMPERATURE_RANGE) - TEMPERATURE_RANGE / 2;
-		BigDecimal bDecimal = new BigDecimal(temp);
-		bDecimal = bDecimal.setScale(DECIMAL_PLACES, RoundingMode.HALF_UP);
-
-		temperature = bDecimal.doubleValue();
-		System.out.println(temperature);
+		temperature = Utilities.roundTo(temp, DECIMAL_PLACES);
 	}
 
 	@Test
