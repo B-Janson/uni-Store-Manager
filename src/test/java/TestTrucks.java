@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.java.data.Stock;
+import main.java.stock.Stock;
 
 public class TestTrucks {
 

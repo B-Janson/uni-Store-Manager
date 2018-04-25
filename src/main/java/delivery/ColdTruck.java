@@ -1,4 +1,6 @@
-package main.java.data;
+package main.java.delivery;
+
+import main.java.stock.Stock;
 
 public class ColdTruck extends Truck {
 	double temperature;

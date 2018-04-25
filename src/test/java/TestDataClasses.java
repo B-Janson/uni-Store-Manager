@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.java.controller.Utilities;
-import main.java.data.ColdItem;
-import main.java.data.Item;
+import main.java.stock.ColdItem;
+import main.java.stock.Item;
 
 public class TestDataClasses {
 

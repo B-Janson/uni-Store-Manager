@@ -1,4 +1,4 @@
-package main.java.data;
+package main.java.stock;
 
 public class ColdItem extends Item {
 

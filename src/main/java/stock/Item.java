@@ -1,4 +1,4 @@
-package main.java.data;
+package main.java.stock;
 
 import com.sun.xml.internal.bind.v2.runtime.Name;
 
