@@ -1,23 +1,24 @@
 package main.java.stock;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Stock {
 	
 	private StockType type;
-	private ArrayList<Item> itemList;
+	private Map<String, Item> itemList;
 	
 	public Stock (StockType type) {
 		this.type = type;
-		itemList = new ArrayList<Item>();
+		itemList = new HashMap<String, Item>();
 	}
 	
 	public void add(Item item) {
-		itemList.add(item);
+		itemList.put(item.getName(), item);
 	}
 	
-	public boolean remove(Item item) {
-		return itemList.remove(item);
+	public void remove(Item item) {
+		itemList.remove(item.getName());
 	}
 	
 	public int size() {
@@ -30,6 +31,20 @@ public class Stock {
 	
 	public void setStockType(StockType stockType) {
 		this.type = stockType;
+	}
+	
+	public Map<String, Item> getItemList() {
+		return itemList;
+	}
+	
+	public void adjustBy(Stock otherStock, boolean add) {
+		for (Item item : otherStock.getItemList().values()) {
+			if (add) {
+				itemList.get(item.getName()).adjustAmount(item.getCurrentAmount());
+			} else {
+				itemList.get(item.getName()).adjustAmount(-item.getCurrentAmount());
+			}
+		}
 	}
 
 }
