@@ -38,7 +38,7 @@ public class Item {
 	/**
 	 * Function to test that data object has been initialised properly
 	 * 
-	 * @return
+	 * @return string representing each input field
 	 */
 	public String printProperties() {
 		return String.format("%s, %s, %s, %s, %s, %s", name, cost, price, reorderPoint, reorderAmount, currAmount);

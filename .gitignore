@@ -2,7 +2,9 @@
 .classpath
 .project
 test.csv
-/build/
+build/
+!build/docs/*
+build/docs/.DS_Store
 
 \.gradle/4\.7/fileHashes/fileHashes\.bin
 

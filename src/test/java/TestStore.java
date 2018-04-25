@@ -2,19 +2,13 @@ package test.java;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
-import java.util.Random;
-
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import jdk.nashorn.internal.runtime.StoredScript;
 import main.java.controller.Store;
-import main.java.controller.Utilities;
 import main.java.delivery.Manifest;
 import main.java.delivery.OrdinaryTruck;
-import main.java.delivery.Truck;
 import main.java.exceptions.StockException;
 import main.java.stock.Item;
 import main.java.stock.Stock;
