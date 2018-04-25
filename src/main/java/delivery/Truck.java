@@ -3,9 +3,7 @@ package main.java.delivery;
 import main.java.stock.Stock;
 
 /**
- * 
  * @author Chris Martin
- *
  */
 public abstract class Truck {
 

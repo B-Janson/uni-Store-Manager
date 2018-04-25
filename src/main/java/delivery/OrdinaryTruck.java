@@ -6,9 +6,11 @@ import main.java.stock.Stock;
  * @author Brandon Janson
  */
 public class OrdinaryTruck extends Truck {
+	
+	private static final int CAPACITY = 1000;
 
-	public OrdinaryTruck(int capacity, Stock cargo) {
-		super(capacity, cargo);
+	public OrdinaryTruck(Stock cargo) {
+		super(CAPACITY, cargo);
 	}
 	
 	@Override

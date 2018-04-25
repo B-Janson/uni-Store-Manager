@@ -4,9 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 
  * @author Brandon Janson
- *
  */
 public class Stock {
 	

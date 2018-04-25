@@ -1,5 +1,8 @@
 package main.java.stock;
 
+/**
+ * @author Brandon Janson
+ */
 public class ColdItem extends Item {
 
 	private double temperature;

@@ -4,7 +4,6 @@ package main.java.stock;
  * Data class to hold information about Items
  * 
  * @author Chris Martin
- *
  */
 public class Item {
 	private String name;
@@ -33,8 +32,7 @@ public class Item {
 	}
 
 	public String printProperties() {
-		return String.format("%S, %S, %S, %S, %S, %S", name, cost, price,
-				reorderPoint, reorderAmount, currAmount);
+		return String.format("%S, %S, %S, %S, %S, %S", name, cost, price, reorderPoint, reorderAmount, currAmount);
 	}
 
 	public String getName() {
@@ -84,7 +82,7 @@ public class Item {
 	public void setCurrentAmount(int currAmount) {
 		this.currAmount = currAmount;
 	}
-	
+
 	public void adjustAmount(int amount) {
 		this.currAmount += amount;
 	}
