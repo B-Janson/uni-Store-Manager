@@ -98,6 +98,11 @@ public class TestItems {
 				"milk, 2.0, 3.5, 350, 500, 623, 3.0");
 	}
 	
+	@Test(expected = StockException.class)
+	public void testSetAmount() throws StockException {
+		rice.setCurrentAmount(-1 * random.nextInt(100));
+	}
+	
 	@Test
 	public void testPositiveAdjustAmount() throws StockException {
 		rice.adjustAmount(random.nextInt(100));
