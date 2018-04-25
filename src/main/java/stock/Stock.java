@@ -29,7 +29,7 @@ public class Stock {
 	}
 	
 	public void setStockType(StockType stockType) {
-		this.type = stockType);
+		this.type = stockType;
 	}
 
 }
