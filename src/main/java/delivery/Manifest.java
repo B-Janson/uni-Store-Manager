@@ -13,6 +13,13 @@ public class Manifest {
 		trucks = new ArrayList<Truck>();
 	}
 	
+	public Manifest(Truck[] trucks) {
+		this.trucks = new ArrayList<Truck>();
+		for (Truck truck : trucks) {
+			this.trucks.add(truck);
+		}
+	}
+	
 	public ArrayList<Truck> getTrucks() {
 		return trucks;
 	}

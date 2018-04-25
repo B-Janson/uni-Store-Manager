@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Random;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import main.java.controller.Utilities;
@@ -22,12 +23,11 @@ public class TestItems {
 
 	private int riceIndex = 0;
 	private int mushroomIndex = 8;
-
-	@Before
-	public void setUp() throws Exception {
-		String[] csvLines = {};
-		random = new Random();
-
+	
+	private static String[] csvLines;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 		try {
 			csvLines = Utilities.readCSV("item_properties.csv");
 			String[] expected = { "rice,2,3,225,300" };
@@ -35,6 +35,11 @@ public class TestItems {
 		} catch (IOException e) {
 			fail("IO Exception");
 		}
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		random = new Random();
 
 		String[] riceProperties = csvLines[riceIndex].split(",");
 		String name = riceProperties[0];

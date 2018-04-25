@@ -60,5 +60,9 @@ public class Store {
 	public void updateCapital(Manifest trucks) {
 		capital = capital - trucks.getTotalCost();
 	}
+	
+	public void reset() {
+		
+	}
 
 }
