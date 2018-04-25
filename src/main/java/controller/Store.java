@@ -2,6 +2,7 @@ package main.java.controller;
 
 import main.java.delivery.Manifest;
 import main.java.delivery.Truck;
+import main.java.exceptions.StockException;
 import main.java.stock.Stock;
 
 /**
@@ -50,7 +51,7 @@ public class Store {
 		this.name = name;
 	}
 
-	public void updateInventory(Manifest trucks) {
+	public void updateInventory(Manifest trucks) throws StockException {
 		for (Truck truck : trucks.getTrucks()) {
 			inventory.adjustBy(truck.getCargo(), false);
 		}
