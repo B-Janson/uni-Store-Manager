@@ -27,6 +27,7 @@ public class ColdItem extends Item {
 		this.temperature = temperature;
 	}
 
+	@Override
 	public String printProperties() {
 		return String.format("%s, %s, %s, %s, %s, %s, %s", getName(), getCost(), getPrice(), getReorderPoint(),
 				getReorderAmount(), getCurrentAmount(), temperature);

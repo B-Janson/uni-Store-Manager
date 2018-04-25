@@ -1,5 +1,7 @@
 package main.java.stock;
 
+import main.java.exceptions.StockException;
+
 /**
  * Data class to hold information about Items
  * 
@@ -23,6 +25,8 @@ public class Item {
 	}
 
 	/**
+	 * Function to determine whether this item requires a re-order This is true if
+	 * the current amount is less than the reorder amount
 	 * 
 	 * @return <code>true</code> if this item requires a re-order, else
 	 *         <code>false</code>
@@ -31,8 +35,29 @@ public class Item {
 		return currAmount < reorderPoint;
 	}
 
+	/**
+	 * Function to test that data object has been initialised properly
+	 * 
+	 * @return
+	 */
 	public String printProperties() {
 		return String.format("%s, %s, %s, %s, %s, %s", name, cost, price, reorderPoint, reorderAmount, currAmount);
+	}
+
+	/**
+	 * Method used to adjust the current quantity of this particular item
+	 * 
+	 * @param amount
+	 *            amount to adjust by (can be negative of positive)
+	 * @throws StockException
+	 *             if, as a result of this method, a negative amount of the item is
+	 *             remaining
+	 */
+	public void adjustAmount(int amount) throws StockException {
+		if (currAmount + amount < 0) {
+			throw new StockException("Cannot have negative amount of items.");
+		}
+		this.currAmount += amount;
 	}
 
 	public String getName() {
@@ -81,10 +106,6 @@ public class Item {
 
 	public void setCurrentAmount(int currAmount) {
 		this.currAmount = currAmount;
-	}
-
-	public void adjustAmount(int amount) {
-		this.currAmount += amount;
 	}
 
 }

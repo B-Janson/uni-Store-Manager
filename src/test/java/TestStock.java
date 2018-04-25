@@ -5,12 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import main.java.exceptions.StockException;
 import main.java.stock.Item;
 import main.java.stock.Stock;
 import main.java.stock.StockType;
 
 /**
- * @author Chris
+ * @author Chris Martin
  */
 public class TestStock {
 	Stock originalStock;
@@ -45,8 +46,12 @@ public class TestStock {
 		Item newMilk = new Item("milk", 2, 3, 10, 20);
 		Item newSoap = new Item("soap", 1, 4.5, 10, 50);
 
-		newMilk.adjustAmount(10);
-		newSoap.adjustAmount(17);
+		try {
+			newMilk.adjustAmount(10);
+			newSoap.adjustAmount(17);
+		} catch (StockException e) {
+			fail("This should not throw an error");
+		}
 
 		originalStock.add(originalMilk);
 		originalStock.add(originalBread);
@@ -55,7 +60,11 @@ public class TestStock {
 		newStock.add(newMilk);
 		newStock.add(newSoap);
 
-		originalStock.adjustBy(newStock, true);
+		try {
+			originalStock.adjustBy(newStock, true);
+		} catch (StockException e) {
+			fail("This should not throw an error");
+		}
 
 		assertEquals(25, originalMilk.getCurrentAmount());
 		assertEquals(5, originalBread.getCurrentAmount());
@@ -67,7 +76,11 @@ public class TestStock {
 		assertTrue("Stock.add does not function correctly", originalStock.contains(originalSoap));
 
 		Item banana = new Item("banana", 1, 1.5, 10, 15);
-		banana.adjustAmount(12);
+		try {
+			banana.adjustAmount(12);
+		} catch (StockException e) {
+			fail("This should not throw an error");
+		}
 
 		assertFalse("Stock.add does not funtion correctly", originalStock.contains(banana));
 
@@ -81,7 +94,6 @@ public class TestStock {
 		assertTrue("Stock.remove does not funtion correctly", originalStock.contains(originalBread));
 
 		originalStock.remove(originalBread);
-		;
 
 		assertTrue("Stock.remove does not funtion correctly", originalStock.contains(originalMilk));
 		assertFalse("Stock.remove does not function correctly", originalStock.contains(originalBread));
@@ -92,7 +104,11 @@ public class TestStock {
 		assertEquals("Stock.size does not function correctly", 3, originalStock.size());
 
 		Item banana = new Item("banana", 1, 1.5, 10, 15);
-		banana.adjustAmount(12);
+		try {
+			banana.adjustAmount(12);
+		} catch (StockException e) {
+			fail("This should not throw an error");
+		}
 		originalStock.add(banana);
 
 		assertEquals(4, originalStock.size());

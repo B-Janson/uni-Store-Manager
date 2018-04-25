@@ -3,6 +3,8 @@ package main.java.stock;
 import java.util.HashMap;
 import java.util.Map;
 
+import main.java.exceptions.StockException;
+
 /**
  * @author Brandon Janson
  */
@@ -40,7 +42,7 @@ public class Stock {
 		return itemList;
 	}
 
-	public void adjustBy(Stock otherStock, boolean add) {
+	public void adjustBy(Stock otherStock, boolean add) throws StockException {
 		for (Item item : otherStock.getItemList().values()) {
 			if (add) {
 				itemList.get(item.getName()).adjustAmount(item.getCurrentAmount());
