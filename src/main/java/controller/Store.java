@@ -1,5 +1,6 @@
 package main.java.controller;
 
+import main.java.delivery.Manifest;
 import main.java.delivery.Truck;
 import main.java.stock.Stock;
 
@@ -56,7 +57,7 @@ public class Store {
 	}
 
 	public void updateCapital(Manifest trucks) {
-		capital = capital - trucks.getCost();
+		capital = capital - trucks.getTotalCost();
 	}
 
 }

@@ -2,8 +2,6 @@ package test.java;
 
 import static org.junit.Assert.*;
 
-import java.util.HashMap;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +11,6 @@ import main.java.stock.StockType;
 
 /**
  * @author Chris
- *
  */
 public class TestStock {
 	Stock originalStock;
