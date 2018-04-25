@@ -2,11 +2,16 @@ package main.java.delivery;
 
 import main.java.stock.Stock;
 
+/**
+ * 
+ * @author Chris Martin
+ *
+ */
 public class ColdTruck extends Truck {
 	double temperature;
 
-	public ColdTruck(double cost, int capacity, Stock cargo, double temperature) {
-		super(cost, capacity, cargo);
+	public ColdTruck(int capacity, Stock cargo, double temperature) {
+		super(capacity, cargo);
 		this.temperature = temperature;
 		capacity = 800;
 	}

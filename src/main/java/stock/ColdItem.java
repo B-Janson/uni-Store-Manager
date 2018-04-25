@@ -25,9 +25,8 @@ public class ColdItem extends Item {
 	}
 
 	public String printProperties() {
-		return String.format("%S, %S, %S, %S, %S, %S, %S", name, Double.toString(cost), Double.toString(price),
-				Integer.toString(reorderPoint), Integer.toString(reorderAmount), Integer.toString(currAmount),
-				Double.toString(temperature));
+		return String.format("%s, %s, %s, %s, %s, %s, %s", getName(), getCost(), getPrice(), getReorderPoint(),
+				getReorderAmount(), getCurrentAmount(), temperature);
 	}
 
 }

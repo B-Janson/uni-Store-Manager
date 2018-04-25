@@ -7,26 +7,32 @@ import org.junit.Test;
 
 import main.java.delivery.OrdinaryTruck;
 import main.java.stock.Stock;
+import main.java.stock.StockType;
 
 public class TestTrucks {
+	
+	Stock cargo;
 
 	@Before
 	public void setUp() throws Exception {
+		cargo = new Stock(StockType.TruckCargo);
 	}
 
 	@Test
 	public void testOrdinaryTruckCost() {
-		OrdinaryTruck testTruck = new OrdinaryTruck(cost, capacity, cargo);
-		assertEquals(0, testTruck.getCost());
+		int capacity = 1000;
+		double acceptedDelta = 0.01;
+		OrdinaryTruck testTruck = new OrdinaryTruck(capacity, cargo);
+		double expected = 0.0;
+		assertEquals("cost of truck incorrect", expected, testTruck.getCost(), acceptedDelta);
 	}
 
 	@Test
 	public void testOrdinaryTruckCapacity() {
-		double cost = 500;
 		int capacity = 0;
-		Stock cargo = new Cargo();
-		OrdinaryTruck testTruck = new OrdinaryTruck(cost, capacity, cargo);
-		assertEquals(1000, testTruck.getCapacity());
+		OrdinaryTruck testTruck = new OrdinaryTruck(capacity, cargo);
+		int expected = 1000;
+		assertEquals("initial capacity of truck incorrect", expected, testTruck.getCapacity());
 	}
 
 }

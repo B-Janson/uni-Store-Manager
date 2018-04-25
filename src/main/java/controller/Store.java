@@ -4,7 +4,7 @@
 package main.java.controller;
 
 /**
- * @author Chris
+ * @author Chris Martin
  *
  */
 public class Store {

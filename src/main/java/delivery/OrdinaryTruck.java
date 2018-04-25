@@ -7,15 +7,15 @@ import main.java.stock.Stock;
  */
 public class OrdinaryTruck extends Truck {
 
-	public OrdinaryTruck(double cost, int capacity, Stock cargo) {
-		super(cost, capacity, cargo);
+	public OrdinaryTruck(int capacity, Stock cargo) {
+		super(capacity, cargo);
 	}
 	
 	@Override
 	public double getCost() {
 		int baseCost = 750;
 		double pricePerItem = 0.25;
-		return baseCost + pricePerItem * cargo.getQuantity();
+		return baseCost + pricePerItem * getCargo().getQuantity();
 	}
 
 }
