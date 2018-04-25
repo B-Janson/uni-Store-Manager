@@ -37,9 +37,10 @@ public class TestItems {
 		double price = Double.parseDouble(riceProperties[1]);
 		int reorderPoint = Integer.parseInt(riceProperties[3]);
 		int reorderAmount = Integer.parseInt(riceProperties[4]);
+		int initialAmount = 0;
 		rice = new Item(name, cost, price, reorderPoint, reorderAmount);
 		assertEquals("Making item from csv failed", rice.printProperties(),
-				name + ", " + cost + ", " + price + ", " + reorderPoint + ", " + reorderAmount);
+				name + ", " + cost + ", " + price + ", " + reorderPoint + ", " + reorderAmount + ", " + initialAmount);
 
 		String[] mushroomProperties = csvLines[mushroomIndex].split(",");
 		name = mushroomProperties[0];
@@ -49,8 +50,8 @@ public class TestItems {
 		reorderAmount = Integer.parseInt(mushroomProperties[4]);
 		double temperature = Double.parseDouble(mushroomProperties[5]);
 		mushroom = new ColdItem(name, cost, price, reorderPoint, reorderAmount, temperature);
-		assertEquals("Making item from csv failed", mushroom.printProperties(),
-				name + ", " + cost + ", " + price + ", " + reorderPoint + ", " + reorderAmount + ", " + temperature);
+		assertEquals("Making item from csv failed", mushroom.printProperties(), name + ", " + cost + ", " + price + ", "
+				+ reorderPoint + ", " + reorderAmount + ", " + initialAmount + ", " + temperature);
 	}
 
 	@Test
