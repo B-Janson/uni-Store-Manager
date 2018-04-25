@@ -18,8 +18,10 @@ public class ColdTruck extends Truck {
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
-	
-	
-	
 
+	@Override
+	public double getCost() {
+		return 0;
+	}
+	
 }

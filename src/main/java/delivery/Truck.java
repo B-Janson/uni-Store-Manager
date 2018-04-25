@@ -3,7 +3,7 @@ package main.java.delivery;
 import main.java.stock.Stock;
 
 public abstract class Truck {
-	
+
 	double cost;
 	int capacity;
 	Stock cargo;
@@ -14,13 +14,7 @@ public abstract class Truck {
 		this.cargo = cargo;
 	}
 
-	public double getCost() {
-		return cost;
-	}
-
-	public void setCost(double cost) {
-		this.cost = cost;
-	}
+	public abstract double getCost();
 
 	public int getCapacity() {
 		return capacity;
