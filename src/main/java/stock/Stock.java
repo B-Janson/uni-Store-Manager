@@ -47,4 +47,14 @@ public class Stock {
 		}
 	}
 
+	public int getQuantity() {
+		int quantity = 0;
+		
+		for (Item item : itemList) {
+			quantity += item.getCurrentAmount();
+		}
+		
+		return quantity;
+	}
+
 }
