@@ -3,9 +3,7 @@ package main.java.delivery;
 import java.util.ArrayList;
 
 /**
- * 
  * @author Brandon Janson
- *
  */
 public class Manifest {
 	
@@ -27,7 +25,7 @@ public class Manifest {
 		double totalCost = 0;
 		
 		for (Truck truck : trucks) {
-			totalCost += truck.getTotalCost();
+			totalCost += truck.getCost();
 		}
 		
 		return totalCost;
