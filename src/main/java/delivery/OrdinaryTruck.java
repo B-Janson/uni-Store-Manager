@@ -13,8 +13,9 @@ public class OrdinaryTruck extends Truck {
 	
 	@Override
 	public double getCost() {
-//		return 750 + 0.25 * cargo.getNumberOfItems();
-		return 0;
+		int baseCost = 750;
+		double pricePerItem = 0.25;
+		return baseCost + pricePerItem * cargo.getQuantity();
 	}
 
 }

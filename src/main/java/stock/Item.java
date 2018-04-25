@@ -3,16 +3,16 @@ package main.java.stock;
 /**
  * Data class to hold information about Items
  * 
- * @author Brandon Janson
+ * @author Chris Martin
  *
  */
 public class Item {
-	String name;
-	double cost;
-	double price;
-	int reorderPoint;
-	int reorderAmount;
-	int currAmount;
+	private String name;
+	private double cost;
+	private double price;
+	private int reorderPoint;
+	private int reorderAmount;
+	private int currAmount;
 
 	public Item(String name, double cost, double price, int reorderPoint, int reorderAmount) {
 		this.name = name;
@@ -33,8 +33,8 @@ public class Item {
 	}
 
 	public String printProperties() {
-		return String.format("%S, %S, %S, %S, %S, %S", name, Double.toString(cost), Double.toString(price),
-				Integer.toString(reorderPoint), Integer.toString(reorderAmount), Integer.toString(currAmount));
+		return String.format("%S, %S, %S, %S, %S, %S", name, cost, price,
+				reorderPoint, reorderAmount, currAmount);
 	}
 
 	public String getName() {
