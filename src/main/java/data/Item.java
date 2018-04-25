@@ -1,5 +1,7 @@
 package main.java.data;
 
+import com.sun.xml.internal.bind.v2.runtime.Name;
+
 /**
  * Data class to hold information about Items
  * 
@@ -30,6 +32,11 @@ public class Item {
 	 */
 	public boolean requiresOrder() {
 		return currAmount < reorderPoint;
+	}
+
+	public String printProperties() {
+		return String.format("%S, %S, %S, %S, %S, %S", name, Double.toString(cost), Double.toString(price),
+				Integer.toString(reorderPoint), Integer.toString(reorderAmount), Integer.toString(currAmount));
 	}
 
 	public String getName() {
