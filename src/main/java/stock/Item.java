@@ -32,7 +32,7 @@ public class Item {
 	}
 
 	public String printProperties() {
-		return String.format("%S, %S, %S, %S, %S, %S", name, cost, price, reorderPoint, reorderAmount, currAmount);
+		return String.format("%s, %s, %s, %s, %s, %s", name, cost, price, reorderPoint, reorderAmount, currAmount);
 	}
 
 	public String getName() {

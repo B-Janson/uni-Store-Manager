@@ -61,22 +61,22 @@ public class TestItems {
 		int reorderAmount = 140;
 		Item testItem = new Item(name, cost, price, reorderPoint, reorderAmount);
 		testItem.setCurrentAmount(107);
-		assertTrue("printProperties does not return string correctly.",
-				testItem.printProperties() == "bread, 1.5, 2.8, 80, 140, 107");
+		assertEquals("printProperties does not return string correctly.", testItem.printProperties(),
+				"bread, 1.5, 2.8, 80, 140, 107");
 	}
 
 	@Test
 	public void testColdItemPrint() {
 		String name = "milk";
-		double cost = 2;
+		double cost = 2.0;
 		double price = 3.5;
 		int reorderPoint = 350;
 		int reorderAmount = 500;
-		double temperature = 3;
+		double temperature = 3.0;
 		ColdItem testItem = new ColdItem(name, cost, price, reorderPoint, reorderAmount, temperature);
 		testItem.setCurrentAmount(623);
-		assertTrue("printProperties does not return string correctly.",
-				testItem.printProperties() == "milk, 2, 3.5, 350, 500, 623, 3");
+		assertEquals("printProperties does not return string correctly.", testItem.printProperties(),
+				"milk, 2.0, 3.5, 350, 500, 623, 3.0");
 	}
 
 }
