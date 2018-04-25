@@ -3,8 +3,8 @@ package main.java.view;
 import java.io.IOException;
 
 import main.java.controller.Utilities;
-import main.java.data.ColdItem;
-import main.java.data.Item;
+import main.java.stock.ColdItem;
+import main.java.stock.Item;
 
 public class Main {
 

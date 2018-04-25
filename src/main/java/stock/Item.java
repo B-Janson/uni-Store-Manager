@@ -1,4 +1,4 @@
-package main.java.data;
+package main.java.stock;
 
 /**
  * Data class to hold information about Items

@@ -1,4 +1,4 @@
-package main.java.data;
+package main.java.stock;
 
 public enum StockType {
 	StoreInventory,
