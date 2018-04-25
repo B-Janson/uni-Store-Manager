@@ -2,14 +2,15 @@ package main.java.delivery;
 
 import main.java.stock.Stock;
 
+/**
+ * @author Chris Martin
+ */
 public abstract class Truck {
 
-	double cost;
-	int capacity;
-	Stock cargo;
+	private int capacity;
+	private Stock cargo;
 
-	public Truck(double cost, int capacity, Stock cargo) {
-		this.cost = cost;
+	public Truck(int capacity, Stock cargo) {
 		this.capacity = capacity;
 		this.cargo = cargo;
 	}

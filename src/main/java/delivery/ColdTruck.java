@@ -2,13 +2,17 @@ package main.java.delivery;
 
 import main.java.stock.Stock;
 
+/**
+ * @author Chris Martin
+ */
 public class ColdTruck extends Truck {
-	double temperature;
+	private static final int CAPACITY = 800;
+	
+	private double temperature;
 
-	public ColdTruck(double cost, int capacity, Stock cargo, double temperature) {
-		super(cost, capacity, cargo);
+	public ColdTruck(Stock cargo, double temperature) {
+		super(CAPACITY, cargo);
 		this.temperature = temperature;
-		capacity = 800;
 	}
 
 	public double getTemperature() {
@@ -21,7 +25,7 @@ public class ColdTruck extends Truck {
 
 	@Override
 	public double getCost() {
-		return 0;
+		return Double.MAX_VALUE;
 	}
 	
 }

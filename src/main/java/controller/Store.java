@@ -5,8 +5,7 @@ import com.sun.org.apache.xml.internal.security.signature.Manifest;
 import main.java.data.Stock;
 
 /**
- * @author Chris
- *
+ * @author Chris Martin
  */
 public class Store {
 	private Store() {

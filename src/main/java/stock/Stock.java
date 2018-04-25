@@ -3,6 +3,9 @@ package main.java.stock;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Brandon Janson
+ */
 public class Stock {
 
 	private StockType type;
@@ -50,7 +53,7 @@ public class Stock {
 	public int getQuantity() {
 		int quantity = 0;
 		
-		for (Item item : itemList) {
+		for (Item item : itemList.values()) {
 			quantity += item.getCurrentAmount();
 		}
 		
