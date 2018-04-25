@@ -3,7 +3,7 @@ package main.java.data;
 public class ColdTruck extends Truck {
 	double temperature;
 
-	public ColdTruck(double cost, int capacity, Stock cargo) {
+	public ColdTruck(double cost, int capacity, Stock cargo, double temperature) {
 		super(cost, capacity, cargo);
 		this.temperature = temperature;
 		capacity = 800;
