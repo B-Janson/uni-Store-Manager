@@ -7,6 +7,8 @@ import java.util.ArrayList;
  */
 public class Manifest {
 	
+	// TODO this class should take in items and divvy them up onto trucks
+	
 	private ArrayList<Truck> trucks;
 
 	public Manifest() {

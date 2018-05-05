@@ -120,5 +120,7 @@ public class TestTrucks {
 		testTruck.setCargo(testCargo);
 		assertEquals("set/getCargo of cold truck incorrect", testCargo, testTruck.getCargo());
 	}
+	
+	// TODO test to ensure that trucks don't go over capacity
 
 }
