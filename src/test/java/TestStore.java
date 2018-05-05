@@ -13,10 +13,11 @@ import main.java.exceptions.StockException;
 import main.java.stock.Item;
 import main.java.stock.Stock;
 import main.java.stock.StockType;
+import test.java.MockItem.MockItemType;
 
 public class TestStore {
 
-	private static final double FLOATING_POINT_TOLERANCE = 0.001;
+	private static final double PRECISION = 0.001;
 
 	private Stock inventory;
 
@@ -27,7 +28,7 @@ public class TestStore {
 		double expectedInitialCapital = 0;
 
 		assertEquals("initial capital should be 0", expectedInitialCapital, initialStore.getCapital(),
-				FLOATING_POINT_TOLERANCE);
+				PRECISION);
 		assertEquals("initial inventory should be an empty stock object", initialInventory,
 				initialStore.getInventory());
 	}
@@ -50,13 +51,13 @@ public class TestStore {
 		Store store = Store.getInstance();
 		double capital = 2000;
 		store.setCapital(capital);
-		assertEquals("set capital failed", capital, store.getCapital(), FLOATING_POINT_TOLERANCE);
+		assertEquals("get/setCapital failed", capital, store.getCapital(), PRECISION);
 	}
 
 	@Test
 	public void testStoreSetInventory() {
 		Store store = Store.getInstance();
-		inventory.add(new Item("rice", 2.0, 3.0, 225, 300));
+		inventory.add(new MockItem(MockItemType.RICE).getItem());
 		store.setInventory(inventory);
 		assertEquals("set store inventory failed", inventory, store.getInventory());
 	}
@@ -67,6 +68,10 @@ public class TestStore {
 		String name = "SuperMart";
 		store.setName(name);
 		assertEquals("set store name failed", name, store.getName());
+		
+		String newName = "NotSuperMart";
+		store.setName(newName);
+		assertEquals("set store name failed", newName, store.getName());
 	}
 
 	@Test
@@ -80,13 +85,16 @@ public class TestStore {
 		store.updateInventory(manifest);
 
 		assertEquals("empty manifest shouldn't change store's capital", expectedCapital, store.getCapital(),
-				FLOATING_POINT_TOLERANCE);
+				PRECISION);
 		assertEquals("empty manifest shouldn't change store's inventory", expectedInventory, store.getInventory());
 		assertEquals("empty manifest shouldn't change store's name", name, store.getName()); 
 	}
 
 	@Test
 	public void testStoreUpdateInventory() throws StockException {
+		
+		// FIXME this is a wrong implementation for future work
+		
 		Store store = Store.getInstance();
 		double expectedCapital = store.getCapital();
 		String name = store.getName();
@@ -107,7 +115,7 @@ public class TestStore {
 		Stock expectedInventory = truckStock;
 		
 		store.updateInventory(manifest);
-		assertEquals("capital should decrease", expectedCapital, store.getCapital(), FLOATING_POINT_TOLERANCE);
+		assertEquals("capital should decrease", expectedCapital, store.getCapital(), PRECISION);
 		assertEquals("inventory should change according to manifest", expectedInventory, store.getInventory());
 		assertEquals("name should not change", name, store.getName());
 	}
