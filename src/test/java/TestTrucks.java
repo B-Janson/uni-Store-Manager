@@ -11,10 +11,10 @@ import main.java.controller.Utilities;
 import main.java.delivery.ColdTruck;
 import main.java.delivery.OrdinaryTruck;
 import main.java.delivery.Truck;
-import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import main.java.stock.Stock;
 import main.java.stock.StockType;
+import test.java.MockItem.MockItemType;
 
 public class TestTrucks {
 
@@ -48,26 +48,11 @@ public class TestTrucks {
 		// set up random temperature
 		double temp = random.nextDouble() * random.nextInt(TEMPERATURE_RANGE) - TEMPERATURE_RANGE / 2;
 		temperature = Utilities.roundTo(temp, DECIMAL_PLACES);
-		assertEquals("this is failing", temp, temperature, PRECISION);
+		assertEquals("temperature not rounded correctly", temp, temperature, PRECISION);
 		
 		// set up test items for adding to cargo
-		// TODO refactor this out to just one method
-		String[] riceProperties = "rice,2,3,225,300".split(",");
-		String name = riceProperties[0];
-		double cost = Double.parseDouble(riceProperties[1]);
-		double price = Double.parseDouble(riceProperties[2]);
-		int reorderPoint = Integer.parseInt(riceProperties[3]);
-		int reorderAmount = Integer.parseInt(riceProperties[4]);
-		rice = new Item(name, cost, price, reorderPoint, reorderAmount);
-		
-		String[] mushroomProperties = "mushrooms,2,4,200,325,10".split(",");
-		name = mushroomProperties[0];
-		cost = Double.parseDouble(mushroomProperties[1]);
-		price = Double.parseDouble(mushroomProperties[1]);
-		reorderPoint = Integer.parseInt(mushroomProperties[3]);
-		reorderAmount = Integer.parseInt(mushroomProperties[4]);
-		double temperature = Double.parseDouble(mushroomProperties[5]);
-		mushroom = new ColdItem(name, cost, price, reorderPoint, reorderAmount, temperature);
+		rice = new MockItem(MockItemType.RICE).getItem();
+		mushroom = new MockItem(MockItemType.MUSHROOM).getItem();
 	}
 
 	@Test

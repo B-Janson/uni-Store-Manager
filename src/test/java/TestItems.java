@@ -13,6 +13,7 @@ import main.java.controller.Utilities;
 import main.java.exceptions.StockException;
 import main.java.stock.ColdItem;
 import main.java.stock.Item;
+import test.java.MockItem.MockItemType;
 
 /**
  * @author Brandon Janson
@@ -25,16 +26,11 @@ public class TestItems {
 
 	private Item rice;
 	private Item mushroom;
-
-	private int riceIndex = 0;
-	private int mushroomIndex = 8;
-	
-	private static String[] csvLines;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		try {
-			csvLines = Utilities.readCSV("item_properties.csv");
+			String[] csvLines = Utilities.readCSV("item_properties.csv");
 			String[] expected = { "rice,2,3,225,300" };
 			assertEquals("CSV read failed", expected[0], csvLines[0]);
 		} catch (IOException e) {
@@ -45,47 +41,47 @@ public class TestItems {
 	@Before
 	public void setUp() throws Exception {
 		random = new Random();
-
-		String[] riceProperties = csvLines[riceIndex].split(",");
-		String name = riceProperties[0];
-		double cost = Double.parseDouble(riceProperties[1]);
-		double price = Double.parseDouble(riceProperties[2]);
-		int reorderPoint = Integer.parseInt(riceProperties[3]);
-		int reorderAmount = Integer.parseInt(riceProperties[4]);
-		int initialAmount = 0;
-		rice = new Item(name, cost, price, reorderPoint, reorderAmount);
-		assertEquals("Making item from csv failed", rice.printProperties(),
-				name + ", " + cost + ", " + price + ", " + reorderPoint + ", " + reorderAmount + ", " + initialAmount);
-
-		String[] mushroomProperties = csvLines[mushroomIndex].split(",");
-		name = mushroomProperties[0];
-		cost = Double.parseDouble(mushroomProperties[1]);
-		price = Double.parseDouble(mushroomProperties[1]);
-		reorderPoint = Integer.parseInt(mushroomProperties[3]);
-		reorderAmount = Integer.parseInt(mushroomProperties[4]);
-		double temperature = Double.parseDouble(mushroomProperties[5]);
-		mushroom = new ColdItem(name, cost, price, reorderPoint, reorderAmount, temperature);
-		assertEquals("Making item from csv failed", mushroom.printProperties(), name + ", " + cost + ", " + price + ", "
-				+ reorderPoint + ", " + reorderAmount + ", " + initialAmount + ", " + temperature);
+		rice = new MockItem(MockItemType.RICE).getItem();
+		mushroom = new MockItem(MockItemType.MUSHROOM).getItem();
 	}
 
+	/**
+	 * 
+	 * @throws StockException
+	 * @author Brandon Janson
+	 */
 	@Test
 	public void testItemRequiresReorder() throws StockException {
 		rice.setCurrentAmount(50);
 		assertTrue("requiresOrder not working correctly", rice.requiresOrder());
 	}
 
+	/**
+	 * 
+	 * @throws StockException
+	 * @author Brandon Janson
+	 */
 	@Test
 	public void testItemNoReorder() throws StockException {
 		rice.setCurrentAmount(rice.getReorderAmount() + 50);
 		assertTrue("requiresOrder not working correctly", !rice.requiresOrder());
 	}
 	
+	/**
+	 * 
+	 * @throws StockException
+	 * @author Brandon Janson
+	 */
 	@Test(expected = StockException.class)
 	public void testSetNegativeAmount() throws StockException {
 		rice.setCurrentAmount(-1 * random.nextInt(100));
 	}
 	
+	/**
+	 * 
+	 * @throws StockException
+	 * @author Brandon Janson
+	 */
 	@Test
 	public void testSetPositiveAmount() throws StockException {
 		int randomAmount = random.nextInt(100);
@@ -93,6 +89,11 @@ public class TestItems {
 		assertEquals("setCurrentAmount not working correctly", randomAmount, rice.getCurrentAmount());
 	}
 	
+	/**
+	 * 
+	 * @throws StockException
+	 * @author Brandon Janson
+	 */
 	@Test
 	public void testPositiveAdjustAmount() throws StockException {
 		int randomAmount = random.nextInt(100);
@@ -100,11 +101,19 @@ public class TestItems {
 		assertEquals("adjustAmount not working correctly", randomAmount, rice.getCurrentAmount());
 	}
 	
+	/**
+	 * 
+	 * @throws StockException
+	 * @author Brandon Janson
+	 */
 	@Test(expected = StockException.class)
 	public void testNegativeAdjustAmount() throws StockException {
 		rice.adjustAmount(-1 * random.nextInt(100));
 	}
 	
+	/**
+	 * @author Brandon Janson
+	 */
 	@Test
 	public void testName() {
 		assertEquals("original name for rice not set correctly", "rice", rice.getName());
@@ -114,6 +123,9 @@ public class TestItems {
 		assertEquals("set/getName not working correctly", newName, rice.getName());
 	}
 	
+	/**
+	 * @author Brandon Janson
+	 */
 	@Test
 	public void testCost() {
 		double actualCost = 2;
@@ -124,6 +136,9 @@ public class TestItems {
 		assertEquals("set/getCost not working correctly", testCost, rice.getCost(), PRECISION);
 	}
 	
+	/**
+	 * @author Brandon Janson
+	 */
 	@Test
 	public void testPrice() {
 		double actualPrice = 3;
@@ -134,6 +149,9 @@ public class TestItems {
 		assertEquals("set/getPrice not working correctly", testPrice, rice.getPrice(), PRECISION);
 	}
 	
+	/**
+	 * @author Brandon Janson
+	 */
 	@Test
 	public void testReorderPoint() {
 		int actualPoint = 225;
@@ -144,6 +162,9 @@ public class TestItems {
 		assertEquals("set/getReorderPoint not working correctly", testPoint, rice.getReorderPoint(), PRECISION);
 	}
 	
+	/**
+	 * @author Brandon Janson
+	 */
 	@Test
 	public void testReorderAmount() {
 		int actualAmount = 300;
