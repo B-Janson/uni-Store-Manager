@@ -14,7 +14,12 @@ import main.java.exceptions.StockException;
 import main.java.stock.ColdItem;
 import main.java.stock.Item;
 
+/**
+ * @author Brandon Janson
+ */
 public class TestItems {
+	
+	private static final double PRECISION = 0.001;
 	
 	private Random random;
 
@@ -44,7 +49,7 @@ public class TestItems {
 		String[] riceProperties = csvLines[riceIndex].split(",");
 		String name = riceProperties[0];
 		double cost = Double.parseDouble(riceProperties[1]);
-		double price = Double.parseDouble(riceProperties[1]);
+		double price = Double.parseDouble(riceProperties[2]);
 		int reorderPoint = Integer.parseInt(riceProperties[3]);
 		int reorderAmount = Integer.parseInt(riceProperties[4]);
 		int initialAmount = 0;
@@ -75,47 +80,78 @@ public class TestItems {
 		rice.setCurrentAmount(rice.getReorderAmount() + 50);
 		assertTrue("requiresOrder not working correctly", !rice.requiresOrder());
 	}
-
-	@Test
-	public void testItemPrint() throws StockException {
-		String name = "bread";
-		double cost = 1.5;
-		double price = 2.8;
-		int reorderPoint = 80;
-		int reorderAmount = 140;
-		Item testItem = new Item(name, cost, price, reorderPoint, reorderAmount);
-		testItem.setCurrentAmount(107);
-		assertEquals("printProperties does not return string correctly.", testItem.printProperties(),
-				"bread, 1.5, 2.8, 80, 140, 107");
-	}
-
-	@Test
-	public void testColdItemPrint() throws StockException {
-		String name = "milk";
-		double cost = 2.0;
-		double price = 3.5;
-		int reorderPoint = 350;
-		int reorderAmount = 500;
-		double temperature = 3.0;
-		ColdItem testItem = new ColdItem(name, cost, price, reorderPoint, reorderAmount, temperature);
-		testItem.setCurrentAmount(623);
-		assertEquals("printProperties does not return string correctly.", testItem.printProperties(),
-				"milk, 2.0, 3.5, 350, 500, 623, 3.0");
-	}
 	
 	@Test(expected = StockException.class)
-	public void testSetAmount() throws StockException {
+	public void testSetNegativeAmount() throws StockException {
 		rice.setCurrentAmount(-1 * random.nextInt(100));
 	}
 	
 	@Test
+	public void testSetPositiveAmount() throws StockException {
+		int randomAmount = random.nextInt(100);
+		rice.setCurrentAmount(randomAmount);
+		assertEquals("setCurrentAmount not working correctly", randomAmount, rice.getCurrentAmount());
+	}
+	
+	@Test
 	public void testPositiveAdjustAmount() throws StockException {
-		rice.adjustAmount(random.nextInt(100));
+		int randomAmount = random.nextInt(100);
+		rice.adjustAmount(randomAmount);
+		assertEquals("adjustAmount not working correctly", randomAmount, rice.getCurrentAmount());
 	}
 	
 	@Test(expected = StockException.class)
 	public void testNegativeAdjustAmount() throws StockException {
 		rice.adjustAmount(-1 * random.nextInt(100));
+	}
+	
+	@Test
+	public void testName() {
+		assertEquals("original name for rice not set correctly", "rice", rice.getName());
+		
+		String newName = "apple";
+		rice.setName(newName);
+		assertEquals("set/getName not working correctly", newName, rice.getName());
+	}
+	
+	@Test
+	public void testCost() {
+		double actualCost = 2;
+		assertEquals("original cost for rice not set correctly", actualCost, rice.getCost(), PRECISION);
+
+		double testCost = random.nextDouble() * 100;
+		rice.setCost(testCost);
+		assertEquals("set/getCost not working correctly", testCost, rice.getCost(), PRECISION);
+	}
+	
+	@Test
+	public void testPrice() {
+		double actualPrice = 3;
+		assertEquals("original cost for rice not set correctly", actualPrice, rice.getPrice(), PRECISION);
+
+		double testPrice = random.nextDouble() * 100;
+		rice.setPrice(testPrice);
+		assertEquals("set/getPrice not working correctly", testPrice, rice.getPrice(), PRECISION);
+	}
+	
+	@Test
+	public void testReorderPoint() {
+		int actualPoint = 225;
+		assertEquals("original reorder point for rice not set correctly", actualPoint, rice.getReorderPoint());
+
+		int testPoint = random.nextInt(100);
+		rice.setReorderPoint(testPoint);
+		assertEquals("set/getReorderPoint not working correctly", testPoint, rice.getReorderPoint(), PRECISION);
+	}
+	
+	@Test
+	public void testReorderAmount() {
+		int actualAmount = 300;
+		assertEquals("original reorder amount for rice not set correctly", actualAmount, rice.getReorderAmount());
+
+		int testAmount = random.nextInt(100);
+		rice.setReorderAmount(testAmount);
+		assertEquals("set/getReorderAmount not working correctly", testAmount, rice.getReorderAmount(), PRECISION);
 	}
 
 }
