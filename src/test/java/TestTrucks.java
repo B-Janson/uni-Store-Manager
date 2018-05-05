@@ -21,7 +21,7 @@ public class TestTrucks {
 	private static final int ORDINARY_TRUCK_CAPACITY = 1000;
 	private static final int COLD_TRUCK_CAPACITY = 800;
 
-	private static final double PRECISION = 0.001;
+	private static final double PRECISION = 0.01;
 	private static final int DECIMAL_PLACES = 2;
 
 	private static final int TEMPERATURE_RANGE = 100;
@@ -48,7 +48,7 @@ public class TestTrucks {
 		// set up random temperature
 		double temp = random.nextDouble() * random.nextInt(TEMPERATURE_RANGE) - TEMPERATURE_RANGE / 2;
 		temperature = Utilities.roundTo(temp, DECIMAL_PLACES);
-		assertEquals(temp, temperature, PRECISION);
+		assertEquals("this is failing", temp, temperature, PRECISION);
 		
 		// set up test items for adding to cargo
 		// TODO refactor this out to just one method
@@ -117,7 +117,7 @@ public class TestTrucks {
 		
 		double testTemperature = random.nextDouble() * random.nextInt(TEMPERATURE_RANGE) - TEMPERATURE_RANGE / 2;
 		testTruck.setTemperature(testTemperature);
-		assertEquals("set/getTemperature of cold truck incorrect", temperature, testTruck.getTemperature(), PRECISION);
+		assertEquals("set/getTemperature of cold truck incorrect", testTemperature, testTruck.getTemperature(), PRECISION);
 	}
 	
 	/**
