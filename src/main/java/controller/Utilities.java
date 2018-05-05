@@ -61,7 +61,19 @@ public class Utilities {
 		pWriter.close();
 		return true;
 	}
-	
+
+	/**
+	 * Function used to round a double to the specified number of places. This is
+	 * used mainly for tests when generating random numbers, as there is no
+	 * requirement for any precision past 2 decimal places.
+	 * 
+	 * @param input
+	 *            the number to round
+	 * @param places
+	 *            the number of places to round to
+	 * @return new double value that has been rounded to the specified number of
+	 *         decimal places
+	 */
 	public static double roundTo(double input, int places) {
 		BigDecimal bDecimal = new BigDecimal(input);
 		bDecimal = bDecimal.setScale(places, RoundingMode.HALF_UP);
