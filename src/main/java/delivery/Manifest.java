@@ -1,8 +1,10 @@
 package main.java.delivery;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import main.java.controller.Utilities;
 import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import main.java.stock.Stock;
@@ -25,22 +27,6 @@ public class Manifest {
 		organiseTrucks();
 	}
 	
-//	public Manifest(Truck[] trucks) {
-//		this.trucks = new ArrayList<Truck>();
-//		for (Truck truck : trucks) {
-//			this.trucks.add(truck);
-//		}
-//	}
-	
-//	public ArrayList<Truck> getTrucks() {
-////		return trucks;
-//		return null;
-//	}
-	
-//	public void addTruck(Truck truck) {
-//		trucks.add(truck);
-//	}
-	
 	public double getTotalCost() {
 		double totalCost = 0;
 		
@@ -56,6 +42,7 @@ public class Manifest {
 	}
 	
 	private void organiseTrucks() {
+		@SuppressWarnings("unused")
 		int sizeOfOrder = order.getQuantity();
 		HashMap<String, Item> items = order.getItemList();
 		
@@ -91,6 +78,20 @@ public class Manifest {
 		}
 		
 		
+	}
+	
+	public void saveToFile(String fileName) throws IOException {
+		String toWrite = "";
+		
+		for (Truck truck : normalTrucks) {
+			toWrite += truck.toString() + "\n";
+		}
+		
+		for (Truck truck : coldTrucks) {
+			toWrite += truck.toString();
+		}
+		
+		Utilities.writeCSV(fileName, toWrite);
 	}
 
 }

@@ -35,5 +35,15 @@ public abstract class Truck {
 		cargo.add(item);
 		return false;
 	}
+	
+	public String toString() {
+		String out = String.format(">%s\n", getClass().getSimpleName());
+		
+		for (Item item : cargo.getItemList().values()) {
+			out += String.format("%s, %d\n", item.getName(), item.getCurrentAmount());
+		}
+		
+		return out;
+	}
 
 }
