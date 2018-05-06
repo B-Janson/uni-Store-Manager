@@ -7,11 +7,16 @@ import main.java.stock.Item;
  * @author Brandon Janson
  */
 public class MockItem {
+	
+	private static final int NUM_NORMAL_ITEMS = 4;
+	private static final int NUM_COLD_ITEMS = 4;
 
 	private Item item;
 
 	public enum MockItemType {
-		RICE, MUSHROOM
+		RICE, BEANS, PASTA, BISCUITS,
+
+		MUSHROOMS, TOMATOES, ICE_CREAM, GRAPES
 	};
 
 	/**
@@ -25,8 +30,26 @@ public class MockItem {
 		case RICE:
 			item = new Item("rice", 2, 3, 225, 300);
 			break;
-		case MUSHROOM:
+		case BEANS:
+			item = new Item("beans", 4, 6, 450, 525);
+			break;
+		case PASTA:
+			item = new Item("pasta", 3, 4, 125, 250);
+			break;
+		case BISCUITS:
+			item = new Item("biscuits", 2, 5, 450, 575);
+			break;
+		case MUSHROOMS:
 			item = new ColdItem("mushrooms", 2, 4, 200, 325, 10);
+			break;
+		case TOMATOES:
+			item = new ColdItem("tomatoes", 1, 2, 325, 400, 10);
+			break;
+		case ICE_CREAM:
+			item = new ColdItem("ice cream", 8, 14, 175, 250, -20);
+			break;
+		case GRAPES:
+			item = new ColdItem("grapes", 4, 6, 125, 225, 9);
 			break;
 		}
 	}
@@ -38,6 +61,38 @@ public class MockItem {
 	 */
 	public Item getItem() {
 		return item;
+	}
+	
+	public static Item[] getNormalItems() {
+		Item[] normalItems = new Item[NUM_NORMAL_ITEMS];
+		normalItems[0] = new MockItem(MockItemType.RICE).getItem();
+		normalItems[1] = new MockItem(MockItemType.BEANS).getItem();
+		normalItems[2] = new MockItem(MockItemType.PASTA).getItem();
+		normalItems[3] = new MockItem(MockItemType.BISCUITS).getItem();
+		
+		return normalItems;
+	}
+	
+	public static Item[] getColdItems() {
+		Item[] coldItems = new Item[NUM_COLD_ITEMS];
+		coldItems[0] = new MockItem(MockItemType.MUSHROOMS).getItem();
+		coldItems[1] = new MockItem(MockItemType.TOMATOES).getItem();
+		coldItems[2] = new MockItem(MockItemType.ICE_CREAM).getItem();
+		coldItems[3] = new MockItem(MockItemType.GRAPES).getItem();
+		
+		return coldItems;
+	}
+	
+	public static Item[] getAllMockItems() {
+		Item[] items = new Item[MockItemType.values().length];
+		int i = 0;
+		
+		for (MockItemType type : MockItemType.values()) {
+			items[i] = new MockItem(type).getItem(); 
+			i++;
+		}
+		
+		return items;
 	}
 
 }

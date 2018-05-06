@@ -42,7 +42,7 @@ public class TestItems {
 	public void setUp() throws Exception {
 		random = new Random();
 		rice = new MockItem(MockItemType.RICE).getItem();
-		mushroom = new MockItem(MockItemType.MUSHROOM).getItem();
+		mushroom = new MockItem(MockItemType.MUSHROOMS).getItem();
 	}
 
 	/**

@@ -52,7 +52,7 @@ public class TestTrucks {
 		
 		// set up test items for adding to cargo
 		rice = new MockItem(MockItemType.RICE).getItem();
-		mushroom = new MockItem(MockItemType.MUSHROOM).getItem();
+		mushroom = new MockItem(MockItemType.MUSHROOMS).getItem();
 	}
 
 	@Test
