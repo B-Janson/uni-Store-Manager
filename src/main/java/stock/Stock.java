@@ -1,7 +1,6 @@
 package main.java.stock;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import main.java.exceptions.StockException;
 
@@ -11,7 +10,7 @@ import main.java.exceptions.StockException;
 public class Stock {
 
 	private StockType type;
-	private Map<String, Item> itemList;
+	private HashMap<String, Item> itemList;
 
 	public Stock(StockType type) {
 		this.type = type;
@@ -38,7 +37,7 @@ public class Stock {
 		this.type = stockType;
 	}
 
-	public Map<String, Item> getItemList() {
+	public HashMap<String, Item> getItemList() {
 		return itemList;
 	}
 
