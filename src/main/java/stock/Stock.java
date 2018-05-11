@@ -64,5 +64,35 @@ public class Stock {
 	public boolean contains(Item item) {
 		return itemList.containsKey(item.getName());
 	}
+	
+	public int getItemAmount(String name) {
+		return itemList.get(name).getCurrentAmount();
+	}
+
+	/** (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		Stock otherStock = (Stock) obj;
+		
+		if (this.getQuantity() != otherStock.getQuantity() || this.size() != otherStock.size()) {
+			return false;
+		}
+		
+		for (Item item : itemList.values()) {
+			if (!otherStock.contains(item)) {
+				return false;
+			}
+			
+			if (otherStock.getItemAmount(item.getName()) != getItemAmount(item.getName())) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	
 
 }

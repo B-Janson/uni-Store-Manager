@@ -37,6 +37,10 @@ public class Manifest {
 		return totalCost;
 	}
 	
+	public Stock getOrder() {
+		return order;
+	}
+	
 	public void addItem() {
 		
 	}
@@ -65,19 +69,27 @@ public class Manifest {
 //			}
 //		}
 		
-		Truck secondTruck = new OrdinaryTruck();
-		normalTrucks.add(secondTruck);
+		for (int i = 0; i < normalItems.size(); i++) {
+			Truck truck = new OrdinaryTruck();
+			normalTrucks.add(truck);
+		}
 		
 		for (Item item : normalItems) {
 			for (Truck truck : normalTrucks) {
-				if (!truck.addItem(item)) {
-					Truck newTruck = new OrdinaryTruck();
-					normalTrucks.add(newTruck);
+				if (truck.addItem(item)) {
+					break;
 				}
 			}
 		}
 		
 		
+	}
+	
+	public ArrayList<Truck> getTrucks() {
+		ArrayList<Truck> trucks = new ArrayList<>();
+		trucks.addAll(coldTrucks);
+		trucks.addAll(normalTrucks);
+		return trucks;
 	}
 	
 	public void saveToFile(String fileName) throws IOException {
