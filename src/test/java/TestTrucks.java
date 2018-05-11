@@ -57,7 +57,7 @@ public class TestTrucks {
 
 	@Test
 	public void testOrdinaryTruckCost() {
-		Truck testTruck = new OrdinaryTruck(cargo);
+		Truck testTruck = new OrdinaryTruck();
 		// TODO calculate expected cost of truck
 		double expected = 0.0;
 		assertEquals("cost of truck incorrect", expected, testTruck.getCost(), PRECISION);
@@ -65,7 +65,7 @@ public class TestTrucks {
 
 	@Test
 	public void testOrdinaryTruckCapacity() {
-		Truck testTruck = new OrdinaryTruck(cargo);
+		Truck testTruck = new OrdinaryTruck();
 		assertEquals("initial capacity of truck incorrect", ORDINARY_TRUCK_CAPACITY, testTruck.getCapacity());
 	}
 

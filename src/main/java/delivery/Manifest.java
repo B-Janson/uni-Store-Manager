@@ -89,6 +89,12 @@ public class Manifest {
 		ArrayList<Truck> trucks = new ArrayList<>();
 		trucks.addAll(coldTrucks);
 		trucks.addAll(normalTrucks);
+		
+		for (Truck truck : trucks) {
+			if(truck.getCargo() == null) {
+				trucks.remove(truck);
+			}
+		}
 		return trucks;
 	}
 	

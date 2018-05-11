@@ -53,6 +53,7 @@ public class Store {
 
 	public void updateInventory(Manifest trucks) throws StockException {
 		for (Truck truck : trucks.getTrucks()) {
+			System.out.println(truck.getCargo());
 			inventory.adjustBy(truck.getCargo(), false);
 		}
 	}
