@@ -7,18 +7,32 @@ import main.java.stock.Stock;
  */
 public class ColdTruck extends Truck {
 	private static final int CAPACITY = 800;
-	
+
 	private double temperature;
 
+	/**
+	 * 
+	 * @param cargo
+	 *            Stock object containing items on truck
+	 * @param temperature
+	 *            double storing temperature of truck
+	 */
 	public ColdTruck(Stock cargo, double temperature) {
 		super(CAPACITY);
 		this.temperature = temperature;
 	}
 
+	/**
+	 * @return the temperature
+	 */
 	public double getTemperature() {
 		return temperature;
 	}
 
+	/**
+	 * @param temperature
+	 *            the temperature to set
+	 */
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
@@ -32,5 +46,5 @@ public class ColdTruck extends Truck {
 		double cost = baseCost + modifer * Math.pow(tempRate, temperature / tempScale);
 		return cost;
 	}
-	
+
 }
