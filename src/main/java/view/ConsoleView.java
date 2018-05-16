@@ -94,21 +94,6 @@ public class ConsoleView {
 		Store store = Store.getInstance();
 		store.loadItems();
 		System.out.println("Successfully set inventory to " + store.getInventory());
-
-		// try {
-		// String[] itemProperties = Utilities.readCSV("item_properties.csv");
-		// for (String line : itemProperties) {
-		// String[] properties = line.split(",");
-		// Item item = new Item(properties[0], Double.parseDouble(properties[1]),
-		// Double.parseDouble(properties[2]), Integer.parseInt(properties[3]),
-		// Integer.parseInt(properties[4]));
-		// inventory.add(item);
-		// }
-		// } catch (IOException e) {
-		// System.err.println("You messed up");
-		// e.printStackTrace();
-		// }
-
 	}
 
 	/**
