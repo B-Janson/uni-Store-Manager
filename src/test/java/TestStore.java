@@ -7,13 +7,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import main.java.controller.Store;
-import main.java.delivery.Manifest;
-import main.java.exceptions.StockException;
 import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import main.java.stock.Stock;
 import main.java.stock.StockType;
-import test.java.MockItem.MockItemType;
 
 public class TestStore {
 

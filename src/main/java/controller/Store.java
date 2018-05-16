@@ -105,7 +105,7 @@ public class Store {
 	public void reset() {
 		loadItems();
 		capital = 100000;
-		name = "Supermart";
+		name = "SuperMart";
 	}
 
 }
