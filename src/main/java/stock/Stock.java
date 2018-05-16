@@ -2,7 +2,6 @@ package main.java.stock;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
 
 import main.java.exceptions.StockException;
 
@@ -12,7 +11,7 @@ import main.java.exceptions.StockException;
 public class Stock {
 
 	private StockType type;
-	private Map<String, Item> itemList;
+	private HashMap<String, Item> itemList;
 
 	public Stock(StockType type) {
 		this.type = type;
@@ -39,7 +38,7 @@ public class Stock {
 		this.type = stockType;
 	}
 
-	public Map<String, Item> getItemList() {
+	public HashMap<String, Item> getItemList() {
 		return itemList;
 	}
 
@@ -81,5 +80,35 @@ public class Stock {
 		
 		return String.format("{%s}", retVal);
 	}
+	
+	public int getItemAmount(String name) {
+		return itemList.get(name).getCurrentAmount();
+	}
+
+	/** (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		Stock otherStock = (Stock) obj;
+		
+		if (this.getQuantity() != otherStock.getQuantity() || this.size() != otherStock.size()) {
+			return false;
+		}
+		
+		for (Item item : itemList.values()) {
+			if (!otherStock.contains(item)) {
+				return false;
+			}
+			
+			if (otherStock.getItemAmount(item.getName()) != getItemAmount(item.getName())) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	
 
 }

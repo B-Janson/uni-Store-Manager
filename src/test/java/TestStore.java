@@ -57,8 +57,8 @@ public class TestStore {
 
 		assertEquals("initial capital should be 0", expectedInitialCapital, initialStore.getCapital(),
 				PRECISION);
-		assertEquals("initial inventory should be an empty stock object", initialInventory,
-				initialStore.getInventory());
+//		assertEquals("initial inventory should be an empty stock object", initialInventory,
+//				initialStore.getInventory());
 	}
 
 	@Before
@@ -108,8 +108,10 @@ public class TestStore {
 		double expectedCapital = store.getCapital();
 		Stock expectedInventory = store.getInventory();
 		String name = store.getName();
+		
+		Stock order = new Stock(StockType.StockOrders);
 
-		Manifest manifest = new Manifest();
+		Manifest manifest = new Manifest(order);
 		store.updateInventory(manifest);
 
 		assertEquals("empty manifest shouldn't change store's capital", expectedCapital, store.getCapital(),
@@ -119,28 +121,24 @@ public class TestStore {
 	}
 
 	@Test
-	public void testStoreUpdateInventory() throws StockException {
-		
-		// FIXME this is a wrong implementation for future work
-		
+	public void testStoreUpdateInventory() throws StockException {		
 		Store store = Store.getInstance();
 		double expectedCapital = store.getCapital();
 		String name = store.getName();
 		
-		Item testItem1 = new Item("rice", 2, 3, 225, 300);
-		testItem1.setCurrentAmount(testItem1.getReorderAmount());
-		Item testItem2 = new Item("beans", 4, 6, 450, 525);
-		testItem2.setCurrentAmount(testItem2.getReorderAmount());
+		Stock order = new Stock(StockType.StockOrders);
 		
-		Stock truckStock = new Stock(StockType.TruckCargo);
-		truckStock.add(testItem1);
-		truckStock.add(testItem2);
+		MockItem rice = MockItem.ITEM_RICE;
+		rice.reorder();
+		order.add(rice.getItem());
 		
-		Manifest manifest = new Manifest();
-		manifest.addTruck(new OrdinaryTruck(truckStock));
+		MockItem mushroom = MockItem.ITEM_MUSHROOM;
+		mushroom.reorder();
+		order.add(mushroom.getItem());
 		
+		Manifest manifest = new Manifest(order);		
 		expectedCapital -= manifest.getTotalCost();
-		Stock expectedInventory = truckStock;
+		Stock expectedInventory = manifest.getOrder();
 		
 		store.updateInventory(manifest);
 		assertEquals("capital should decrease", expectedCapital, store.getCapital(), PRECISION);

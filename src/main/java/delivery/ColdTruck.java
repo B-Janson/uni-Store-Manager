@@ -11,7 +11,7 @@ public class ColdTruck extends Truck {
 	private double temperature;
 
 	public ColdTruck(Stock cargo, double temperature) {
-		super(CAPACITY, cargo);
+		super(CAPACITY);
 		this.temperature = temperature;
 	}
 
