@@ -5,6 +5,7 @@ import java.io.IOException;
 import main.java.delivery.Manifest;
 import main.java.delivery.Truck;
 import main.java.exceptions.StockException;
+import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import main.java.stock.Stock;
 import main.java.stock.StockType;
@@ -82,9 +83,17 @@ public class Store {
 			String[] itemProperties = Utilities.readCSV("item_properties.csv");
 			for (String line : itemProperties) {
 				String[] properties = line.split(",");
-				Item item = new Item(properties[0], Double.parseDouble(properties[1]),
-						Double.parseDouble(properties[2]), Integer.parseInt(properties[3]),
-						Integer.parseInt(properties[4]));
+				Item item;
+				if (properties.length == 5) {
+					item = new Item(properties[0], Double.parseDouble(properties[1]),
+							Double.parseDouble(properties[2]), Integer.parseInt(properties[3]),
+							Integer.parseInt(properties[4]));
+				} else {
+					item = new ColdItem(properties[0], Double.parseDouble(properties[1]),
+							Double.parseDouble(properties[2]), Integer.parseInt(properties[3]),
+							Integer.parseInt(properties[4]), Double.parseDouble(properties[5]));
+				}
+				
 				inventory.add(item);
 			}
 		} catch (IOException e) {
