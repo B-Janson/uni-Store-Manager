@@ -1,5 +1,8 @@
-package main.java.data;
+package main.java.stock;
 
+/**
+ * @author Brandon Janson
+ */
 public class ColdItem extends Item {
 
 	private double temperature;
@@ -22,6 +25,12 @@ public class ColdItem extends Item {
 	 */
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
+	}
+
+	@Override
+	public String printProperties() {
+		return String.format("%s, %s, %s, %s, %s, %s, %s", getName(), getCost(), getPrice(), getReorderPoint(),
+				getReorderAmount(), getCurrentAmount(), temperature);
 	}
 
 }

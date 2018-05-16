@@ -2,14 +2,14 @@
 .classpath
 .project
 test.csv
-/build/
+build/
+!build/docs/*
+build/docs/.DS_Store
 
-\.gradle/buildOutputCleanup/
+\.gradle/4\.7/fileHashes/fileHashes\.bin
 
-\.gradle/4\.7/fileContent/
+\.gradle/4\.7/fileHashes/fileHashes\.lock
 
-\.gradle/4\.7/fileHashes/
+\.gradle/4\.7/taskHistory/taskHistory\.bin
 
-\.gradle/4\.7/taskHistory/
-
-doc/
+\.gradle/4\.7/taskHistory/taskHistory\.lock

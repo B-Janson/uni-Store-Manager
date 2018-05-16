@@ -5,7 +5,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
+/**
+ * @author Brandon Janson
+ */
 public class Utilities {
 
 	/**
@@ -55,6 +60,24 @@ public class Utilities {
 		pWriter.write(content);
 		pWriter.close();
 		return true;
+	}
+
+	/**
+	 * Function used to round a double to the specified number of places. This is
+	 * used mainly for tests when generating random numbers, as there is no
+	 * requirement for any precision past 2 decimal places.
+	 * 
+	 * @param input
+	 *            the number to round
+	 * @param places
+	 *            the number of places to round to
+	 * @return new double value that has been rounded to the specified number of
+	 *         decimal places
+	 */
+	public static double roundTo(double input, int places) {
+		BigDecimal bDecimal = new BigDecimal(input);
+		bDecimal = bDecimal.setScale(places, RoundingMode.HALF_UP);
+		return bDecimal.doubleValue();
 	}
 
 }
