@@ -1,13 +1,8 @@
 package main.java.view;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 import main.java.controller.Store;
-import main.java.controller.Utilities;
-import main.java.stock.Item;
-import main.java.stock.Stock;
-import main.java.stock.StockType;
 
 public class ConsoleView {
 	
@@ -50,8 +45,8 @@ public class ConsoleView {
 		case "loaditems":
 			loadItems();
 			break;
-		case "initOrder":
-			initOrder();
+		case "order":
+			doOrder();
 			break;
 		case "sale":
 			doSale();
@@ -71,51 +66,49 @@ public class ConsoleView {
 	 * loads item_properties.csv into the store
 	 */
 	public void loadItems() {
-		Store store = Store.getInstance();
-		Stock inventory = new Stock(StockType.StoreInventory);
+		Store store = Store.getInstance();		
+		store.loadItems();
+		System.out.println("Successfully set inventory to " + store.getInventory());
 		
-		try {
-			String[] itemProperties = Utilities.readCSV("item_properties.csv");
-			for (String line : itemProperties) {
-				String[] properties = line.split(",");
-				Item item = new Item(properties[0], Double.parseDouble(properties[1]),
-						Double.parseDouble(properties[2]), Integer.parseInt(properties[3]),
-						Integer.parseInt(properties[4]));
-				inventory.add(item);
-			}
-		} catch (IOException e) {
-			System.err.println("You messed up");
-			e.printStackTrace();
-		}
+//		try {
+//			String[] itemProperties = Utilities.readCSV("item_properties.csv");
+//			for (String line : itemProperties) {
+//				String[] properties = line.split(",");
+//				Item item = new Item(properties[0], Double.parseDouble(properties[1]),
+//						Double.parseDouble(properties[2]), Integer.parseInt(properties[3]),
+//						Integer.parseInt(properties[4]));
+//				inventory.add(item);
+//			}
+//		} catch (IOException e) {
+//			System.err.println("You messed up");
+//			e.printStackTrace();
+//		}
 
-		store.setInventory(inventory);
-		System.out.println("Successfully set inventory to " + inventory.toString());
+		
 	}
 	
-	public void initOrder() {
+	public void doOrder() {
 		Store store = Store.getInstance();
-		Stock inventory = store.getInventory();
-		
-//		for (Item item : inventory.getItemList().values()) {
-//			item.setToReorder();
-//		}
+		store.generateOrder();
+		System.out.println("Successfully ordered new stock: " + store.getInventory());
 	}
 	
 	public void doSale() {
 		Store store = Store.getInstance();
-		Stock inventory = store.getInventory();
 		
 		System.out.print("Which sale would you like to perform? [0, 1, 2, 3, 4] ");
 		try {
 			int choice = Integer.parseInt(scanner.nextLine());
+			if (choice < 0 || choice > 4) {
+				System.err.println("Entered non-existant sale");
+				return;
+			}
 			String fileName = String.format("sales_log_%d.csv", choice);
-//			store.doSale();
+			store.doSale(fileName);
 		} catch (Exception e) {
 			System.err.println("Entered a non-integer value");
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 }
