@@ -2,8 +2,6 @@ package main.java.controller;
 
 import java.io.IOException;
 
-import org.omg.CORBA.Current;
-
 import main.java.delivery.Manifest;
 import main.java.delivery.Truck;
 import main.java.exceptions.StockException;
@@ -86,7 +84,7 @@ public class Store {
 	}
 
 	public void generateOrder() throws IOException, StockException {
-		Manifest order = new Manifest(null);
+		Manifest order = new Manifest(new Stock(StockType.TruckCargo));
 		
 		for (Item item : Store.getInstance().getInventory().getItems()) {
 			if (item.requiresOrder()) {

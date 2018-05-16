@@ -11,15 +11,22 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
+import javafx.scene.control.TableCell;
 import main.java.controller.Store;
 import main.java.exceptions.StockException;
+import main.java.stock.Item;
 
 import javax.swing.JSplitPane;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 public class ApplicationInterface {
 
@@ -53,45 +60,40 @@ public class ApplicationInterface {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new MigLayout("", "[][][grow][][]", "[][][][][][grow][]"));
+		frame.getContentPane().setLayout(new MigLayout("", "[][grow,center][]", "[][][][][][grow][]"));
 		
 		JLabel lblSupermart = new JLabel("SuperMart", SwingConstants.CENTER);
-		lblSupermart.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblSupermart.setHorizontalTextPosition(SwingConstants.CENTER);
-		frame.getContentPane().add(lblSupermart, "cell 2 1");
+		lblSupermart.setForeground(Color.WHITE);
+		lblSupermart.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblSupermart.setHorizontalAlignment(SwingConstants.CENTER);
+		frame.getContentPane().add(lblSupermart, "cell 1 1");
+		
 		
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setBackground(Color.BLACK);
 		splitPane.setResizeWeight(.5d);
-		frame.getContentPane().add(splitPane, "cell 2 5,grow");
+		frame.getContentPane().add(splitPane, "cell 1 5,grow");
 		
 		JButton btnSales = new JButton("Read Sales");
+		btnSales.setForeground(UIManager.getColor("Button.foreground"));
+		btnSales.setBackground(UIManager.getColor("Button.background"));
 		btnSales.addActionListener(new ActionListener() {
-			int salesCounter = 0;
-			String[] logsList = {"sales_log_0", "sales_log_1", "sales_log_2", "sales_log_3","sales_log_4"};
 			public void actionPerformed(ActionEvent arg0) {
-				for (int i = 0; i < logsList.length; i++) {
-					if (salesCounter == i) {
-						try {
-							Store.getInstance().doSale(logsList[i]);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (StockException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				}
-				salesCounter++;
+				
 			}
 		});
 		splitPane.setLeftComponent(btnSales);
 		
 		JButton btnOrder = new JButton("Generate Order");
+		btnOrder.setForeground(UIManager.getColor("Button.foreground"));
+		btnOrder.setBackground(UIManager.getColor("Button.background"));
 		btnOrder.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+
+	public void actionPerformed(ActionEvent e) {
 				try {
 					Store.getInstance().generateOrder();
 				} catch (IOException e1) {
@@ -105,34 +107,11 @@ public class ApplicationInterface {
 		});
 		splitPane.setRightComponent(btnOrder);
 		
-		JTable tableInventory = new JTable(25, 3);
+		JTable tableInventory = new JTable(0, 3);
+		
+		
 		tableInventory.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
 			},
 			new String[] {
 				"Name", "Quantity", "Reorder?"
@@ -145,10 +124,22 @@ public class ApplicationInterface {
 				return columnTypes[columnIndex];
 			}
 		});
-
+		
+			DefaultTableModel model = (DefaultTableModel) tableInventory.getModel();
+			Object rowData[] = new Object[3];
+			for (Item item : Store.getInstance().getInventory().getItemList().values()) {
+				rowData[0] = item.getName();
+				rowData[1] = item.getCurrentAmount();
+				if (item.requiresOrder()) {
+					rowData[2] = "Yes";
+				} else {
+					rowData[2] = "No";
+				}
+				model.addRow(rowData);
+			}
 	    // Make the table vertically scrollable
 	    JScrollPane scrollPane = new JScrollPane(tableInventory);
-	    frame.getContentPane().add(scrollPane, "cell 2 3");
+	    frame.getContentPane().add(scrollPane, "cell 1 3");
 	}
 
 }
