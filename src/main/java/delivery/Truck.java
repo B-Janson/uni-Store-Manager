@@ -69,8 +69,11 @@ public abstract class Truck {
 	 * @return
 	 */
 	public boolean addItem(Item item) {
+		if (cargo.getQuantity() + item.getReorderAmount() > capacity) {
+			return false;
+		}
 		cargo.add(item);
-		return false;
+		return true;
 	}
 
 	/**
@@ -80,7 +83,7 @@ public abstract class Truck {
 		String out = String.format(">%s\n", getClass().getSimpleName());
 
 		for (Item item : cargo.getItemList().values()) {
-			out += String.format("%s, %d\n", item.getName(), item.getCurrentAmount());
+			out += String.format("%s, %d\n", item.getName(), item.getReorderAmount());
 		}
 
 		return out;

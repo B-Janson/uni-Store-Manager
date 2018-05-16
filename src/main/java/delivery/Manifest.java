@@ -8,6 +8,7 @@ import main.java.controller.Utilities;
 import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import main.java.stock.Stock;
+import main.java.stock.StockType;
 
 /**
  * @author Brandon Janson
@@ -20,11 +21,10 @@ public class Manifest {
 	private ArrayList<Truck> coldTrucks;
 	private Stock order;
 
-	public Manifest(Stock order) {
+	public Manifest() {
 		normalTrucks = new ArrayList<>();
 		coldTrucks = new ArrayList<>();
-		this.order = order;
-		organiseTrucks();
+		order = new Stock(StockType.StockOrders);
 	}
 	
 	public double getTotalCost() {
@@ -34,20 +34,26 @@ public class Manifest {
 			totalCost += truck.getCost();
 		}
 		
+		for (Truck truck : coldTrucks) {
+			totalCost += truck.getCost();
+		}
+		
 		return totalCost;
 	}
 	
-	public Stock getOrder() {
-		return order;
-	}
-	
 	public void addItem(Item item) {
+		Item toAdd;
+		if (item instanceof ColdItem) {
+			toAdd = new ColdItem(item.getName(), item.getCost(), item.getPrice(), item.getReorderPoint(), item.getReorderAmount(), ((ColdItem) item).getTemperature());
+		} else {
+			toAdd = new Item(item.getName(), item.getCost(), item.getPrice(), item.getReorderPoint(), item.getReorderAmount());
+		}
 		
+		toAdd.setToReorder();
+		order.add(toAdd);
 	}
 	
 	private void organiseTrucks() {
-		@SuppressWarnings("unused")
-		int sizeOfOrder = order.getQuantity();
 		HashMap<String, Item> items = order.getItemList();
 		
 		ArrayList<Item> normalItems = new ArrayList<>();		
@@ -61,26 +67,40 @@ public class Manifest {
 			}
 		}
 		
-//		Truck firstTruck = new ColdTruck(null, temperature);
-		
-//		for (Item item : coldItems) {
-//			for (Truck truck : coldTrucks) {
-//				
-//			}
-//		}
-		
-		for (int i = 0; i < normalItems.size(); i++) {
-			Truck truck = new OrdinaryTruck();
-			normalTrucks.add(truck);
+		for (Item item : coldItems) {
+			int i = -1;
+			do {
+				i++;
+				if (coldTrucks.size() == i) {
+					coldTrucks.add(new ColdTruck(null, 10));
+				}
+				
+			} while (!coldTrucks.get(i).addItem(item));
 		}
 		
 		for (Item item : normalItems) {
-			for (Truck truck : normalTrucks) {
-				if (truck.addItem(item)) {
-					break;
+			int i = -1;
+			do {
+				i++;
+				if (normalTrucks.size() == i) {
+					normalTrucks.add(new OrdinaryTruck());
 				}
-			}
+				
+			} while (!normalTrucks.get(i).addItem(item));
 		}
+		
+//		for (int i = 0; i < normalItems.size(); i++) {
+//			Truck truck = new OrdinaryTruck();
+//			normalTrucks.add(truck);
+//		}
+//		
+//		for (Item item : normalItems) {
+//			for (Truck truck : normalTrucks) {
+//				if (truck.addItem(item)) {
+//					break;
+//				}
+//			}
+//		}
 		
 		
 	}
@@ -99,6 +119,7 @@ public class Manifest {
 	}
 	
 	public void saveToFile(String fileName) throws IOException {
+		organiseTrucks();
 		String toWrite = "";
 		
 		for (Truck truck : normalTrucks) {

@@ -139,8 +139,8 @@ public class Store {
 	 * 					throws if resulting inventory has a negative value
 	 */
 	public void generateOrder() throws IOException, StockException {
-		Manifest order = new Manifest(new Stock(StockType.TruckCargo));
-
+		Manifest order = new Manifest();
+		
 		for (Item item : Store.getInstance().getInventory().getItems()) {
 			if (item.requiresOrder()) {
 				order.addItem(item);
