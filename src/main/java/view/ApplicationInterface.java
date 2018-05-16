@@ -1,32 +1,26 @@
 package main.java.view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
-
-import net.miginfocom.swing.MigLayout;
-import javax.swing.JButton;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
-import javafx.scene.control.TableCell;
 import main.java.controller.Store;
 import main.java.exceptions.StockException;
 import main.java.stock.Item;
-
-import javax.swing.JSplitPane;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-import javax.swing.UIManager;
+import net.miginfocom.swing.MigLayout;
 
 public class ApplicationInterface {
 
