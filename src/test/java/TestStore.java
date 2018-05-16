@@ -10,6 +10,7 @@ import main.java.controller.Store;
 import main.java.delivery.Manifest;
 import main.java.delivery.OrdinaryTruck;
 import main.java.exceptions.StockException;
+import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import main.java.stock.Stock;
 import main.java.stock.StockType;
@@ -25,6 +26,33 @@ public class TestStore {
 	public static void setUpBeforeClass() throws Exception {
 		Store initialStore = Store.getInstance();
 		Stock initialInventory = new Stock(StockType.StoreInventory);
+		
+		initialInventory.add(new Item("rice", 2, 3, 225, 300));
+		initialInventory.add(new Item("beans", 4, 6, 450, 525));
+		initialInventory.add(new Item("pasta", 3, 4, 125, 250));
+		initialInventory.add(new Item("biscuits", 2, 5, 450, 575));
+		initialInventory.add(new Item("nuts", 5, 9, 125, 250));
+		initialInventory.add(new Item("chips", 2, 4, 125, 200));
+		initialInventory.add(new Item("chocolate", 5, 8, 250, 375));
+		initialInventory.add(new Item("bread", 2, 3, 125, 200));
+
+		initialInventory.add(new ColdItem("mushroom", 2, 4, 200, 325, 10));
+		initialInventory.add(new ColdItem("tomatoes", 1, 2, 325, 400, 10));
+		initialInventory.add(new ColdItem("lettuce", 1, 2, 250, 350, 10));
+		initialInventory.add(new ColdItem("grapes", 4, 6, 125, 225, 9));
+		initialInventory.add(new ColdItem("asparagus", 2, 4, 175, 275, 8));
+		initialInventory.add(new ColdItem("celery", 2, 3, 225, 350, 8));
+		initialInventory.add(new ColdItem("chicken", 10, 14, 325, 425, 4));
+		initialInventory.add(new ColdItem("beef", 12, 17, 425, 550, 3));
+		initialInventory.add(new ColdItem("fish", 13, 16, 375, 475, 2));
+		initialInventory.add(new ColdItem("yoghurt", 10, 12, 200, 325, 3));
+		initialInventory.add(new ColdItem("milk", 2, 3, 300, 425, 3));
+		initialInventory.add(new ColdItem("cheese", 4, 7, 375, 450, 3));
+		initialInventory.add(new ColdItem("ice cream", 8, 14, 175, 250, -20));
+		initialInventory.add(new ColdItem("ice", 2, 5, 225, 325, -10));
+		initialInventory.add(new ColdItem("frozen meat", 10, 14, 450, 575, -14));
+		initialInventory.add(new ColdItem("frozen vegetable mix", 5, 8, 225, 325, -12));
+		
 		double expectedInitialCapital = 0;
 
 		assertEquals("initial capital should be 0", expectedInitialCapital, initialStore.getCapital(),
