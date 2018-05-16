@@ -10,6 +10,9 @@ import main.java.stock.Item;
  */
 public class MockItem {
 	
+	public static final int NUM_NORMAL_ITEMS = 4;
+	public static final int NUM_COLD_ITEMS = 4;
+	
 	/**
 	 * static rice item used for testing
 	 */
@@ -17,7 +20,7 @@ public class MockItem {
 	/**
 	 * static mushroom item used for testing
 	 */
-	public static MockItem ITEM_MUSHROOM = new MockItem(MockItemType.MUSHROOM);
+	public static MockItem ITEM_MUSHROOM = new MockItem(MockItemType.MUSHROOMS);
 
 	/**
 	 * enum used to determine the values used for the mock items

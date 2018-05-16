@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import main.java.controller.Store;
 import main.java.delivery.Manifest;
-import main.java.delivery.OrdinaryTruck;
 import main.java.exceptions.StockException;
 import main.java.stock.ColdItem;
 import main.java.stock.Item;
@@ -57,8 +56,8 @@ public class TestStore {
 
 		assertEquals("initial capital should be 0", expectedInitialCapital, initialStore.getCapital(),
 				PRECISION);
-//		assertEquals("initial inventory should be an empty stock object", initialInventory,
-//				initialStore.getInventory());
+		assertEquals("initial inventory should be an empty stock object", initialInventory,
+				initialStore.getInventory());
 	}
 
 	@Before
