@@ -110,5 +110,9 @@ public class Item {
 		}
 		this.currAmount = amount;
 	}
+	
+	public void setToReorder() {
+		this.currAmount = this.reorderAmount;
+	}
 
 }
