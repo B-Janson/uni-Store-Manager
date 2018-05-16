@@ -1,8 +1,10 @@
 package main.java.view;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import main.java.controller.Store;
+import main.java.exceptions.StockException;
 
 public class ConsoleView {
 
@@ -103,7 +105,15 @@ public class ConsoleView {
 	 */
 	public void doOrder() {
 		Store store = Store.getInstance();
-		store.generateOrder();
+		try {
+			store.generateOrder();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (StockException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("Successfully ordered new stock: " + store.getInventory());
 	}
 

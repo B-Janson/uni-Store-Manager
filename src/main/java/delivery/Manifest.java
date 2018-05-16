@@ -41,7 +41,7 @@ public class Manifest {
 		return order;
 	}
 	
-	public void addItem() {
+	public void addItem(Item item) {
 		
 	}
 	

@@ -2,6 +2,8 @@ package main.java.controller;
 
 import java.io.IOException;
 
+import org.omg.CORBA.Current;
+
 import main.java.delivery.Manifest;
 import main.java.delivery.Truck;
 import main.java.exceptions.StockException;
@@ -68,12 +70,37 @@ public class Store {
 		capital = capital - trucks.getTotalCost();
 	}
 
-	public void doSale(String filename) {
-
+	public void doSale(String filename) throws IOException, StockException {
+		String[] sale = Utilities.readCSV(filename);
+		
+		for (String line : sale) {
+			String[] details = line.split(",");
+			
+			Stock soldItems = new Stock(StockType.SalesLogs);
+			Item name = inventory.getItemList().get(details[0]);
+			int newAmount = inventory.getItemAmount(details[0]) - Integer.parseInt(details[1]);
+			name.setCurrentAmount(newAmount);
+			soldItems.add(name);
+			inventory.adjustBy(soldItems, false);
+		}
 	}
 
-	public void generateOrder() {
-
+	public void generateOrder() throws IOException, StockException {
+		Manifest order = new Manifest(null);
+		
+		for (Item item : Store.getInstance().getInventory().getItems()) {
+			if (item.requiresOrder()) {
+				order.addItem(item);
+			}
+		}
+		order.saveToFile("manifest.csv");
+		//TO-DO add functionality to read csv file
+		
+		for (Truck truck : order.getTrucks()) {
+			inventory.adjustBy(truck.getCargo(), true);
+		}
+		capital -= order.getTotalCost();
+		
 	}
 
 	public void loadItems() {
