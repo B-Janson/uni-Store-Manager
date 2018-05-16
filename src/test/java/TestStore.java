@@ -17,7 +17,7 @@ import test.java.MockItem.MockItemType;
 
 public class TestStore {
 
-	private static final double PRECISION = 0.001;
+	private static final double PRECISION = 0.01;
 
 	private Stock inventory;
 
@@ -25,7 +25,7 @@ public class TestStore {
 	public static void setUpBeforeClass() throws Exception {
 		Store initialStore = Store.getInstance();
 		Stock initialInventory = new Stock(StockType.StoreInventory);
-		
+
 		initialInventory.add(new Item("rice", 2, 3, 225, 300));
 		initialInventory.add(new Item("beans", 4, 6, 450, 525));
 		initialInventory.add(new Item("pasta", 3, 4, 125, 250));
@@ -35,7 +35,7 @@ public class TestStore {
 		initialInventory.add(new Item("chocolate", 5, 8, 250, 375));
 		initialInventory.add(new Item("bread", 2, 3, 125, 200));
 
-		initialInventory.add(new ColdItem("mushroom", 2, 4, 200, 325, 10));
+		initialInventory.add(new ColdItem("mushrooms", 2, 4, 200, 325, 10));
 		initialInventory.add(new ColdItem("tomatoes", 1, 2, 325, 400, 10));
 		initialInventory.add(new ColdItem("lettuce", 1, 2, 250, 350, 10));
 		initialInventory.add(new ColdItem("grapes", 4, 6, 125, 225, 9));
@@ -51,11 +51,10 @@ public class TestStore {
 		initialInventory.add(new ColdItem("ice", 2, 5, 225, 325, -10));
 		initialInventory.add(new ColdItem("frozen meat", 10, 14, 450, 575, -14));
 		initialInventory.add(new ColdItem("frozen vegetable mix", 5, 8, 225, 325, -12));
-		
-		double expectedInitialCapital = 0;
 
-		assertEquals("initial capital should be 0", expectedInitialCapital, initialStore.getCapital(),
-				PRECISION);
+		double expectedInitialCapital = 100000;
+
+		assertEquals("initial capital should be 0", expectedInitialCapital, initialStore.getCapital(), PRECISION);
 		assertEquals("initial inventory should be an empty stock object", initialInventory,
 				initialStore.getInventory());
 	}
@@ -95,7 +94,7 @@ public class TestStore {
 		String name = "SuperMart";
 		store.setName(name);
 		assertEquals("set store name failed", name, store.getName());
-		
+
 		String newName = "NotSuperMart";
 		store.setName(newName);
 		assertEquals("set store name failed", newName, store.getName());
@@ -107,38 +106,37 @@ public class TestStore {
 		double expectedCapital = store.getCapital();
 		Stock expectedInventory = store.getInventory();
 		String name = store.getName();
-		
+
 		Stock order = new Stock(StockType.StockOrders);
 
 		Manifest manifest = new Manifest(order);
 		store.updateInventory(manifest);
 
-		assertEquals("empty manifest shouldn't change store's capital", expectedCapital, store.getCapital(),
-				PRECISION);
+		assertEquals("empty manifest shouldn't change store's capital", expectedCapital, store.getCapital(), PRECISION);
 		assertEquals("empty manifest shouldn't change store's inventory", expectedInventory, store.getInventory());
-		assertEquals("empty manifest shouldn't change store's name", name, store.getName()); 
+		assertEquals("empty manifest shouldn't change store's name", name, store.getName());
 	}
 
 	@Test
-	public void testStoreUpdateInventory() throws StockException {		
+	public void testStoreUpdateInventory() throws StockException {
 		Store store = Store.getInstance();
 		double expectedCapital = store.getCapital();
 		String name = store.getName();
-		
+
 		Stock order = new Stock(StockType.StockOrders);
-		
+
 		MockItem rice = MockItem.ITEM_RICE;
 		rice.reorder();
 		order.add(rice.getItem());
-		
+
 		MockItem mushroom = MockItem.ITEM_MUSHROOM;
 		mushroom.reorder();
 		order.add(mushroom.getItem());
-		
-		Manifest manifest = new Manifest(order);		
+
+		Manifest manifest = new Manifest(order);
 		expectedCapital -= manifest.getTotalCost();
 		Stock expectedInventory = manifest.getOrder();
-		
+
 		store.updateInventory(manifest);
 		assertEquals("capital should decrease", expectedCapital, store.getCapital(), PRECISION);
 		assertEquals("inventory should change according to manifest", expectedInventory, store.getInventory());
