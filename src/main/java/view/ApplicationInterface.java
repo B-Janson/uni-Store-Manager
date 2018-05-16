@@ -84,7 +84,8 @@ public class ApplicationInterface {
 		btnSales.setBackground(UIManager.getColor("Button.background"));
 		btnSales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				SalesSelection newWindow = new SalesSelection();
+				newWindow.ChooseSales();
 			}
 		});
 		splitPane.setLeftComponent(btnSales);
