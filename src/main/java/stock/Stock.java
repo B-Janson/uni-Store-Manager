@@ -1,5 +1,6 @@
 package main.java.stock;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,6 +65,21 @@ public class Stock {
 
 	public boolean contains(Item item) {
 		return itemList.containsKey(item.getName());
+	}
+	
+	public Collection<Item> getItems() {
+		return itemList.values();
+	}
+	
+	@Override
+	public String toString() {
+		String retVal = "";
+		
+		for (Item item : itemList.values()) {
+			retVal += String.format("%s:%d,", item.getName(), item.getCurrentAmount());
+		}
+		
+		return String.format("{%s}", retVal);
 	}
 
 }
