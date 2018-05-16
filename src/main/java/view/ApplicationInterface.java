@@ -94,8 +94,7 @@ public class ApplicationInterface {
 		btnOrder.setForeground(UIManager.getColor("Button.foreground"));
 		btnOrder.setBackground(UIManager.getColor("Button.background"));
 		btnOrder.addActionListener(new ActionListener() {
-
-	public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				try {
 					Store.getInstance().generateOrder();
 				} catch (IOException e1) {
