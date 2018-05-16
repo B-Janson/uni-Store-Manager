@@ -59,7 +59,7 @@ public class TestTrucks {
 	public void testOrdinaryTruckCost() {
 		Truck testTruck = new OrdinaryTruck(cargo);
 		// TODO calculate expected cost of truck
-		double expected = 0.0;
+		double expected = 750;
 		assertEquals("cost of truck incorrect", expected, testTruck.getCost(), PRECISION);
 	}
 

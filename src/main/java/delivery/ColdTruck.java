@@ -25,7 +25,12 @@ public class ColdTruck extends Truck {
 
 	@Override
 	public double getCost() {
-		return Double.MAX_VALUE;
+		int baseCost = 900;
+		int modifer = 200;
+		double tempRate = 0.7;
+		int tempScale = 5;
+		double cost = baseCost + modifer * Math.pow(tempRate, temperature / tempScale);
+		return cost;
 	}
 	
 }
