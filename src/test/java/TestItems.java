@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import main.java.controller.Utilities;
 import main.java.exceptions.StockException;
-import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import test.java.MockItem.MockItemType;
 

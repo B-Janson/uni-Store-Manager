@@ -33,10 +33,18 @@ public class Store {
 	private Stock inventory;
 	private String name;
 
+	
+
+	/**
+	 * @return the capital
+	 */
 	public double getCapital() {
 		return capital;
 	}
 
+	/**
+	 * @param capital the capital to set
+	 */
 	public void setCapital(double capital) {
 		this.capital = capital;
 	}
@@ -84,7 +92,7 @@ public class Store {
 	}
 
 	public void generateOrder() throws IOException, StockException {
-		Manifest order = new Manifest(new Stock(StockType.TruckCargo));
+		Manifest order = new Manifest();
 		
 		for (Item item : Store.getInstance().getInventory().getItems()) {
 			if (item.requiresOrder()) {
