@@ -24,43 +24,64 @@ public class Store {
 	private static class StoreHolder {
 		private final static Store INSTANCE = new Store();
 	}
-
+	
+	/**
+	 * 
+	 * @return instance of Store
+	 */
 	public static Store getInstance() {
 		return StoreHolder.INSTANCE;
 	}
 
+	
 	private double capital;
 	private Stock inventory;
 	private String name;
 
-	
-
 	/**
-	 * @return the capital
+	 * 
+	 * @return current capital of Store
 	 */
 	public double getCapital() {
 		return capital;
 	}
 
 	/**
-	 * @param capital the capital to set
+	 * 
+	 * @param capital specified capital for Store
 	 */
 	public void setCapital(double capital) {
 		this.capital = capital;
 	}
 
+	/**
+	 * 
+	 * @return current inventory as a Stock object of Store
+	 */
 	public Stock getInventory() {
 		return inventory;
 	}
 
+	/**
+	 * 
+	 * @param inventory specified inventory for Store
+	 */
 	public void setInventory(Stock inventory) {
 		this.inventory = inventory;
 	}
 
+	/**
+	 * 
+	 * @return name of Store
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * 
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -50,7 +50,7 @@ public class SalesSelection {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 452, 178);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(new MigLayout("", "[][grow][]", "[][][]"));
 		
 		JLabel lblSelectWhichSales = new JLabel("Select which sales log you would like to read");
@@ -114,6 +114,7 @@ public class SalesSelection {
 						e.printStackTrace();
 					}
 				}
+				frame.dispose();
 			}
 		});
 		frame.getContentPane().add(btnConfirm, "cell 1 2,alignx center,aligny center");
