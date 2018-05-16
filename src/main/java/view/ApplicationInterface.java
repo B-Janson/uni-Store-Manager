@@ -33,7 +33,8 @@ public class ApplicationInterface {
 	private JFrame frame;
 
 	/**
-	 * Launch the application.
+	 * 
+	 * @param args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -76,7 +77,7 @@ public class ApplicationInterface {
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setBackground(Color.BLACK);
 		splitPane.setResizeWeight(.5d);
-		frame.getContentPane().add(splitPane, "cell 1 5,grow");
+		frame.getContentPane().add(splitPane, "cell 1 5, grow");
 		
 		JButton btnSales = new JButton("Read Sales");
 		btnSales.setForeground(UIManager.getColor("Button.foreground"));

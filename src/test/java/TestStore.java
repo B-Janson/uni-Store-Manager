@@ -2,6 +2,8 @@ package test.java;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -96,7 +98,7 @@ public class TestStore {
 	}
 	
 	@Test
-	public void testGenerateOrderNeeded() {
+	public void testGenerateOrderNeeded() throws IOException, StockException {
 		Store store = Store.getInstance();
 		store.generateOrder();
 		
@@ -139,7 +141,7 @@ public class TestStore {
 	}
 	
 	@Test
-	public void testGenerateOrderNotNeeded() {
+	public void testGenerateOrderNotNeeded() throws IOException, StockException {
 		Store store = Store.getInstance();
 		store.generateOrder();
 		
@@ -153,7 +155,7 @@ public class TestStore {
 	}
 	
 	@Test
-	public void testProcessSale0() throws StockException {
+	public void testProcessSale0() throws StockException, IOException {
 		Store store = Store.getInstance();
 		store.generateOrder();
 		store.doSale("sales_log_0.csv");
@@ -223,31 +225,31 @@ public class TestStore {
 	}
 	
 	@Test
-	public void testProcessSale1() {
+	public void testProcessSale1() throws IOException, StockException {
 		Store store = Store.getInstance();
 		store.doSale("sales_log_1.csv");
 	}
 	
 	@Test
-	public void testProcessSale2() {
+	public void testProcessSale2() throws IOException, StockException {
 		Store store = Store.getInstance();
 		store.doSale("sales_log_2.csv");
 	}
 	
 	@Test
-	public void testProcessSale3() {
+	public void testProcessSale3() throws IOException, StockException {
 		Store store = Store.getInstance();
 		store.doSale("sales_log_3.csv");
 	}
 	
 	@Test
-	public void testProcessSale4() {
+	public void testProcessSale4() throws IOException, StockException {
 		Store store = Store.getInstance();
 		store.doSale("sales_log_4.csv");
 	}
 	
 	@Test
-	public void testProcessSale01() {
+	public void testProcessSale01() throws IOException, StockException {
 		Store store = Store.getInstance();
 		store.doSale("sales_log_0.csv");
 		store.doSale("sales_log_1.csv");

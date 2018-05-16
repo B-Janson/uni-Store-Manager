@@ -14,7 +14,8 @@ public class SalesSelection {
 	private JFrame frame;
 
 	/**
-	 * Launch the application.
+	 * 
+	 * @param args
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
