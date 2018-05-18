@@ -18,6 +18,8 @@ public abstract class Truck {
 	}
 
 	public abstract double getCost();
+	
+	public abstract double lit();
 
 	public int getCapacity() {
 		return capacity;
