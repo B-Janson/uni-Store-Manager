@@ -56,8 +56,8 @@ public class SalesSelection {
 		JLabel lblSelectWhichSales = new JLabel("Select which sales log you would like to read");
 		frame.getContentPane().add(lblSelectWhichSales, "cell 1 0");
 		
-		JComboBox comboBoxSales = new JComboBox();
-		comboBoxSales.setModel(new DefaultComboBoxModel(new String[] {"Sales log 1", "Sales log 2", "Sales log 3", "Sales log 4", "Sales log 5"}));
+		JComboBox<String> comboBoxSales = new JComboBox<>();
+		comboBoxSales.setModel(new DefaultComboBoxModel<String>(new String[] {"Sales log 1", "Sales log 2", "Sales log 3", "Sales log 4", "Sales log 5"}));
 		frame.getContentPane().add(comboBoxSales, "cell 1 1,growx");
 		
 		JButton btnConfirm = new JButton("Confirm");

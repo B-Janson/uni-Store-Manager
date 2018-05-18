@@ -13,26 +13,27 @@ beans, 525
 chocolate, 375
 
 >ColdTruck
-chicken, 425
-ice, 325
->ColdTruck
-frozen meat, 575
+ice cream, 250
+frozen vegetable mix, 325
 grapes, 225
 >ColdTruck
-milk, 425
-frozen vegetable mix, 325
->ColdTruck
-ice cream, 250
-beef, 550
->ColdTruck
-lettuce, 350
-cheese, 450
->ColdTruck
-mushrooms, 325
-tomatoes, 400
->ColdTruck
-celery, 350
-yoghurt, 325
+frozen meat, 575
 >ColdTruck
 fish, 475
+ice, 325
+>ColdTruck
+milk, 425
+yoghurt, 325
+>ColdTruck
+beef, 550
+>ColdTruck
+celery, 350
+cheese, 450
+>ColdTruck
+chicken, 425
 asparagus, 275
+>ColdTruck
+mushrooms, 325
+lettuce, 350
+>ColdTruck
+tomatoes, 400

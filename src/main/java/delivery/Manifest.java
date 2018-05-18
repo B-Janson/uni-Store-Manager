@@ -2,6 +2,7 @@ package main.java.delivery;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import main.java.controller.Utilities;
@@ -57,22 +58,27 @@ public class Manifest {
 		HashMap<String, Item> items = order.getItemList();
 		
 		ArrayList<Item> normalItems = new ArrayList<>();		
-		ArrayList<Item> coldItems = new ArrayList<>();
+		ArrayList<ColdItem> coldItems = new ArrayList<>();
+		
+		normalTrucks = new ArrayList<>();
+		coldTrucks = new ArrayList<>();
 		
 		for (Item item : items.values()) {
 			if (item instanceof ColdItem) {
-				coldItems.add(item);
+				coldItems.add((ColdItem) item);
 			} else {
 				normalItems.add(item);
 			}
 		}
 		
-		for (Item item : coldItems) {
+		coldItems.sort(Comparator.comparing(ColdItem::getTemperature));
+		
+		for (ColdItem item : coldItems) {
 			int i = -1;
 			do {
 				i++;
 				if (coldTrucks.size() == i) {
-					coldTrucks.add(new ColdTruck(null, 10));
+					coldTrucks.add(new ColdTruck(item.getTemperature()));
 				}
 				
 			} while (!coldTrucks.get(i).addItem(item));
@@ -87,34 +93,13 @@ public class Manifest {
 				}
 				
 			} while (!normalTrucks.get(i).addItem(item));
-		}
-		
-//		for (int i = 0; i < normalItems.size(); i++) {
-//			Truck truck = new OrdinaryTruck();
-//			normalTrucks.add(truck);
-//		}
-//		
-//		for (Item item : normalItems) {
-//			for (Truck truck : normalTrucks) {
-//				if (truck.addItem(item)) {
-//					break;
-//				}
-//			}
-//		}
-		
-		
+		}		
 	}
 	
 	public ArrayList<Truck> getTrucks() {
 		ArrayList<Truck> trucks = new ArrayList<>();
 		trucks.addAll(coldTrucks);
 		trucks.addAll(normalTrucks);
-		
-		for (Truck truck : trucks) {
-			if(truck.getCargo() == null) {
-				trucks.remove(truck);
-			}
-		}
 		return trucks;
 	}
 	

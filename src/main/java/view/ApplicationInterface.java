@@ -77,8 +77,7 @@ public class ApplicationInterface {
 		btnSales.setBackground(UIManager.getColor("Button.background"));
 		btnSales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SalesSelection newWindow = new SalesSelection();
-				newWindow.ChooseSales();
+				SalesSelection.ChooseSales();
 			}
 		});
 		splitPane.setLeftComponent(btnSales);
@@ -105,8 +104,14 @@ public class ApplicationInterface {
 
 		tableInventory
 				.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Quantity", "Reorder?" }) {
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = 8357534138767998861L;
+					@SuppressWarnings("rawtypes")
 					Class[] columnTypes = new Class[] { Object.class, String.class, String.class };
 
+					@SuppressWarnings({ "unchecked", "rawtypes" })
 					public Class getColumnClass(int columnIndex) {
 						return columnTypes[columnIndex];
 					}

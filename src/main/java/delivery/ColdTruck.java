@@ -1,7 +1,5 @@
 package main.java.delivery;
 
-import main.java.stock.Stock;
-
 /**
  * @author Chris Martin
  */
@@ -17,7 +15,7 @@ public class ColdTruck extends Truck {
 	 * @param temperature
 	 *            double storing temperature of truck
 	 */
-	public ColdTruck(Stock cargo, double temperature) {
+	public ColdTruck(double temperature) {
 		super(CAPACITY);
 		this.temperature = temperature;
 	}
