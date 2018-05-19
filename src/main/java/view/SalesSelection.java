@@ -5,9 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
 
 import main.java.controller.Store;
 import main.java.exceptions.StockException;
+import main.java.stock.Item;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -19,12 +21,15 @@ import java.awt.event.ActionEvent;
 public class SalesSelection {
 
 	private JFrame frame;
+	private static DefaultTableModel model;
 
 	/**
 	 * 
+	 * @param model 
 	 * @param args
 	 */
-	public static void ChooseSales() {
+	public static void ChooseSales(DefaultTableModel model2) {
+		model = model2;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -113,6 +118,21 @@ public class SalesSelection {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+				}
+				Object rowData[] = new Object[3];
+				int itemCount = 0;
+				for (Item item : Store.getInstance().getInventory().getItemList().values()) {
+					rowData[0] = item.getName();
+					rowData[1] = item.getCurrentAmount();
+					if (item.requiresOrder()) {
+						rowData[2] = "Yes";
+					} else {
+						rowData[2] = "No";
+					}
+					for (int i = 0; i < rowData.length; i++) {
+						model.setValueAt(rowData[i], itemCount, i);
+					}
+					itemCount++;
 				}
 				frame.dispose();
 			}

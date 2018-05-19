@@ -110,23 +110,7 @@ public class ApplicationInterface {
 		btnSales.setBackground(UIManager.getColor("Button.background"));
 		btnSales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SalesSelection.ChooseSales();
-								
-				Object rowData[] = new Object[3];
-				int itemCount = 0;
-				for (Item item : Store.getInstance().getInventory().getItemList().values()) {
-					rowData[0] = item.getName();
-					rowData[1] = item.getCurrentAmount();
-					if (item.requiresOrder()) {
-						rowData[2] = "Yes";
-					} else {
-						rowData[2] = "No";
-					}
-					for (int i = 0; i < rowData.length; i++) {
-						model.setValueAt(rowData[i], itemCount, i);
-					}
-					itemCount++;
-				}
+				SalesSelection.ChooseSales(model);
 			}
 		});
 		splitPane.setLeftComponent(btnSales);

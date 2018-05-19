@@ -120,14 +120,13 @@ public class Store {
 		for (String line : sale) {
 			String[] details = line.split(",");
 
-			Stock soldItems = new Stock(StockType.SalesLogs);
 			Item name = inventory.getItemList().get(details[0]);
-			int newAmount = inventory.getItemAmount(details[0]) - Integer.parseInt(details[1]);
+			int newAmount = name.getCurrentAmount() - Integer.parseInt(details[1]);
 			name.setCurrentAmount(newAmount);
-			soldItems.add(name);
-			inventory.adjustBy(soldItems, false);
 			
 			capital -= Integer.parseInt(details[1]) * name.getPrice();
+			
+			inventory.getItemList().put(name.getName(), name);
 		}
 	}
 
