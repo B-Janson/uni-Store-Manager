@@ -25,6 +25,7 @@ import net.miginfocom.swing.MigLayout;
 public class ApplicationInterface {
 
 	private JFrame frame;
+	private DefaultTableModel model;
 
 	/**
 	 * 
@@ -66,42 +67,8 @@ public class ApplicationInterface {
 		lblSupermart.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblSupermart.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(lblSupermart, "cell 1 1");
-
-		JSplitPane splitPane = new JSplitPane();
-		splitPane.setBackground(Color.BLACK);
-		splitPane.setResizeWeight(.5d);
-		frame.getContentPane().add(splitPane, "cell 1 5, grow");
-
-		JButton btnSales = new JButton("Read Sales");
-		btnSales.setForeground(UIManager.getColor("Button.foreground"));
-		btnSales.setBackground(UIManager.getColor("Button.background"));
-		btnSales.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				SalesSelection.ChooseSales();
-			}
-		});
-		splitPane.setLeftComponent(btnSales);
-
-		JButton btnOrder = new JButton("Generate Order");
-		btnOrder.setForeground(UIManager.getColor("Button.foreground"));
-		btnOrder.setBackground(UIManager.getColor("Button.background"));
-		btnOrder.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					Store.getInstance().generateOrder();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (StockException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		splitPane.setRightComponent(btnOrder);
-
+		
 		JTable tableInventory = new JTable(0, 3);
-
 		tableInventory
 				.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Quantity", "Reorder?" }) {
 					/**
@@ -117,7 +84,7 @@ public class ApplicationInterface {
 					}
 				});
 
-		DefaultTableModel model = (DefaultTableModel) tableInventory.getModel();
+		model = (DefaultTableModel) tableInventory.getModel();
 		Object rowData[] = new Object[3];
 		for (Item item : Store.getInstance().getInventory().getItemList().values()) {
 			rowData[0] = item.getName();
@@ -132,6 +99,72 @@ public class ApplicationInterface {
 		// Make the table vertically scrollable
 		JScrollPane scrollPane = new JScrollPane(tableInventory);
 		frame.getContentPane().add(scrollPane, "cell 1 3");
+
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setBackground(Color.BLACK);
+		splitPane.setResizeWeight(.5d);
+		frame.getContentPane().add(splitPane, "cell 1 5, grow");
+
+		JButton btnSales = new JButton("Read Sales");
+		btnSales.setForeground(UIManager.getColor("Button.foreground"));
+		btnSales.setBackground(UIManager.getColor("Button.background"));
+		btnSales.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SalesSelection.ChooseSales();
+								
+				Object rowData[] = new Object[3];
+				int itemCount = 0;
+				for (Item item : Store.getInstance().getInventory().getItemList().values()) {
+					rowData[0] = item.getName();
+					rowData[1] = item.getCurrentAmount();
+					if (item.requiresOrder()) {
+						rowData[2] = "Yes";
+					} else {
+						rowData[2] = "No";
+					}
+					for (int i = 0; i < rowData.length; i++) {
+						model.setValueAt(rowData[i], itemCount, i);
+					}
+					itemCount++;
+				}
+			}
+		});
+		splitPane.setLeftComponent(btnSales);
+		
+		JButton btnOrder = new JButton("Generate Order");
+		btnOrder.setForeground(UIManager.getColor("Button.foreground"));
+		btnOrder.setBackground(UIManager.getColor("Button.background"));
+		btnOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Store.getInstance().generateOrder();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (StockException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				Object rowData[] = new Object[3];
+				int itemCount = 0;
+				for (Item item : Store.getInstance().getInventory().getItemList().values()) {
+					rowData[0] = item.getName();
+					rowData[1] = item.getCurrentAmount();
+					if (item.requiresOrder()) {
+						rowData[2] = "Yes";
+					} else {
+						rowData[2] = "No";
+					}
+					for (int i = 0; i < rowData.length; i++) {
+						model.setValueAt(rowData[i], itemCount, i);
+					}
+					itemCount++;
+				}
+			}
+		});
+		splitPane.setRightComponent(btnOrder);
+
 	}
 
 }
