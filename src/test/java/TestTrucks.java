@@ -74,7 +74,7 @@ public class TestTrucks {
 	 */
 	@Test
 	public void testColdTruckCost() {
-		Truck testTruck = new ColdTruck(cargo, temperature);
+		Truck testTruck = new ColdTruck(temperature);
 		int baseCost = 900;
 		int modifer = 200;
 		double tempRate = 0.7;
@@ -88,7 +88,7 @@ public class TestTrucks {
 	 */
 	@Test
 	public void testColdTruckCapacity() {
-		Truck testTruck = new ColdTruck(cargo, temperature);
+		Truck testTruck = new ColdTruck(temperature);
 		assertEquals("initial capacity of truck incorrect", COLD_TRUCK_CAPACITY, testTruck.getCapacity());
 	}
 	
@@ -97,7 +97,7 @@ public class TestTrucks {
 	 */
 	@Test
 	public void testColdTruckTemperature() {
-		ColdTruck testTruck = new ColdTruck(cargo, temperature);
+		ColdTruck testTruck = new ColdTruck(temperature);
 		assertEquals("initial temperature of cold truck incorrect", temperature, testTruck.getTemperature(), PRECISION);
 		
 		double testTemperature = random.nextDouble() * random.nextInt(TEMPERATURE_RANGE) - TEMPERATURE_RANGE / 2;
@@ -110,7 +110,7 @@ public class TestTrucks {
 	 */
 	@Test
 	public void testColdTruckCargo() {
-		Truck testTruck = new ColdTruck(cargo, temperature);
+		Truck testTruck = new ColdTruck(temperature);
 		assertEquals("initial cargo of cold truck incorrect", cargo, testTruck.getCargo());
 		
 		Stock testCargo = new Stock(StockType.TruckCargo);
