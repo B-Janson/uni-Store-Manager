@@ -14,7 +14,6 @@ import main.java.delivery.Truck;
 import main.java.stock.Item;
 import main.java.stock.Stock;
 import main.java.stock.StockType;
-import test.java.MockItem.MockItemType;
 
 public class TestTrucks {
 
@@ -27,11 +26,7 @@ public class TestTrucks {
 	private static final int TEMPERATURE_RANGE = 100;
 
 	private Random random;
-
 	private Stock cargo;
-	private Item rice;
-	private Item mushroom;
-
 	private double temperature;
 
 	/**
@@ -49,16 +44,11 @@ public class TestTrucks {
 		double temp = random.nextDouble() * random.nextInt(TEMPERATURE_RANGE) - TEMPERATURE_RANGE / 2;
 		temperature = Utilities.roundTo(temp, DECIMAL_PLACES);
 		assertEquals("temperature not rounded correctly", temp, temperature, PRECISION);
-		
-		// set up test items for adding to cargo
-		rice = new MockItem(MockItemType.RICE).getItem();
-		mushroom = new MockItem(MockItemType.MUSHROOMS).getItem();
 	}
 
 	@Test
 	public void testOrdinaryTruckCost() {
 		Truck testTruck = new OrdinaryTruck();
-		// TODO calculate expected cost of truck
 		double expected = 750;
 		assertEquals("cost of truck incorrect", expected, testTruck.getCost(), PRECISION);
 	}
@@ -114,10 +104,11 @@ public class TestTrucks {
 		assertEquals("initial cargo of cold truck incorrect", cargo, testTruck.getCargo());
 		
 		Stock testCargo = new Stock(StockType.TruckCargo);
-		testCargo.add(rice);
-		testCargo.add(mushroom);
+		Item toAdd = MockItem.getRandomColdItem();
 		
-		testTruck.setCargo(testCargo);
+		testCargo.add(toAdd);
+		testTruck.addItem(toAdd);
+		
 		assertEquals("set/getCargo of cold truck incorrect", testCargo, testTruck.getCargo());
 	}
 	
