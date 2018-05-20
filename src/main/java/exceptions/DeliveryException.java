@@ -1,9 +1,14 @@
 package main.java.exceptions;
 
+/**
+ * Exception used when a delivery was unsuccessful
+ * @author Brandon Janson
+ *
+ */
 public class DeliveryException extends Exception {
 
 	/**
-	 * 
+	 * Generated serialVersionUID -- necessary for Execption class
 	 */
 	private static final long serialVersionUID = -2461644881918330806L;
 

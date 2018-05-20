@@ -1,9 +1,12 @@
 package main.java.stock;
 
 /**
+ * Object to store information about any cold items needed by the program.
+ * Implements the Comparable interface so that it can be sorted by temperature.s
+ * 
  * @author Brandon Janson
  */
-public class ColdItem extends Item implements Comparable<ColdItem>{
+public class ColdItem extends Item implements Comparable<ColdItem> {
 
 	/**
 	 * The temperature of the item

@@ -1,6 +1,9 @@
 package test.java;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -89,9 +92,20 @@ public class TestStock {
 	}
 
 	@Test
-	public void testRemove() {
+	public void testRemove() throws StockException {
 		assertTrue("Stock.remove does not funtion correctly", originalStock.contains(originalBread));
 
+		originalStock.remove(originalBread);
+
+		assertTrue("Stock.remove does not funtion correctly", originalStock.contains(originalMilk));
+		assertFalse("Stock.remove does not function correctly", originalStock.contains(originalBread));
+	}
+	
+	@Test(expected=StockException.class)
+	public void testRemoveException() throws StockException {
+		assertTrue("Stock.remove does not funtion correctly", originalStock.contains(originalBread));
+
+		originalStock.remove(originalBread);
 		originalStock.remove(originalBread);
 
 		assertTrue("Stock.remove does not funtion correctly", originalStock.contains(originalMilk));

@@ -4,7 +4,7 @@ package main.java.delivery;
  * @author Chris Martin
  */
 public class ColdTruck extends Truck {
-	private static final int CAPACITY = 800;
+	public static final int CAPACITY = 800;
 
 	private double temperature;
 

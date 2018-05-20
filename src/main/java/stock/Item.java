@@ -101,14 +101,15 @@ public class Item {
 		}
 		this.currAmount = amount;
 	}
-	
+
 	public void setToReorder() {
 		this.currAmount = this.reorderAmount;
 	}
-	
+
 	@Override
 	public String toString() {
-		return String.format("%s, cost:%1.2f, price:%1.2f, rePnt:%d, reAmt:%d, curAmt:%d", name, cost, price, reorderPoint, reorderAmount, currAmount);
+		return String.format("%s, cost:%1.2f, price:%1.2f, rePnt:%d, reAmt:%d, curAmt:%d", name, cost, price,
+				reorderPoint, reorderAmount, currAmount);
 	}
 
 }

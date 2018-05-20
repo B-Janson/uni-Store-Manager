@@ -103,7 +103,7 @@ public class Store {
 			String itemName = details[0];
 			int numSold = Integer.parseInt(details[1]);
 
-			Item soldItem = inventory.getItemList().get(itemName);
+			Item soldItem = inventory.get(itemName);
 			int newAmount = soldItem.getCurrentAmount() - numSold;
 			soldItem.setCurrentAmount(newAmount);
 

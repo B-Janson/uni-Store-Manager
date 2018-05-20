@@ -71,7 +71,7 @@ public abstract class Truck {
 	public String toString() {
 		String out = String.format(">%s\n", getClass().getSimpleName());
 
-		for (Item item : cargo.getItemList().values()) {
+		for (Item item : cargo.getItems()) {
 			out += String.format("%s, %d\n", item.getName(), item.getReorderAmount());
 		}
 

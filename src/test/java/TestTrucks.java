@@ -1,6 +1,6 @@
 package test.java;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Random;
 
@@ -80,7 +80,7 @@ public class TestTrucks {
 		Truck testTruck = new ColdTruck(temperature);
 		assertEquals("initial capacity of truck incorrect", COLD_TRUCK_CAPACITY, testTruck.getCapacity());
 	}
-	
+
 	/**
 	 * @author Brandon Janson
 	 */
@@ -88,12 +88,13 @@ public class TestTrucks {
 	public void testColdTruckTemperature() {
 		ColdTruck testTruck = new ColdTruck(temperature);
 		assertEquals("initial temperature of cold truck incorrect", temperature, testTruck.getTemperature(), PRECISION);
-		
+
 		double testTemperature = random.nextDouble() * random.nextInt(TEMPERATURE_RANGE) - TEMPERATURE_RANGE / 2;
 		testTruck.setTemperature(testTemperature);
-		assertEquals("set/getTemperature of cold truck incorrect", testTemperature, testTruck.getTemperature(), PRECISION);
+		assertEquals("set/getTemperature of cold truck incorrect", testTemperature, testTruck.getTemperature(),
+				PRECISION);
 	}
-	
+
 	/**
 	 * @author Brandon Janson
 	 */
@@ -101,16 +102,16 @@ public class TestTrucks {
 	public void testColdTruckCargo() {
 		Truck testTruck = new ColdTruck(temperature);
 		assertEquals("initial cargo of cold truck incorrect", cargo, testTruck.getCargo());
-		
+
 		Stock testCargo = new Stock();
 		Item toAdd = MockItem.getRandomColdItem();
-		
+
 		testCargo.add(toAdd);
 		testTruck.addItem(toAdd);
-		
+
 		assertEquals("set/getCargo of cold truck incorrect", testCargo, testTruck.getCargo());
 	}
-	
+
 	// TODO test to ensure that trucks don't go over capacity
 
 }

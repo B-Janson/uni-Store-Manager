@@ -9,6 +9,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
+ * Utilities class used for assorted useful methods such as reading and writing
+ * CSV as well as rounding decimal numbers
+ * 
  * @author Brandon Janson
  */
 public class Utilities {
@@ -24,17 +27,13 @@ public class Utilities {
 	 *             catch this in the front end
 	 */
 	public static String[] readCSV(String fileName) throws IOException {
-		// To read the file
 		BufferedReader in = new BufferedReader(new FileReader(fileName));
-		// To construct the output string
 		StringBuilder sBuilder = new StringBuilder();
 
-		// To store each line that is read
 		String line;
 		while ((line = in.readLine()) != null) {
 			sBuilder.append(line + "\n");
 		}
-		// Close file reader to prevent leaking resources
 		in.close();
 
 		return sBuilder.toString().split("\n");

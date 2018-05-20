@@ -1,6 +1,8 @@
 package test.java;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.util.Random;
@@ -18,14 +20,14 @@ import main.java.stock.Item;
  * @author Brandon Janson
  */
 public class TestItems {
-	
+
 	private static final double PRECISION = 0.001;
-	
+
 	private Random random;
-	
+
 	private Item normalTest;
 	private ColdItem coldTest;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		try {
@@ -65,7 +67,7 @@ public class TestItems {
 		normalTest.setCurrentAmount(normalTest.getReorderAmount() + 50);
 		assertTrue("requiresOrder not working correctly", !normalTest.requiresOrder());
 	}
-	
+
 	/**
 	 * 
 	 * @throws StockException
@@ -75,7 +77,7 @@ public class TestItems {
 	public void testSetNegativeAmount() throws StockException {
 		normalTest.setCurrentAmount(-1 * random.nextInt(100));
 	}
-	
+
 	/**
 	 * 
 	 * @throws StockException
@@ -87,7 +89,7 @@ public class TestItems {
 		normalTest.setCurrentAmount(randomAmount);
 		assertEquals("setCurrentAmount not working correctly", randomAmount, normalTest.getCurrentAmount());
 	}
-	
+
 	/**
 	 * 
 	 * @throws StockException
@@ -99,7 +101,7 @@ public class TestItems {
 		normalTest.adjustAmount(randomAmount);
 		assertEquals("adjustAmount not working correctly", randomAmount, normalTest.getCurrentAmount());
 	}
-	
+
 	/**
 	 * 
 	 * @throws StockException
@@ -109,7 +111,7 @@ public class TestItems {
 	public void testNegativeAdjustAmount() throws StockException {
 		normalTest.adjustAmount(-1 * random.nextInt(100));
 	}
-	
+
 	/**
 	 * @author Brandon Janson
 	 */
@@ -119,7 +121,7 @@ public class TestItems {
 		normalTest.setName(newName);
 		assertEquals("set/getName not working correctly", newName, normalTest.getName());
 	}
-	
+
 	/**
 	 * @author Brandon Janson
 	 */
@@ -129,7 +131,7 @@ public class TestItems {
 		normalTest.setCost(testCost);
 		assertEquals("set/getCost not working correctly", testCost, normalTest.getCost(), PRECISION);
 	}
-	
+
 	/**
 	 * @author Brandon Janson
 	 */
@@ -139,7 +141,7 @@ public class TestItems {
 		normalTest.setPrice(testPrice);
 		assertEquals("set/getPrice not working correctly", testPrice, normalTest.getPrice(), PRECISION);
 	}
-	
+
 	/**
 	 * @author Brandon Janson
 	 */
@@ -149,7 +151,7 @@ public class TestItems {
 		normalTest.setReorderPoint(testPoint);
 		assertEquals("set/getReorderPoint not working correctly", testPoint, normalTest.getReorderPoint(), PRECISION);
 	}
-	
+
 	/**
 	 * @author Brandon Janson
 	 */
@@ -157,9 +159,10 @@ public class TestItems {
 	public void testReorderAmount() {
 		int testAmount = random.nextInt(100);
 		normalTest.setReorderAmount(testAmount);
-		assertEquals("set/getReorderAmount not working correctly", testAmount, normalTest.getReorderAmount(), PRECISION);
+		assertEquals("set/getReorderAmount not working correctly", testAmount, normalTest.getReorderAmount(),
+				PRECISION);
 	}
-	
+
 	/**
 	 * @author Brandon Janson
 	 */
@@ -169,7 +172,5 @@ public class TestItems {
 		coldTest.setTemperature(temperature);
 		assertEquals("set/getTemperature not working correctly", temperature, coldTest.getTemperature(), PRECISION);
 	}
-	
-	
 
 }

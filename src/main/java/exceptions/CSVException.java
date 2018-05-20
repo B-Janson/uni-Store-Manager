@@ -1,9 +1,16 @@
 package main.java.exceptions;
 
+/**
+ * Useful exception class for when files cannot be read, or are in an incorrect
+ * format
+ * 
+ * @author Brandon Janson
+ *
+ */
 public class CSVException extends Exception {
 
 	/**
-	 * 
+	 * Generated serialVersionUID -- necessary for Execption class
 	 */
 	private static final long serialVersionUID = 4498923210856881242L;
 

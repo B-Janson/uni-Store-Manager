@@ -1,6 +1,6 @@
 package test.java;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
@@ -53,8 +53,7 @@ public class TestStore {
 		String storeName = "SuperMart";
 
 		assertEquals("initial capital should be 100,000", expectedInitialCapital, initialStore.getCapital(), PRECISION);
-		assertEquals("initial inventory should all items with 0 amount", initialInventory,
-				initialStore.getInventory());
+		assertEquals("initial inventory should all items with 0 amount", initialInventory, initialStore.getInventory());
 		assertEquals("initial name should be SuperMart", storeName, initialStore.getName());
 	}
 
@@ -62,10 +61,10 @@ public class TestStore {
 	public void setUp() throws Exception {
 		Store store = Store.getInstance();
 		store.reset();
-		
+
 		double expectedInitialCapital = 100000;
 		String storeName = "SuperMart";
-		
+
 		assertEquals("initial capital should be 100,000", expectedInitialCapital, store.getCapital(), PRECISION);
 		assertEquals("initial name should be SuperMart", storeName, store.getName());
 	}
@@ -95,14 +94,14 @@ public class TestStore {
 		store.setName(newName);
 		assertEquals("set store name failed", newName, store.getName());
 	}
-	
+
 	@Test
 	public void testGenerateOrderNeeded() throws IOException, StockException {
 		Store store = Store.getInstance();
 		store.generateOrder();
-		
+
 		Stock expectedInventory = new Stock();
-		
+
 		expectedInventory.add(new Item("rice", 2, 3, 225, 300));
 		expectedInventory.add(new Item("beans", 4, 6, 450, 525));
 		expectedInventory.add(new Item("pasta", 3, 4, 125, 250));
@@ -128,191 +127,193 @@ public class TestStore {
 		expectedInventory.add(new ColdItem("ice", 2, 5, 225, 325, -10));
 		expectedInventory.add(new ColdItem("frozen meat", 10, 14, 450, 575, -14));
 		expectedInventory.add(new ColdItem("frozen vegetable mix", 5, 8, 225, 325, -12));
-		
+
 		for (Item item : expectedInventory.getItems()) {
 			item.setToReorder();
 		}
-		
+
 		double expectedCapital = 42717.88;
-		
+
+		System.out.println(store.getInventory());
+
 		assertEquals(expectedCapital, store.getCapital(), PRECISION);
 		assertEquals(expectedInventory, store.getInventory());
 	}
-	
+
 	@Test
 	public void testGenerateOrderNotNeeded() throws IOException, StockException {
 		Store store = Store.getInstance();
 		store.generateOrder();
-		
+
 		double expectedCapital = store.getCapital();
-		
+
 		Stock updatedInventory = store.getInventory();
 		store.generateOrder();
-		
+
 		assertEquals(expectedCapital, store.getCapital(), PRECISION);
 		assertEquals(updatedInventory, store.getInventory());
 	}
-	
+
 	@Test
 	public void testProcessSale0() throws StockException, IOException {
 		Store store = Store.getInstance();
 		store.generateOrder();
 		double expectedCapital = store.getCapital();
 		store.doSale("sales_log_0.csv");
-		
+
 		Stock updatedInventory = new Stock();
-		
+
 		Item[] allItems = MockItem.getAllMockItems();
-		
+
 		Item item = allItems[MockItem.ITEM_RICE];
 		int sales = 88;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_BEANS];
 		sales = 423;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_PASTA];
 		sales = 43;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_BISCUITS];
 		sales = 394;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_NUTS];
 		sales = 36;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_CHIPS];
 		sales = 44;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_CHOCOLATE];
 		sales = 93;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_BREAD];
 		sales = 95;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_MUSHROOMS];
 		sales = 176;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_TOMATOES];
 		sales = 164;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_LETTUCE];
 		sales = 152;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_GRAPES];
 		sales = 115;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_ASPARAGUS];
 		sales = 118;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_CELERY];
 		sales = 84;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_CHICKEN];
 		sales = 139;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_BEEF];
 		sales = 195;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_FISH];
 		sales = 368;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_YOGHURT];
 		sales = 51;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_MILK];
 		sales = 113;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_CHEESE];
 		sales = 349;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_ICE_CREAM];
 		sales = 88;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_ICE];
 		sales = 76;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_FROZEN_MEAT];
 		sales = 220;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		item = allItems[MockItem.ITEM_FROZEN_VEGETABLE_MIX];
 		sales = 109;
 		item.setCurrentAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
-		
+
 		assertEquals(expectedCapital, store.getCapital(), PRECISION);
 		assertEquals(updatedInventory, store.getInventory());
 	}
-	
-	@Test(expected=StockException.class)
+
+	@Test(expected = StockException.class)
 	public void testProcessSale0Then1() throws StockException, IOException {
 		Store store = Store.getInstance();
 		store.generateOrder();

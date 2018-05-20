@@ -67,7 +67,7 @@ public class ApplicationInterface {
 		lblSupermart.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblSupermart.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(lblSupermart, "cell 1 1");
-		
+
 		JTable tableInventory = new JTable(0, 3);
 		tableInventory
 				.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Quantity", "Reorder?" }) {
@@ -86,7 +86,7 @@ public class ApplicationInterface {
 
 		model = (DefaultTableModel) tableInventory.getModel();
 		Object rowData[] = new Object[3];
-		for (Item item : Store.getInstance().getInventory().getItemList().values()) {
+		for (Item item : Store.getInstance().getInventory().getItems()) {
 			rowData[0] = item.getName();
 			rowData[1] = item.getCurrentAmount();
 			if (item.requiresOrder()) {
@@ -114,7 +114,7 @@ public class ApplicationInterface {
 			}
 		});
 		splitPane.setLeftComponent(btnSales);
-		
+
 		JButton btnOrder = new JButton("Generate Order");
 		btnOrder.setForeground(UIManager.getColor("Button.foreground"));
 		btnOrder.setBackground(UIManager.getColor("Button.background"));
@@ -129,10 +129,10 @@ public class ApplicationInterface {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+
 				Object rowData[] = new Object[3];
 				int itemCount = 0;
-				for (Item item : Store.getInstance().getInventory().getItemList().values()) {
+				for (Item item : Store.getInstance().getInventory().getItems()) {
 					rowData[0] = item.getName();
 					rowData[1] = item.getCurrentAmount();
 					if (item.requiresOrder()) {

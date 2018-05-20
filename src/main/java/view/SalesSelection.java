@@ -121,7 +121,7 @@ public class SalesSelection {
 				}
 				Object rowData[] = new Object[3];
 				int itemCount = 0;
-				for (Item item : Store.getInstance().getInventory().getItemList().values()) {
+				for (Item item : Store.getInstance().getInventory().getItems()) {
 					rowData[0] = item.getName();
 					rowData[1] = item.getCurrentAmount();
 					if (item.requiresOrder()) {
