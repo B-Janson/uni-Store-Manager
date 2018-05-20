@@ -42,7 +42,7 @@ public class ColdTruck extends Truck {
 		double tempRate = 0.7;
 		int tempScale = 5;
 		double cost = baseCost + modifer * Math.pow(tempRate, temperature / tempScale);
-		return cost;
+		return super.getCost() + cost;
 	}
 
 }

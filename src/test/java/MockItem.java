@@ -16,8 +16,33 @@ public class MockItem {
 	private static final int NUM_COLD_ITEMS = 16;
 	
 	private static Item[] normalItems;
-	
 	private static ColdItem[] coldItems;
+	
+	public static final int ITEM_RICE = 0;
+	public static final int ITEM_BEANS = 1;
+	public static final int ITEM_PASTA = 2;
+	public static final int ITEM_BISCUITS = 3;
+	public static final int ITEM_NUTS = 4;
+	public static final int ITEM_CHIPS = 5;
+	public static final int ITEM_CHOCOLATE = 6;
+	public static final int ITEM_BREAD = 7;
+	
+	public static final int ITEM_MUSHROOMS = 8;
+	public static final int ITEM_TOMATOES = 9;
+	public static final int ITEM_ICE_CREAM = 10;
+	public static final int ITEM_GRAPES = 11;
+	public static final int ITEM_ASPARAGUS = 12;
+	public static final int ITEM_BEEF = 13;
+	public static final int ITEM_CELERY = 14;
+	public static final int ITEM_CHEESE = 15;
+	public static final int ITEM_CHICKEN = 16;
+	public static final int ITEM_FISH = 17;
+	public static final int ITEM_FROZEN_MEAT = 18;
+	public static final int ITEM_FROZEN_VEGETABLE_MIX = 19;
+	public static final int ITEM_ICE = 20;
+	public static final int ITEM_LETTUCE = 21;
+	public static final int ITEM_MILK = 22;
+	public static final int ITEM_YOGHURT = 23;
 
 	public static Item[] getNormalItems() {
 		resetAllItems();

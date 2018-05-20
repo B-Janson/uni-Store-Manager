@@ -8,14 +8,25 @@ import main.java.exceptions.StockException;
 import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import main.java.stock.Stock;
-import main.java.stock.StockType;
 
 /**
  * @author Chris Martin
  */
 public class Store {
+	/**
+	 * private constructor to prevent instantiation
+	 */
 	private Store() {
 		reset();
+	}
+
+	/**
+	 * resets Store properties
+	 */
+	public void reset() {
+		loadItems();
+		capital = 100000;
+		name = "SuperMart";
 	}
 
 	/**
@@ -60,14 +71,6 @@ public class Store {
 	}
 
 	/**
-	 * @param inventory
-	 *            the inventory to set
-	 */
-	public void setInventory(Stock inventory) {
-		this.inventory = inventory;
-	}
-
-	/**
 	 * @return the name
 	 */
 	public String getName() {
@@ -83,70 +86,48 @@ public class Store {
 	}
 
 	/**
-	 * updates the Store's inventory based on Stock on trucks
-	 * @param trucks
-	 * 				Manifest of trucks
-	 * @throws StockException
-	 * 						throws if resulting inventory has negative value
-	 */
-	public void updateInventory(Manifest trucks) throws StockException {
-		for (Truck truck : trucks.getTrucks()) {
-			System.out.println(truck.getCargo());
-			inventory.adjustBy(truck.getCargo(), false);
-		}
-	}
-
-	/**
-	 * updates the Store's capital based on cost of trucks
-	 * @param trucks
-	 * 				Manifest of trucks
-	 */
-	public void updateCapital(Manifest trucks) {
-		capital = capital - trucks.getTotalCost();
-	}
-
-	/**
 	 * reads in sales log, adjusts Store capital and inventory
+	 * 
 	 * @param filename
-	 * 				sales log to be input
+	 *            sales log to be input
 	 * @throws IOException
-	 * 					throws if unable to find filename
+	 *             throws if unable to find filename
 	 * @throws StockException
-	 * 						throws if resulting inventory has negative value
+	 *             throws if resulting inventory has negative value
 	 */
 	public void doSale(String filename) throws IOException, StockException {
 		String[] sale = Utilities.readCSV(filename);
 
 		for (String line : sale) {
 			String[] details = line.split(",");
+			String itemName = details[0];
+			int numSold = Integer.parseInt(details[1]);
 
-			Item name = inventory.getItemList().get(details[0]);
-			int newAmount = name.getCurrentAmount() - Integer.parseInt(details[1]);
-			name.setCurrentAmount(newAmount);
-			
-			capital -= Integer.parseInt(details[1]) * name.getPrice();
-			
-			inventory.getItemList().put(name.getName(), name);
+			Item soldItem = inventory.getItemList().get(itemName);
+			int newAmount = soldItem.getCurrentAmount() - numSold;
+			soldItem.setCurrentAmount(newAmount);
+
+			capital += numSold * soldItem.getPrice();
 		}
 	}
 
 	/**
 	 * generates manifest trucks with stock of items needed to be reordered
+	 * 
 	 * @throws IOException
-	 * 					throws if unable to find filename
+	 *             throws if unable to find filename
 	 * @throws StockException
-	 * 					throws if resulting inventory has a negative value
+	 *             throws if resulting inventory has a negative value
 	 */
 	public void generateOrder() throws IOException, StockException {
 		Manifest order = new Manifest();
-		
+
 		for (Item item : Store.getInstance().getInventory().getItems()) {
 			if (item.requiresOrder()) {
 				order.addItem(item);
 			}
 		}
 		order.saveToFile("manifest.csv");
-		// TO-DO add functionality to read csv file
 
 		for (Truck truck : order.getTrucks()) {
 			inventory.adjustBy(truck.getCargo(), true);
@@ -156,11 +137,10 @@ public class Store {
 	}
 
 	/**
-	 * loads Store with inital quantities
-	 * only called upon when Store is reset
+	 * loads Store with initial quantities only called upon when Store is reset
 	 */
 	public void loadItems() {
-		inventory = new Stock(StockType.StoreInventory);
+		inventory = new Stock();
 
 		try {
 			String[] itemProperties = Utilities.readCSV("item_properties.csv");
@@ -179,18 +159,9 @@ public class Store {
 				inventory.add(item);
 			}
 		} catch (IOException e) {
-			System.err.println("You messed up");
+			System.err.println("item_properties.csv not found in directory");
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * resets Store properties 
-	 */
-	public void reset() {
-		loadItems();
-		capital = 100000;
-		name = "SuperMart";
 	}
 
 }

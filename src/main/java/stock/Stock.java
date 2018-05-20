@@ -10,11 +10,9 @@ import main.java.exceptions.StockException;
  */
 public class Stock {
 
-	private StockType type;
 	private HashMap<String, Item> itemList;
 
-	public Stock(StockType type) {
-		this.type = type;
+	public Stock() {
 		itemList = new HashMap<String, Item>();
 	}
 
@@ -28,14 +26,6 @@ public class Stock {
 
 	public int size() {
 		return itemList.size();
-	}
-
-	public StockType getStockType() {
-		return type;
-	}
-
-	public void setStockType(StockType stockType) {
-		this.type = stockType;
 	}
 
 	public HashMap<String, Item> getItemList() {
@@ -109,6 +99,4 @@ public class Stock {
 		return true;
 	}
 	
-	
-
 }

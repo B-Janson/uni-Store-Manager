@@ -2,7 +2,6 @@ package main.java.delivery;
 
 import main.java.stock.Item;
 import main.java.stock.Stock;
-import main.java.stock.StockType;
 
 /**
  * @author Chris Martin
@@ -21,14 +20,20 @@ public abstract class Truck {
 	 */
 	public Truck(int capacity) {
 		this.capacity = capacity;
-		this.cargo = new Stock(StockType.TruckCargo);
+		this.cargo = new Stock();
 	}
 
 	/**
 	 * 
 	 * @return cost of cost of truck calculated in subclass
 	 */
-	public abstract double getCost();
+	public double getCost() {
+		double itemCosts = 0;
+		for (Item item : cargo.getItems()) {
+			itemCosts += item.getCost() * item.getCurrentAmount();
+		}
+		return itemCosts;
+	}
 
 	/**
 	 * capacity is one of two values depending on which truck
@@ -44,22 +49,6 @@ public abstract class Truck {
 	 */
 	public Stock getCargo() {
 		return cargo;
-	}
-
-	/**
-	 * @param cargo
-	 *            the cargo to set
-	 */
-	public void setCargo(Stock cargo) {
-		this.cargo = cargo;
-	}
-
-	/**
-	 * @param capacity
-	 *            the capacity to set
-	 */
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
 	}
 
 	/**

@@ -1,16 +1,39 @@
 >OrdinaryTruck
 biscuits, 575
+bread, 200
 chips, 200
+
+>OrdinaryTruck
+nuts, 250
+pasta, 250
+rice, 300
 
 >OrdinaryTruck
 beans, 525
 chocolate, 375
 
 >ColdTruck
+ice cream, 250
+frozen vegetable mix, 325
+grapes, 225
+>ColdTruck
+frozen meat, 575
+>ColdTruck
 fish, 475
 ice, 325
 >ColdTruck
-celery, 350
 milk, 425
+yoghurt, 325
 >ColdTruck
+beef, 550
+>ColdTruck
+celery, 350
 cheese, 450
+>ColdTruck
+chicken, 425
+asparagus, 275
+>ColdTruck
+mushrooms, 325
+lettuce, 350
+>ColdTruck
+tomatoes, 400

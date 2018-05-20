@@ -3,7 +3,7 @@ package main.java.stock;
 /**
  * @author Brandon Janson
  */
-public class ColdItem extends Item {
+public class ColdItem extends Item implements Comparable<ColdItem>{
 
 	/**
 	 * The temperature of the item
@@ -52,6 +52,11 @@ public class ColdItem extends Item {
 	@Override
 	public String toString() {
 		return super.toString() + String.format(", temp:%1.2f", temperature);
+	}
+
+	@Override
+	public int compareTo(ColdItem other) {
+		return (int) (temperature - other.getTemperature());
 	}
 
 }

@@ -8,7 +8,6 @@ import org.junit.Test;
 import main.java.exceptions.StockException;
 import main.java.stock.Item;
 import main.java.stock.Stock;
-import main.java.stock.StockType;
 
 /**
  * @author Chris Martin
@@ -24,7 +23,7 @@ public class TestStock {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		originalStock = new Stock(StockType.StoreInventory);
+		originalStock = new Stock();
 
 		originalMilk = new Item("milk", 2, 3, 10, 20);
 		originalBread = new Item("bread", 1.5, 2.5, 5, 15);
@@ -41,7 +40,7 @@ public class TestStock {
 
 	@Test
 	public void testAdjustBy() {
-		Stock newStock = new Stock(StockType.StockOrders);
+		Stock newStock = new Stock();
 
 		Item newMilk = new Item("milk", 2, 3, 10, 20);
 		Item newSoap = new Item("soap", 1, 4.5, 10, 50);

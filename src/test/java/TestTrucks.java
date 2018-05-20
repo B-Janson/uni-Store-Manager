@@ -13,7 +13,6 @@ import main.java.delivery.OrdinaryTruck;
 import main.java.delivery.Truck;
 import main.java.stock.Item;
 import main.java.stock.Stock;
-import main.java.stock.StockType;
 
 public class TestTrucks {
 
@@ -38,7 +37,7 @@ public class TestTrucks {
 		// set up rng
 		random = new Random();
 		// set up empty cargo
-		cargo = new Stock(StockType.TruckCargo);
+		cargo = new Stock();
 
 		// set up random temperature
 		double temp = random.nextDouble() * random.nextInt(TEMPERATURE_RANGE) - TEMPERATURE_RANGE / 2;
@@ -103,7 +102,7 @@ public class TestTrucks {
 		Truck testTruck = new ColdTruck(temperature);
 		assertEquals("initial cargo of cold truck incorrect", cargo, testTruck.getCargo());
 		
-		Stock testCargo = new Stock(StockType.TruckCargo);
+		Stock testCargo = new Stock();
 		Item toAdd = MockItem.getRandomColdItem();
 		
 		testCargo.add(toAdd);

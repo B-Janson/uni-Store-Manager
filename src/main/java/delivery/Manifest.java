@@ -2,6 +2,8 @@ package main.java.delivery;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 
@@ -9,7 +11,6 @@ import main.java.controller.Utilities;
 import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import main.java.stock.Stock;
-import main.java.stock.StockType;
 
 /**
  * @author Brandon Janson
@@ -25,7 +26,7 @@ public class Manifest {
 	public Manifest() {
 		normalTrucks = new ArrayList<>();
 		coldTrucks = new ArrayList<>();
-		order = new Stock(StockType.StockOrders);
+		order = new Stock();
 	}
 	
 	public double getTotalCost() {
@@ -71,7 +72,9 @@ public class Manifest {
 			}
 		}
 		
-		coldItems.sort(Comparator.comparing(ColdItem::getTemperature));
+//		coldItems.sort(Comparator.comparing(ColdItem::getTemperature));
+		
+		Collections.sort(coldItems);
 		
 		for (ColdItem item : coldItems) {
 			int i = -1;
