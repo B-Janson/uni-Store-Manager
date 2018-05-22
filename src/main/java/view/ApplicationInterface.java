@@ -140,7 +140,7 @@ public class ApplicationInterface {
 		btnSales.setBackground(UIManager.getColor("Button.background"));
 		btnSales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SalesSelection.ChooseSales(model);
+				SalesSelection.ChooseSales(model, lblCapVal);
 			}
 		});
 
@@ -174,6 +174,7 @@ public class ApplicationInterface {
 					}
 					itemCount++;
 				}
+				lblCapVal.setText(String.format("$%,.2f", Store.getInstance().getCapital()));
 			}
 		});
 
@@ -185,8 +186,8 @@ public class ApplicationInterface {
 		panelBtns.add(btnSales);
 	}
 	
-	public void adjustCapitalLbl() {
-		lblCapVal.setText(String.format("$%,.2f", Store.getInstance().getCapital()));
-	}
+//	public void adjustCapitalLbl() {
+//		lblCapVal.setText(String.format("$%,.2f", Store.getInstance().getCapital()));
+//	}
 
 }

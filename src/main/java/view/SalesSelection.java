@@ -22,14 +22,16 @@ public class SalesSelection {
 
 	private JFrame frame;
 	private static DefaultTableModel model;
+	private static JLabel lblCapVal;
 
 	/**
 	 * 
 	 * @param model 
 	 * @param args
 	 */
-	public static void ChooseSales(DefaultTableModel model2) {
+	public static void ChooseSales(DefaultTableModel model2, JLabel lblCap) {
 		model = model2;
+		lblCapVal = lblCap;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -134,7 +136,7 @@ public class SalesSelection {
 					}
 					itemCount++;
 				}
-				
+				lblCapVal.setText(String.format("$%,.2f", Store.getInstance().getCapital()));
 				frame.dispose();
 			}
 		});
