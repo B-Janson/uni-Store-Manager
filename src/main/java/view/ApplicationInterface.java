@@ -19,6 +19,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 import main.java.controller.Store;
 import main.java.exceptions.StockException;
 import main.java.stock.Item;
@@ -34,6 +36,7 @@ public class ApplicationInterface {
 
 	private JFrame frame;
 	private DefaultTableModel model;
+	private JLabel lblCapVal;
 
 	/**
 	 * 
@@ -58,7 +61,7 @@ public class ApplicationInterface {
 	public ApplicationInterface() {
 		initialize();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -80,7 +83,7 @@ public class ApplicationInterface {
 		lblCapital.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCapital.setForeground(Color.WHITE);
 
-		JLabel lblCapVal = new JLabel(String.format("$%,.2f", Store.getInstance().getCapital()));
+		lblCapVal = new JLabel(String.format("$%,.2f", Store.getInstance().getCapital()));
 		lblCapVal.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCapVal.setForeground(Color.WHITE);
 		lblCapVal.setBackground(Color.BLACK);
@@ -180,6 +183,10 @@ public class ApplicationInterface {
 		panelBtns.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		panelBtns.add(btnOrder);
 		panelBtns.add(btnSales);
+	}
+	
+	public void adjustCapitalLbl() {
+		lblCapVal.setText(String.format("$%,.2f", Store.getInstance().getCapital()));
 	}
 
 }

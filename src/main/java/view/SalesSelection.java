@@ -134,6 +134,7 @@ public class SalesSelection {
 					}
 					itemCount++;
 				}
+				
 				frame.dispose();
 			}
 		});
