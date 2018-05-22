@@ -3,6 +3,8 @@ package main.java.view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -21,6 +23,12 @@ import main.java.controller.Store;
 import main.java.exceptions.StockException;
 import main.java.stock.Item;
 import net.miginfocom.swing.MigLayout;
+import javax.swing.JPanel;
+import java.awt.GridBagLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class ApplicationInterface {
 
@@ -59,15 +67,38 @@ public class ApplicationInterface {
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new MigLayout("", "[][grow,center][]", "[][][][][][grow][]"));
+		frame.getContentPane().setLayout(new MigLayout("", "[][][]", "[][][][][][][grow][grow][]"));
 
-		JLabel lblSupermart = new JLabel("SuperMart", SwingConstants.CENTER);
-		lblSupermart.setHorizontalTextPosition(SwingConstants.CENTER);
+		
+		JLabel lblSupermart = new JLabel("SuperMart", SwingConstants.LEFT);
+		lblSupermart.setHorizontalTextPosition(SwingConstants.LEFT);
 		lblSupermart.setForeground(Color.WHITE);
 		lblSupermart.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblSupermart.setHorizontalAlignment(SwingConstants.CENTER);
-		frame.getContentPane().add(lblSupermart, "cell 1 1");
+		lblSupermart.setHorizontalAlignment(SwingConstants.LEFT);
 
+		JLabel lblCapital = new JLabel("Capital:");
+		lblCapital.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCapital.setForeground(Color.WHITE);
+
+		JLabel lblCapVal = new JLabel("$" + 0);
+		lblCapVal.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCapVal.setForeground(Color.WHITE);
+		lblCapVal.setBackground(Color.BLACK);
+
+		
+		JPanel panelLbls = new JPanel();
+		panelLbls.setBackground(Color.BLACK);
+		frame.getContentPane().add(panelLbls, "cell 1 2");
+
+		GridBagLayout gridLayoutLbls = new GridBagLayout();
+		panelLbls.setLayout(gridLayoutLbls);
+		panelLbls.add(lblSupermart);
+		Component horizontalStrut = Box.createHorizontalStrut(200);
+		panelLbls.add(horizontalStrut);
+		panelLbls.add(lblCapital);
+		panelLbls.add(lblCapVal);
+
+		
 		JTable tableInventory = new JTable(0, 3);
 		tableInventory
 				.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Quantity", "Reorder?" }) {
@@ -96,14 +127,10 @@ public class ApplicationInterface {
 			}
 			model.addRow(rowData);
 		}
+
 		// Make the table vertically scrollable
 		JScrollPane scrollPane = new JScrollPane(tableInventory);
-		frame.getContentPane().add(scrollPane, "cell 1 3");
-
-		JSplitPane splitPane = new JSplitPane();
-		splitPane.setBackground(Color.BLACK);
-		splitPane.setResizeWeight(.5d);
-		frame.getContentPane().add(splitPane, "cell 1 5, grow");
+		frame.getContentPane().add(scrollPane, "cell 1 4");
 
 		JButton btnSales = new JButton("Read Sales");
 		btnSales.setForeground(UIManager.getColor("Button.foreground"));
@@ -113,7 +140,6 @@ public class ApplicationInterface {
 				SalesSelection.ChooseSales(model);
 			}
 		});
-		splitPane.setLeftComponent(btnSales);
 
 		JButton btnOrder = new JButton("Generate Order");
 		btnOrder.setForeground(UIManager.getColor("Button.foreground"));
@@ -147,8 +173,13 @@ public class ApplicationInterface {
 				}
 			}
 		});
-		splitPane.setRightComponent(btnOrder);
 
+		JPanel panelBtns = new JPanel();
+		panelBtns.setBackground(Color.BLACK);
+		frame.getContentPane().add(panelBtns, "cell 1 6,grow");
+		panelBtns.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panelBtns.add(btnOrder);
+		panelBtns.add(btnSales);
 	}
 
 }
