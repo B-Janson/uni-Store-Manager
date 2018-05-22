@@ -80,7 +80,7 @@ public class ApplicationInterface {
 		lblCapital.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCapital.setForeground(Color.WHITE);
 
-		JLabel lblCapVal = new JLabel("$" + 0);
+		JLabel lblCapVal = new JLabel(String.format("$%,.2f", Store.getInstance().getCapital()));
 		lblCapVal.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCapVal.setForeground(Color.WHITE);
 		lblCapVal.setBackground(Color.BLACK);
@@ -93,7 +93,7 @@ public class ApplicationInterface {
 		GridBagLayout gridLayoutLbls = new GridBagLayout();
 		panelLbls.setLayout(gridLayoutLbls);
 		panelLbls.add(lblSupermart);
-		Component horizontalStrut = Box.createHorizontalStrut(200);
+		Component horizontalStrut = Box.createHorizontalStrut(180);
 		panelLbls.add(horizontalStrut);
 		panelLbls.add(lblCapital);
 		panelLbls.add(lblCapVal);
