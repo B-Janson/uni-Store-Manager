@@ -4,6 +4,9 @@ import main.java.stock.Item;
 import main.java.stock.Stock;
 
 /**
+ * Abstract class Truck stores properties applicable to both cold and non-cold
+ * truck.
+ * 
  * @author Chris Martin
  */
 public abstract class Truck {
@@ -12,8 +15,8 @@ public abstract class Truck {
 	private Stock cargo;
 
 	/**
-	 * both truck types have capcity and cargo and are thus included in abstract
-	 * constructor
+	 * Both truck types have capacity and cargo and are thus included in abstract
+	 * constructor.
 	 * 
 	 * @param capacity
 	 *            capacity can be one of two values depending on which truck
@@ -24,6 +27,7 @@ public abstract class Truck {
 	}
 
 	/**
+	 * Calculates cost of cargo stored within truck.
 	 * 
 	 * @return cost of cost of truck calculated in subclass
 	 */
@@ -36,7 +40,7 @@ public abstract class Truck {
 	}
 
 	/**
-	 * capacity is one of two values depending on which truck
+	 * Capacity is an aspect of both truck types, but each has a different value.
 	 * 
 	 * @return capacity of truck
 	 */
@@ -52,10 +56,11 @@ public abstract class Truck {
 	}
 
 	/**
+	 * Returns a boolean whether or not a specific item has been added to cargo.
 	 * 
 	 * @param item
 	 *            Item object to be added to cargo
-	 * @return
+	 * @return boolean
 	 */
 	public boolean addItem(Item item) {
 		if (cargo.getQuantity() + item.getReorderAmount() > capacity) {
@@ -66,7 +71,7 @@ public abstract class Truck {
 	}
 
 	/**
-	 * converts name and current amount of item in cargo to string
+	 * Converts name and current amount of item in cargo to string.
 	 */
 	public String toString() {
 		String out = String.format(">%s\n", getClass().getSimpleName());

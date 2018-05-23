@@ -4,12 +4,16 @@ import java.io.IOException;
 
 import main.java.delivery.Manifest;
 import main.java.delivery.Truck;
+import main.java.exceptions.CSVException;
 import main.java.exceptions.StockException;
 import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import main.java.stock.Stock;
 
 /**
+ * Store class used to define Store object, and its parameters and behaviour.
+ * Only one instance of a Store can be constructed.
+ * 
  * @author Chris Martin
  */
 public class Store {
@@ -17,15 +21,16 @@ public class Store {
 	 * private constructor to prevent instantiation
 	 */
 	private Store() {
-		reset();
 	}
 
 	/**
-	 * resets Store properties
+	 * Resets Store properties
+	 * @throws IOException 
+	 * @throws CSVException 
 	 */
-	public void reset() {
+	public void reset() throws IOException, CSVException {
 		loadItems();
-		capital = 100000;
+		capital = 100000; // starting capital
 		name = "SuperMart";
 	}
 
@@ -86,7 +91,8 @@ public class Store {
 	}
 
 	/**
-	 * reads in sales log, adjusts Store capital and inventory
+	 * Takes a filename as an input and reads the file line-by-line, subtracting
+	 * quantity from the inventory and adding the sales to the capital.
 	 * 
 	 * @param filename
 	 *            sales log to be input
@@ -94,9 +100,10 @@ public class Store {
 	 *             throws if unable to find filename
 	 * @throws StockException
 	 *             throws if resulting inventory has negative value
+	 * @throws CSVException 
 	 */
-	public void doSale(String filename) throws IOException, StockException {
-		String[] sale = Utilities.readCSV(filename);
+	public void doSale(String filename) throws IOException, StockException, CSVException {
+		String[] sale = Utilities.readCSV(filename, 2, -1);
 
 		for (String line : sale) {
 			String[] details = line.split(",");
@@ -112,7 +119,8 @@ public class Store {
 	}
 
 	/**
-	 * generates manifest trucks with stock of items needed to be reordered
+	 * Creates a new manifest and adds items which require to be ordered. Then writes
+	 * manifest to a .csv file and adjusts the capital according to the cost.
 	 * 
 	 * @throws IOException
 	 *             throws if unable to find filename
@@ -137,31 +145,31 @@ public class Store {
 	}
 
 	/**
-	 * loads Store with initial quantities only called upon when Store is reset
+	 * Creates a new stock of all item types with a quantity of 0, this is then
+	 * added to the current inventory. This method is only called upon when the
+	 * store is reset.
+	 * @throws IOException 
+	 * @throws CSVException 
 	 */
-	public void loadItems() {
+	public void loadItems() throws IOException, CSVException {
 		inventory = new Stock();
 
-		try {
-			String[] itemProperties = Utilities.readCSV("item_properties.csv");
-			for (String line : itemProperties) {
-				String[] properties = line.split(",");
-				Item item;
-				if (properties.length == 5) {
-					item = new Item(properties[0], Double.parseDouble(properties[1]), Double.parseDouble(properties[2]),
-							Integer.parseInt(properties[3]), Integer.parseInt(properties[4]));
-				} else {
-					item = new ColdItem(properties[0], Double.parseDouble(properties[1]),
-							Double.parseDouble(properties[2]), Integer.parseInt(properties[3]),
-							Integer.parseInt(properties[4]), Double.parseDouble(properties[5]));
-				}
-
-				inventory.add(item);
+		String[] itemProperties = Utilities.readCSV("item_properties.csv", 5, 6);
+		for (String line : itemProperties) {
+			String[] properties = line.split(",");
+			Item item;
+			if (properties.length == 5) {
+				item = new Item(properties[0], Double.parseDouble(properties[1]), Double.parseDouble(properties[2]),
+						Integer.parseInt(properties[3]), Integer.parseInt(properties[4]));
+			} else {
+				item = new ColdItem(properties[0], Double.parseDouble(properties[1]), Double.parseDouble(properties[2]),
+						Integer.parseInt(properties[3]), Integer.parseInt(properties[4]),
+						Double.parseDouble(properties[5]));
 			}
-		} catch (IOException e) {
-			System.err.println("item_properties.csv not found in directory");
-			e.printStackTrace();
+
+			inventory.add(item);
 		}
+
 	}
 
 }

@@ -7,6 +7,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import com.sun.xml.internal.ws.util.StringUtils;
+
+import jdk.nashorn.internal.ir.JoinPredecessorExpression;
+import main.java.exceptions.CSVException;
 
 /**
  * Utilities class used for assorted useful methods such as reading and writing
@@ -25,13 +32,24 @@ public class Utilities {
 	 * @return string array, each element being one line in the file
 	 * @throws IOException
 	 *             catch this in the front end
+	 * @throws CSVException
 	 */
-	public static String[] readCSV(String fileName) throws IOException {
+	public static String[] readCSV(String fileName, int numCols1, int numCols2) throws IOException, CSVException {
 		BufferedReader in = new BufferedReader(new FileReader(fileName));
 		StringBuilder sBuilder = new StringBuilder();
 
 		String line;
 		while ((line = in.readLine()) != null) {
+			String[] firstLine = line.split(",");
+			if (firstLine.length != numCols1 && firstLine.length != numCols2) {
+				in.close();
+				String message = "This file expects " + numCols1;
+				if (numCols2 != -1) {
+					message += " or " + numCols2;
+				}
+				message += " columns.";
+				throw new CSVException(message);
+			}
 			sBuilder.append(line + "\n");
 		}
 		in.close();

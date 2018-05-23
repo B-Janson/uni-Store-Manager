@@ -1,14 +1,25 @@
 package main.java.delivery;
 
 /**
+ * ColdTruck class used to store differences from abstract Truck class. These
+ * include the capacity, temperature and the method of finding the cost.
+ * 
  * @author Chris Martin
  */
 public class ColdTruck extends Truck {
+	/*
+	 * Specified capacity for ColdTruck
+	 */
 	public static final int CAPACITY = 800;
-
+	
+	/*
+	 * Variable only applicable to ColdTruck. Stores temperature at which this
+	 * specific truck will be kept.
+	 */
 	private double temperature;
 
 	/**
+	 * Constructor setting capacity and including temperature.
 	 * 
 	 * @param cargo
 	 *            Stock object containing items on truck
@@ -34,7 +45,11 @@ public class ColdTruck extends Truck {
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
-
+	
+	/*
+	 * Uses getCost method from Truck class and overrides to provide accurate
+	 * calculation of cost of ColdTruck.
+	 */
 	@Override
 	public double getCost() {
 		int baseCost = 900;
