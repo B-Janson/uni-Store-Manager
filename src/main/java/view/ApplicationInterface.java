@@ -1,36 +1,30 @@
 package main.java.view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.Label;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import main.java.controller.Store;
 import main.java.exceptions.StockException;
 import main.java.stock.Item;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Component;
-import javax.swing.Box;
 
 public class ApplicationInterface {
 
@@ -185,9 +179,4 @@ public class ApplicationInterface {
 		panelBtns.add(btnOrder);
 		panelBtns.add(btnSales);
 	}
-	
-//	public void adjustCapitalLbl() {
-//		lblCapVal.setText(String.format("$%,.2f", Store.getInstance().getCapital()));
-//	}
-
 }
