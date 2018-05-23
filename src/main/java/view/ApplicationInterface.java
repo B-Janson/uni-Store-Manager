@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 import main.java.controller.Store;
@@ -29,8 +31,6 @@ import net.miginfocom.swing.MigLayout;
 public class ApplicationInterface {
 
 	private JFrame frame;
-	private DefaultTableModel model;
-	private JLabel lblCapVal;
 
 	/**
 	 * 
@@ -77,7 +77,7 @@ public class ApplicationInterface {
 		lblCapital.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCapital.setForeground(Color.WHITE);
 
-		lblCapVal = new JLabel(String.format("$%,.2f", Store.getInstance().getCapital()));
+		JLabel lblCapVal = new JLabel(String.format("$%,.2f", Store.getInstance().getCapital()));
 		lblCapVal.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCapVal.setForeground(Color.WHITE);
 		lblCapVal.setBackground(Color.BLACK);
@@ -112,7 +112,7 @@ public class ApplicationInterface {
 					}
 				});
 
-		model = (DefaultTableModel) tableInventory.getModel();
+		DefaultTableModel model = (DefaultTableModel) tableInventory.getModel();
 		Object rowData[] = new Object[3];
 		for (Item item : Store.getInstance().getInventory().getItems()) {
 			rowData[0] = item.getName();
@@ -134,7 +134,39 @@ public class ApplicationInterface {
 		btnSales.setBackground(UIManager.getColor("Button.background"));
 		btnSales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SalesSelection.ChooseSales(model, lblCapVal);
+				JFileChooser chooser = new JFileChooser();
+		        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+		                "Comma separated variables", "csv");
+		        chooser.setFileFilter(filter);
+		        int returnVal = chooser.showOpenDialog(null);
+		        if(returnVal == JFileChooser.APPROVE_OPTION) {
+		        	try {
+						Store.getInstance().doSale(chooser.getSelectedFile().getName());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (StockException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		        }
+		        Object rowData[] = new Object[3];
+				int itemCount = 0;
+				for (Item item : Store.getInstance().getInventory().getItems()) {
+					rowData[0] = item.getName();
+					rowData[1] = item.getCurrentAmount();
+					if (item.requiresOrder()) {
+						rowData[2] = "Yes";
+					} else {
+						rowData[2] = "No";
+					}
+					for (int i = 0; i < rowData.length; i++) {
+						model.setValueAt(rowData[i], itemCount, i);
+					}
+					itemCount++;
+				}
+				lblCapVal.setText(String.format("$%,.2f", Store.getInstance().getCapital()));
+
 			}
 		});
 
