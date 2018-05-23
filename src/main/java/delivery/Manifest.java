@@ -90,6 +90,7 @@ public class Manifest {
 		normalTrucks = new ArrayList<>();
 		coldTrucks = new ArrayList<>();
 
+		// turn all items into individual cold and non-cold lists
 		for (Item item : order.getItems()) {
 			if (item instanceof ColdItem) {
 				coldItems.add((ColdItem) item);
@@ -101,17 +102,21 @@ public class Manifest {
 		// This method sorts the coldItems list by temperature in ascending order
 		Collections.sort(coldItems);
 
+		// array to keep track of whether item at index i has been put onto a truck
 		boolean[] itemAdded = new boolean[coldItems.size()];
 
 		for (int i = 0; i < coldItems.size(); i++) {
+			// if current item has already been added, skip it
 			if (itemAdded[i]) {
 				continue;
 			}
+			
 			ColdItem firstItem = coldItems.get(i);
 			int firstItemIndex = i;
 			ColdItem secondItem = null;
-			int secondItemIndex = 0;
+			int secondItemIndex = -1;
 
+			
 			boolean sortedTruck = false;
 			int diff = 0;
 
@@ -125,17 +130,22 @@ public class Manifest {
 						break;
 					}
 				}
+				if (diff > 400) {
+					sortedTruck = true;
+				}
 				diff += 25;
 			}
 
 			ColdTruck newTruck = new ColdTruck(firstItem.getTemperature());
 			newTruck.addItem(firstItem);
-			newTruck.addItem(secondItem);
-			coldTrucks.add(newTruck);
-
 			itemAdded[firstItemIndex] = true;
-			itemAdded[secondItemIndex] = true;
-
+			
+			if (secondItemIndex != -1) {
+				newTruck.addItem(secondItem);
+				itemAdded[secondItemIndex] = true;
+			}
+			
+			coldTrucks.add(newTruck);
 		}
 
 		for (Item item : normalItems) {

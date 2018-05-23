@@ -1,42 +1,38 @@
 package main.java.view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.Label;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import main.java.controller.Store;
 import main.java.exceptions.StockException;
 import main.java.stock.Item;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Component;
-import javax.swing.Box;
 
 public class ApplicationInterface {
 
 	private JFrame frame;
 	private DefaultTableModel model;
 	private JLabel lblCapVal;
+	private static JButton btnOrder;
+	private static JButton btnSales;
 
 	/**
 	 * 
@@ -61,9 +57,9 @@ public class ApplicationInterface {
 	public ApplicationInterface() {
 		initialize();
 	}
-	
+
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialise the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -72,7 +68,6 @@ public class ApplicationInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new MigLayout("", "[][][]", "[][][][][][][grow][grow][]"));
 
-		
 		JLabel lblSupermart = new JLabel("SuperMart", SwingConstants.LEFT);
 		lblSupermart.setHorizontalTextPosition(SwingConstants.LEFT);
 		lblSupermart.setForeground(Color.WHITE);
@@ -88,7 +83,6 @@ public class ApplicationInterface {
 		lblCapVal.setForeground(Color.WHITE);
 		lblCapVal.setBackground(Color.BLACK);
 
-		
 		JPanel panelLbls = new JPanel();
 		panelLbls.setBackground(Color.BLACK);
 		frame.getContentPane().add(panelLbls, "cell 1 2");
@@ -101,7 +95,6 @@ public class ApplicationInterface {
 		panelLbls.add(lblCapital);
 		panelLbls.add(lblCapVal);
 
-		
 		JTable tableInventory = new JTable(0, 3);
 		tableInventory
 				.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Quantity", "Reorder?" }) {
@@ -135,16 +128,18 @@ public class ApplicationInterface {
 		JScrollPane scrollPane = new JScrollPane(tableInventory);
 		frame.getContentPane().add(scrollPane, "cell 1 4");
 
-		JButton btnSales = new JButton("Read Sales");
+		btnSales = new JButton("Read Sales");
 		btnSales.setForeground(UIManager.getColor("Button.foreground"));
 		btnSales.setBackground(UIManager.getColor("Button.background"));
+		btnSales.setEnabled(false);
 		btnSales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SalesSelection.ChooseSales(model, lblCapVal);
+				btnOrder.setEnabled(true);
 			}
 		});
 
-		JButton btnOrder = new JButton("Generate Order");
+		btnOrder = new JButton("Generate Order");
 		btnOrder.setForeground(UIManager.getColor("Button.foreground"));
 		btnOrder.setBackground(UIManager.getColor("Button.background"));
 		btnOrder.addActionListener(new ActionListener() {
@@ -175,6 +170,8 @@ public class ApplicationInterface {
 					itemCount++;
 				}
 				lblCapVal.setText(String.format("$%,.2f", Store.getInstance().getCapital()));
+				btnSales.setEnabled(true);
+				btnOrder.setEnabled(false);
 			}
 		});
 
@@ -185,9 +182,9 @@ public class ApplicationInterface {
 		panelBtns.add(btnOrder);
 		panelBtns.add(btnSales);
 	}
-	
-//	public void adjustCapitalLbl() {
-//		lblCapVal.setText(String.format("$%,.2f", Store.getInstance().getCapital()));
-//	}
+
+	// public void adjustCapitalLbl() {
+	// lblCapVal.setText(String.format("$%,.2f", Store.getInstance().getCapital()));
+	// }
 
 }
