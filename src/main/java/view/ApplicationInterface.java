@@ -161,10 +161,10 @@ public class ApplicationInterface {
 			public void actionPerformed(ActionEvent arg0) {
 				/*
 				 * If the Sales button is pressed: 
-				 * 		Open a FileChooser 
-				 * 		Return the path and file name of the sales log
-				 * 		Use this file name to perform the sale 
-				 * 		Update the Window.
+				 * Open a FileChooser 
+				 * Return the path and file name of the sales log 
+				 * Use this file name to perform the sale 
+				 * Update the Window.
 				 */
 				JFileChooser chooser = new JFileChooser();
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("Comma separated variables", "csv");
@@ -208,11 +208,11 @@ public class ApplicationInterface {
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/*
-				 * If the Generate Order button is pressed:
-				 * 		Generate a Manifest based on the current state of the store's inventory
-				 * 		Print this manifest to manifest.csv
-				 * 		Read this manifest in and update the stock
-				 * 		Update the Window.
+				 * If the Generate Order button is pressed: 
+				 * Generate a Manifest based on the current state of the store's inventory 
+				 * Print this manifest to manifest.csv
+				 * Read this manifest in and update the stock 
+				 * Update the Window.
 				 */
 				try {
 					Store.getInstance().generateOrder();
@@ -242,15 +242,18 @@ public class ApplicationInterface {
 	}
 
 	/**
-	 * Internal function to update the state of the table.
-	 * Used to prevent repeated code.
-	 * @param tableInventory the table to update
+	 * Internal function to update the state of the table. Used to prevent repeated
+	 * code.
+	 * 
+	 * @param tableInventory
+	 *            the table to update
 	 * @return true if the generateOrder button should be enabled.
 	 */
 	private boolean updateTable(JTable tableInventory) {
 		boolean enableGenerateOrder = false;
 		DefaultTableModel model = (DefaultTableModel) tableInventory.getModel();
 		Object rowData[] = new Object[3];
+		int itemCount = 0;
 		for (Item item : Store.getInstance().getInventory().getItems()) {
 			rowData[0] = item.getName();
 			rowData[1] = item.getCurrentAmount();
@@ -260,7 +263,10 @@ public class ApplicationInterface {
 			} else {
 				rowData[2] = "No";
 			}
-			model.addRow(rowData);
+			for (int i = 0; i < rowData.length; i++) {
+				model.setValueAt(rowData[i], itemCount, i);
+			}
+			itemCount++;
 		}
 
 		return enableGenerateOrder;
