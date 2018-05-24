@@ -138,7 +138,18 @@ public class ApplicationInterface {
 						return columnTypes[columnIndex];
 					}
 				});
-		updateTable(tableInventory);
+		DefaultTableModel model = (DefaultTableModel) tableInventory.getModel();
+		Object rowData[] = new Object[3];
+		for (Item item : Store.getInstance().getInventory().getItems()) {
+			rowData[0] = item.getName();
+			rowData[1] = item.getCurrentAmount();
+			if (item.requiresOrder()) {
+				rowData[2] = "Yes";
+			} else {
+				rowData[2] = "No";
+			}
+			model.addRow(rowData);
+		}
 
 		/*
 		 * Make the table vertically scrollable
