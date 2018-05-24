@@ -25,6 +25,7 @@ import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
+import jdk.internal.dynalink.support.BottomGuardingDynamicLinker;
 import main.java.controller.Store;
 import main.java.exceptions.CSVException;
 import main.java.exceptions.StockException;
@@ -130,15 +131,15 @@ public class ApplicationInterface {
 					 */
 					private static final long serialVersionUID = 8357534138767998861L;
 
-					@SuppressWarnings("rawtypes")
 					Class[] columnTypes = new Class[] { String.class, String.class, String.class };
 
-					@SuppressWarnings({ "unchecked", "rawtypes" })
 					public Class getColumnClass(int columnIndex) {
 						return columnTypes[columnIndex];
 					}
 				});
-		updateTable(tableInventory);
+		boolean firstTable = true;
+		updateTable(tableInventory, firstTable);
+		firstTable = false;
 
 		/*
 		 * Make the table vertically scrollable
@@ -195,7 +196,8 @@ public class ApplicationInterface {
 				}
 				// Returns true if any items fall below their reorder point as a result of this
 				// action.
-				boolean enableGenerateOrder = updateTable(tableInventory);
+				boolean firstTable = false;
+				boolean enableGenerateOrder = updateTable(tableInventory, firstTable);
 				btnOrder.setEnabled(enableGenerateOrder);
 
 				// Update the capital label
@@ -225,8 +227,8 @@ public class ApplicationInterface {
 							"This error should never occur. It will only occur if by some miracle, you have managed to add negative stock from an order.",
 							"Order Failed", JOptionPane.ERROR_MESSAGE);
 				}
-
-				updateTable(tableInventory);
+				boolean firstTable = false;
+				updateTable(tableInventory, firstTable);
 				lblCapital.setText("Capital:" + String.format("$%,.2f", Store.getInstance().getCapital()));
 				btnSales.setEnabled(true);
 				btnOrder.setEnabled(false);
@@ -247,10 +249,11 @@ public class ApplicationInterface {
 	 * @param tableInventory the table to update
 	 * @return true if the generateOrder button should be enabled.
 	 */
-	private boolean updateTable(JTable tableInventory) {
+	private boolean updateTable(JTable tableInventory, boolean firstTable) {
 		boolean enableGenerateOrder = false;
 		DefaultTableModel model = (DefaultTableModel) tableInventory.getModel();
 		Object rowData[] = new Object[3];
+		int itemCount = 0;
 		for (Item item : Store.getInstance().getInventory().getItems()) {
 			rowData[0] = item.getName();
 			rowData[1] = item.getCurrentAmount();
@@ -260,7 +263,15 @@ public class ApplicationInterface {
 			} else {
 				rowData[2] = "No";
 			}
-			model.addRow(rowData);
+			if (firstTable) {
+				model.addRow(rowData);
+			}else {
+				for (int i = 0; i < rowData.length; i++) {
+		            model.setValueAt(rowData[i], itemCount, i);
+		          }
+		          itemCount++;
+			}
+			
 		}
 
 		return enableGenerateOrder;
