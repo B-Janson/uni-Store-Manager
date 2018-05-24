@@ -141,7 +141,6 @@ public class Store {
 			inventory.adjustBy(truck.getCargo(), true);
 		}
 		capital -= order.getTotalCost();
-
 	}
 
 	/**

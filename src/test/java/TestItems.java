@@ -31,7 +31,7 @@ public class TestItems {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		try {
-			String[] csvLines = Utilities.readCSV("item_properties.csv");
+			String[] csvLines = Utilities.readCSV("item_properties.csv", 5, 6);
 			String[] expected = { "rice,2,3,225,300" };
 			assertEquals("CSV read failed", expected[0], csvLines[0]);
 		} catch (IOException e) {
