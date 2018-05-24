@@ -3,6 +3,7 @@ package main.java.delivery;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import main.java.controller.Utilities;
 import main.java.stock.ColdItem;
@@ -78,12 +79,13 @@ public class Manifest {
 
 		toAdd.setToReorder();
 		order.add(toAdd);
+		organiseTrucks();
 	}
 
 	/**
-	 * Internal private method use to distribute which items will go on which trucks
+	 * 
 	 */
-	private void organiseTrucks() {
+	public void organiseTrucks() {
 		ArrayList<Item> normalItems = new ArrayList<>();
 		ArrayList<ColdItem> coldItems = new ArrayList<>();
 
@@ -100,7 +102,13 @@ public class Manifest {
 		}
 
 		// This method sorts the coldItems list by temperature in ascending order
-		Collections.sort(coldItems);
+		Collections.sort(coldItems, new Comparator<ColdItem>() {
+			@Override
+			public int compare(ColdItem o1, ColdItem o2) {
+				return (int) (o1.getTemperature() - o2.getTemperature());
+			}
+
+		});
 
 		// array to keep track of whether item at index i has been put onto a truck
 		boolean[] itemAdded = new boolean[coldItems.size()];
@@ -110,26 +118,28 @@ public class Manifest {
 			if (itemAdded[i]) {
 				continue;
 			}
-			
+
 			ColdItem firstItem = coldItems.get(i);
 			int firstItemIndex = i;
 			ColdItem secondItem = null;
 			int secondItemIndex = -1;
 
-			
 			boolean sortedTruck = false;
 			int diff = 0;
 
 			while (!sortedTruck) {
+				// This loop checks through all following items until the two items would both
+				// fit onto one truck exactly, or with increasing difference `diff`.
 				for (int j = i + 1; j < coldItems.size(); j++) {
 					secondItem = coldItems.get(j);
-					if (ColdTruck.CAPACITY - firstItem.getReorderAmount() - secondItem.getReorderAmount() == diff
-							&& !itemAdded[j]) {
+					if (!itemAdded[j] && ColdTruck.CAPACITY - firstItem.getReorderAmount()
+							- secondItem.getReorderAmount() == diff) {
 						sortedTruck = true;
 						secondItemIndex = j;
 						break;
 					}
 				}
+				// Check if this item won't fit with any other item to prevent infinite loop.
 				if (diff > 400) {
 					sortedTruck = true;
 				}
@@ -139,29 +149,27 @@ public class Manifest {
 			ColdTruck newTruck = new ColdTruck(firstItem.getTemperature());
 			newTruck.addItem(firstItem);
 			itemAdded[firstItemIndex] = true;
-			
+
 			if (secondItemIndex != -1) {
 				newTruck.addItem(secondItem);
 				itemAdded[secondItemIndex] = true;
 			}
-			
+
 			coldTrucks.add(newTruck);
 		}
 
 		for (Item item : normalItems) {
-			int i = -1;
+			int i = 0;
 			do {
-				i++;
 				if (normalTrucks.size() == i) {
 					normalTrucks.add(new OrdinaryTruck());
 				}
-
-			} while (!normalTrucks.get(i).addItem(item));
+			} while (!normalTrucks.get(i++).addItem(item));
 		}
 	}
 
 	/**
-	 * Returns all of the trucks needed to fulfill this order
+	 * Returns all of the trucks needed to fill this order
 	 * 
 	 * @return list of all trucks in manifest
 	 */
@@ -183,7 +191,6 @@ public class Manifest {
 	 *             if can't write to specified file
 	 */
 	public void saveToFile(String fileName) throws IOException {
-		organiseTrucks();
 		String toWrite = "";
 
 		for (Truck truck : normalTrucks) {

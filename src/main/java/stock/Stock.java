@@ -89,10 +89,14 @@ public class Stock {
 	 */
 	public void adjustBy(Stock otherStock, boolean add) throws StockException {
 		for (Item item : otherStock.getItems()) {
-			if (add) {
-				itemList.get(item.getName()).adjustAmount(item.getCurrentAmount());
+			if (contains(item)) {
+				if (add) {
+					itemList.get(item.getName()).adjustAmount(item.getCurrentAmount());
+				} else {
+					itemList.get(item.getName()).adjustAmount(-item.getCurrentAmount());
+				}
 			} else {
-				itemList.get(item.getName()).adjustAmount(-item.getCurrentAmount());
+				add(item);
 			}
 		}
 	}

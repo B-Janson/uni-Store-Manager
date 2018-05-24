@@ -25,8 +25,9 @@ public class Store {
 
 	/**
 	 * Resets Store properties
-	 * @throws IOException 
-	 * @throws CSVException 
+	 * 
+	 * @throws IOException
+	 * @throws CSVException
 	 */
 	public void reset() throws IOException, CSVException {
 		loadItems();
@@ -100,7 +101,7 @@ public class Store {
 	 *             throws if unable to find filename
 	 * @throws StockException
 	 *             throws if resulting inventory has negative value
-	 * @throws CSVException 
+	 * @throws CSVException
 	 */
 	public void doSale(String filename) throws IOException, StockException, CSVException {
 		String[] sale = Utilities.readCSV(filename, 2, -1);
@@ -119,8 +120,8 @@ public class Store {
 	}
 
 	/**
-	 * Creates a new manifest and adds items which require to be ordered. Then writes
-	 * manifest to a .csv file and adjusts the capital according to the cost.
+	 * Creates a new manifest and adds items which require to be ordered. Then
+	 * writes manifest to a .csv file and adjusts the capital according to the cost.
 	 * 
 	 * @throws IOException
 	 *             throws if unable to find filename
@@ -147,8 +148,9 @@ public class Store {
 	 * Creates a new stock of all item types with a quantity of 0, this is then
 	 * added to the current inventory. This method is only called upon when the
 	 * store is reset.
-	 * @throws IOException 
-	 * @throws CSVException 
+	 * 
+	 * @throws IOException
+	 * @throws CSVException
 	 */
 	public void loadItems() throws IOException, CSVException {
 		inventory = new Stock();

@@ -2,16 +2,12 @@ package test.java;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import java.io.IOException;
 import java.util.Random;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import main.java.controller.Utilities;
 import main.java.exceptions.StockException;
 import main.java.stock.ColdItem;
 import main.java.stock.Item;
@@ -24,20 +20,8 @@ public class TestItems {
 	private static final double PRECISION = 0.001;
 
 	private Random random;
-
 	private Item normalTest;
 	private ColdItem coldTest;
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		try {
-			String[] csvLines = Utilities.readCSV("item_properties.csv", 5, 6);
-			String[] expected = { "rice,2,3,225,300" };
-			assertEquals("CSV read failed", expected[0], csvLines[0]);
-		} catch (IOException e) {
-			fail("IO Exception");
-		}
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -65,6 +49,17 @@ public class TestItems {
 	@Test
 	public void testItemNoReorder() throws StockException {
 		normalTest.setCurrentAmount(normalTest.getReorderAmount() + 50);
+		assertTrue("requiresOrder not working correctly", !normalTest.requiresOrder());
+	}
+	
+	/**
+	 * 
+	 * @throws StockException
+	 * @author Brandon Janson
+	 */
+	@Test
+	public void testItemHasReorderAmount() throws StockException {
+		normalTest.setCurrentAmount(normalTest.getReorderAmount());
 		assertTrue("requiresOrder not working correctly", !normalTest.requiresOrder());
 	}
 

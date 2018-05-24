@@ -130,8 +130,10 @@ public class ApplicationInterface {
 					 */
 					private static final long serialVersionUID = 8357534138767998861L;
 
+					@SuppressWarnings("rawtypes")
 					Class[] columnTypes = new Class[] { String.class, String.class, String.class };
 
+					@SuppressWarnings({ "unchecked", "rawtypes" })
 					public Class getColumnClass(int columnIndex) {
 						return columnTypes[columnIndex];
 					}

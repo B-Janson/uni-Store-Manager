@@ -11,7 +11,6 @@ import org.junit.Test;
 import main.java.controller.Store;
 import main.java.exceptions.CSVException;
 import main.java.exceptions.StockException;
-import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import main.java.stock.Stock;
 
@@ -22,10 +21,12 @@ public class TestStore {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Store initialStore = Store.getInstance();
+		initialStore.reset();
+
 		Stock initialInventory = new Stock();
-		
+
 		Item[] items = MockItem.getAllMockItems();
-		
+
 		for (Item item : items) {
 			initialInventory.add(item);
 		}
@@ -83,42 +84,18 @@ public class TestStore {
 
 		Stock expectedInventory = new Stock();
 
-		expectedInventory.add(new Item("rice", 2, 3, 225, 300));
-		expectedInventory.add(new Item("beans", 4, 6, 450, 525));
-		expectedInventory.add(new Item("pasta", 3, 4, 125, 250));
-		expectedInventory.add(new Item("biscuits", 2, 5, 450, 575));
-		expectedInventory.add(new Item("nuts", 5, 9, 125, 250));
-		expectedInventory.add(new Item("chips", 2, 4, 125, 200));
-		expectedInventory.add(new Item("chocolate", 5, 8, 250, 375));
-		expectedInventory.add(new Item("bread", 2, 3, 125, 200));
+		Item[] items = MockItem.getAllMockItems();
 
-		expectedInventory.add(new ColdItem("mushrooms", 2, 4, 200, 325, 10));
-		expectedInventory.add(new ColdItem("tomatoes", 1, 2, 325, 400, 10));
-		expectedInventory.add(new ColdItem("lettuce", 1, 2, 250, 350, 10));
-		expectedInventory.add(new ColdItem("grapes", 4, 6, 125, 225, 9));
-		expectedInventory.add(new ColdItem("asparagus", 2, 4, 175, 275, 8));
-		expectedInventory.add(new ColdItem("celery", 2, 3, 225, 350, 8));
-		expectedInventory.add(new ColdItem("chicken", 10, 14, 325, 425, 4));
-		expectedInventory.add(new ColdItem("beef", 12, 17, 425, 550, 3));
-		expectedInventory.add(new ColdItem("fish", 13, 16, 375, 475, 2));
-		expectedInventory.add(new ColdItem("yoghurt", 10, 12, 200, 325, 3));
-		expectedInventory.add(new ColdItem("milk", 2, 3, 300, 425, 3));
-		expectedInventory.add(new ColdItem("cheese", 4, 7, 375, 450, 3));
-		expectedInventory.add(new ColdItem("ice cream", 8, 14, 175, 250, -20));
-		expectedInventory.add(new ColdItem("ice", 2, 5, 225, 325, -10));
-		expectedInventory.add(new ColdItem("frozen meat", 10, 14, 450, 575, -14));
-		expectedInventory.add(new ColdItem("frozen vegetable mix", 5, 8, 225, 325, -12));
-
-		for (Item item : expectedInventory.getItems()) {
+		for (Item item : items) {
 			item.setToReorder();
+			expectedInventory.add(item);
 		}
 
-		double expectedCapital = 42717.88;
+//		double expectedCapital = 42717.88;
+		double expectedCapital = 42067.44;
 
-		System.out.println(store.getInventory());
-
-		assertEquals(expectedCapital, store.getCapital(), PRECISION);
 		assertEquals(expectedInventory, store.getInventory());
+		assertEquals(expectedCapital, store.getCapital(), PRECISION);
 	}
 
 	@Test
