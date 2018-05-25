@@ -28,8 +28,10 @@ import javax.swing.table.DefaultTableModel;
 import main.java.controller.Store;
 import main.java.exceptions.CSVException;
 import main.java.exceptions.StockException;
+import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import net.miginfocom.swing.MigLayout;
+import javax.swing.ScrollPaneConstants;
 
 /*
  * Front-end class displays store name, capital and current inventory. Allows
@@ -81,15 +83,18 @@ public class ApplicationInterface {
 	/**
 	 * Initialise the contents of the frame.
 	 */
+	/**
+	 * 
+	 */
 	private void initialize() {
 		/*
 		 * Sets up the frame
 		 */
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 1000, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new MigLayout("", "[][][]", "[][][][][][][grow][grow][]"));
+		frame.getContentPane().setLayout(new MigLayout("", "[100px:n,grow,fill]", "[][grow,center][grow]"));
 
 		/*
 		 * Two labels created to display store name and capital. Capital label adjusts
@@ -107,7 +112,7 @@ public class ApplicationInterface {
 
 		JPanel panelLbls = new JPanel();
 		panelLbls.setBackground(Color.BLACK);
-		frame.getContentPane().add(panelLbls, "cell 1 2");
+		frame.getContentPane().add(panelLbls, "cell 0 0");
 
 		GridBagLayout gridLayoutLbls = new GridBagLayout();
 		panelLbls.setLayout(gridLayoutLbls);
@@ -121,17 +126,19 @@ public class ApplicationInterface {
 		 * name; item quantity; whether or not item needs to be reordered. Table is
 		 * updated as manifests are added and weekly sales logs are taken away.
 		 */
-		JTable tableInventory = new JTable(0, 3);
-		tableInventory
-				.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Quantity", "Reorder?" }) {
-					/**
-					 * Auto-Generated serialVersionID Used for DefaultTableModel as it implements
-					 * Serializable. Not needed but is good to have.
-					 */
-					private static final long serialVersionUID = 8357534138767998861L;
+		JTable tableInventory = new JTable(0, 8);
+		tableInventory.setEnabled(false);
 
-					Class[] columnTypes = new Class[] { String.class, String.class, String.class };
+		tableInventory.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Reorder?", "Quantity",
+				"Cost", "Price", "Reorder Point", "Reorder Amount", "Temperature" }) {
+			/**
+			 * Auto-Generated serialVersionID Used for DefaultTableModel as it implements
+			 * Serializable. Not needed but is good to have.
+			 */
+			private static final long serialVersionUID = 8357534138767998861L;
 
+			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class, String.class,
+					String.class, String.class, String.class };
 					public Class getColumnClass(int columnIndex) {
 						return columnTypes[columnIndex];
 					}
@@ -142,15 +149,52 @@ public class ApplicationInterface {
 		 * Make the table vertically scrollable
 		 */
 		JScrollPane scrollPane = new JScrollPane(tableInventory);
-		frame.getContentPane().add(scrollPane, "cell 1 4");
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setSize(frame.getContentPane().getWidth(), frame.getContentPane().getHeight());
+		frame.getContentPane().add(scrollPane, "cell 0 1,alignx center");
 
 		/*
 		 * Buttons created to implement doSale and generateOrder method. Upon clicking,
 		 * the appropriate method is run, and the capital and inventory is then
 		 * adjusted.
 		 */
+		JButton btnItemProperties = new JButton("Load Item Properties");
 		JButton btnSales = new JButton("Read Sales");
 		JButton btnOrder = new JButton("Generate Order");
+
+		btnItemProperties.setForeground(UIManager.getColor("Button.foreground"));
+		btnItemProperties.setBackground(UIManager.getColor("Button.background"));
+		btnItemProperties.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser chooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Comma separated variables", "csv");
+				chooser.setFileFilter(filter);
+
+				// Open the dialog in the current directory
+				File workingDirectory = new File(System.getProperty("user.dir"));
+				chooser.setCurrentDirectory(workingDirectory);
+				int returnVal = chooser.showOpenDialog(null);
+
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					try {
+						Store.getInstance().loadItems(chooser.getSelectedFile().getName());
+						updateTable(tableInventory, true);
+						btnItemProperties.setEnabled(false);
+						btnOrder.setEnabled(true);
+					} catch (IOException e) {
+						JOptionPane.showMessageDialog(null,
+								"Unable to read this file. Make sure the csv file actually exists or that it is not in use.",
+								"Unable to access file", JOptionPane.ERROR_MESSAGE);
+					} catch (CSVException e) {
+						JOptionPane.showMessageDialog(null,
+								"This item properties does not contain the correct number of columns.\n"
+										+ "Item properties files should be:\n"
+										+ "\titem_name,cost,price,reorderpoint,reorderamount,temperature",
+								"Incorrect CSV File", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
 
 		btnSales.setForeground(UIManager.getColor("Button.foreground"));
 		btnSales.setBackground(UIManager.getColor("Button.background"));
@@ -178,7 +222,7 @@ public class ApplicationInterface {
 						Store.getInstance().doSale(chooser.getSelectedFile().getName());
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(null,
-								"Unable to read this file. Make sure it actually exists or that it is not in use.",
+								"Unable to read this file. Make sure the csv file actually exists or that it is not in use.",
 								"Unable to access file", JOptionPane.ERROR_MESSAGE);
 					} catch (StockException e) {
 						JOptionPane.showMessageDialog(null,
@@ -204,6 +248,7 @@ public class ApplicationInterface {
 
 		btnOrder.setForeground(UIManager.getColor("Button.foreground"));
 		btnOrder.setBackground(UIManager.getColor("Button.background"));
+		btnOrder.setEnabled(false);
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/*
@@ -234,8 +279,9 @@ public class ApplicationInterface {
 
 		JPanel panelBtns = new JPanel();
 		panelBtns.setBackground(Color.BLACK);
-		frame.getContentPane().add(panelBtns, "cell 1 6,grow");
+		frame.getContentPane().add(panelBtns, "cell 0 2,grow");
 		panelBtns.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panelBtns.add(btnItemProperties);
 		panelBtns.add(btnOrder);
 		panelBtns.add(btnSales);
 	}
@@ -250,20 +296,31 @@ public class ApplicationInterface {
 	 *            true if this is the first time setting up, false if editing
 	 * @return true if the generateOrder button should be enabled.
 	 */
+
 	private boolean updateTable(JTable tableInventory, boolean firstTable) {
 		boolean enableGenerateOrder = false;
 		DefaultTableModel model = (DefaultTableModel) tableInventory.getModel();
-		Object rowData[] = new Object[3];
+		Object rowData[] = new Object[8];
 		int itemCount = 0;
 		for (Item item : Store.getInstance().getInventory().getItems()) {
 			rowData[0] = item.getName();
-			rowData[1] = item.getCurrentAmount();
 			if (item.requiresOrder()) {
-				rowData[2] = "Yes";
+				rowData[1] = "Yes";
 				enableGenerateOrder = true;
 			} else {
-				rowData[2] = "No";
+				rowData[1] = "No";
 			}
+			rowData[2] = item.getCurrAmount();
+			rowData[3] = item.getCost();
+			rowData[4] = item.getPrice();
+			rowData[5] = item.getReorderPoint();
+			rowData[6] = item.getReorderAmount();
+			if (item instanceof ColdItem) {
+				rowData[7] = ((ColdItem) item).getTemperature();
+			} else {
+				rowData[7] = null;
+			}
+
 			if (firstTable) {
 				model.addRow(rowData);
 			} else {

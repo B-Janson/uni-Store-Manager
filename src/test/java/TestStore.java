@@ -22,6 +22,8 @@ public class TestStore {
 	public static void setUpBeforeClass() throws Exception {
 		Store initialStore = Store.getInstance();
 		initialStore.reset();
+		initialStore.loadItems("item_properties.csv");
+
 
 		Stock initialInventory = new Stock();
 
@@ -43,6 +45,7 @@ public class TestStore {
 	public void setUp() throws Exception {
 		Store store = Store.getInstance();
 		store.reset();
+		store.loadItems("item_properties.csv");
 
 		double expectedInitialCapital = 100000;
 		String storeName = "SuperMart";
@@ -125,145 +128,145 @@ public class TestStore {
 
 		Item item = allItems[MockItem.ITEM_RICE];
 		int sales = 88;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_BEANS];
 		sales = 423;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_PASTA];
 		sales = 43;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_BISCUITS];
 		sales = 394;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_NUTS];
 		sales = 36;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_CHIPS];
 		sales = 44;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_CHOCOLATE];
 		sales = 93;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_BREAD];
 		sales = 95;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_MUSHROOMS];
 		sales = 176;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_TOMATOES];
 		sales = 164;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_LETTUCE];
 		sales = 152;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_GRAPES];
 		sales = 115;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_ASPARAGUS];
 		sales = 118;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_CELERY];
 		sales = 84;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_CHICKEN];
 		sales = 139;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_BEEF];
 		sales = 195;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_FISH];
 		sales = 368;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_YOGHURT];
 		sales = 51;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_MILK];
 		sales = 113;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_CHEESE];
 		sales = 349;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_ICE_CREAM];
 		sales = 88;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_ICE];
 		sales = 76;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_FROZEN_MEAT];
 		sales = 220;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 
 		item = allItems[MockItem.ITEM_FROZEN_VEGETABLE_MIX];
 		sales = 109;
-		item.setCurrentAmount(item.getReorderAmount() - sales);
+		item.setCurrAmount(item.getReorderAmount() - sales);
 		updatedInventory.add(item);
 		expectedCapital += sales * item.getPrice();
 

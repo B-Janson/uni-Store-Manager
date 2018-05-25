@@ -37,7 +37,7 @@ public class TestItems {
 	 */
 	@Test
 	public void testItemRequiresReorder() throws StockException {
-		normalTest.setCurrentAmount(0);
+		normalTest.setCurrAmount(0);
 		assertTrue("requiresOrder not working correctly", normalTest.requiresOrder());
 	}
 
@@ -48,7 +48,7 @@ public class TestItems {
 	 */
 	@Test
 	public void testItemNoReorder() throws StockException {
-		normalTest.setCurrentAmount(normalTest.getReorderAmount() + 50);
+		normalTest.setCurrAmount(normalTest.getReorderAmount() + 50);
 		assertTrue("requiresOrder not working correctly", !normalTest.requiresOrder());
 	}
 	
@@ -59,7 +59,7 @@ public class TestItems {
 	 */
 	@Test
 	public void testItemHasReorderAmount() throws StockException {
-		normalTest.setCurrentAmount(normalTest.getReorderAmount());
+		normalTest.setCurrAmount(normalTest.getReorderAmount());
 		assertTrue("requiresOrder not working correctly", !normalTest.requiresOrder());
 	}
 
@@ -70,7 +70,7 @@ public class TestItems {
 	 */
 	@Test(expected = StockException.class)
 	public void testSetNegativeAmount() throws StockException {
-		normalTest.setCurrentAmount(-1 * random.nextInt(100));
+		normalTest.setCurrAmount(-1 * random.nextInt(100));
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class TestItems {
 	@Test
 	public void testSetPositiveAmount() throws StockException {
 		int randomAmount = random.nextInt(100);
-		normalTest.setCurrentAmount(randomAmount);
-		assertEquals("setCurrentAmount not working correctly", randomAmount, normalTest.getCurrentAmount());
+		normalTest.setCurrAmount(randomAmount);
+		assertEquals("setCurrentAmount not working correctly", randomAmount, normalTest.getCurrAmount());
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class TestItems {
 	public void testPositiveAdjustAmount() throws StockException {
 		int randomAmount = random.nextInt(100);
 		normalTest.adjustAmount(randomAmount);
-		assertEquals("adjustAmount not working correctly", randomAmount, normalTest.getCurrentAmount());
+		assertEquals("adjustAmount not working correctly", randomAmount, normalTest.getCurrAmount());
 	}
 
 	/**

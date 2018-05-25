@@ -194,7 +194,7 @@ public class Manifest {
 		String toWrite = "";
 
 		for (Truck truck : normalTrucks) {
-			toWrite += truck.toString() + "\n";
+			toWrite += truck.toString();
 		}
 
 		for (Truck truck : coldTrucks) {

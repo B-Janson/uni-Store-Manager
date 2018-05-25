@@ -34,7 +34,7 @@ public abstract class Truck {
 	public double getCost() {
 		double itemCosts = 0;
 		for (Item item : cargo.getItems()) {
-			itemCosts += item.getCost() * item.getCurrentAmount();
+			itemCosts += item.getCost() * item.getCurrAmount();
 		}
 		return itemCosts;
 	}
