@@ -45,7 +45,7 @@ public class MockStock {
 		
 		for (Item item : items) {
 			int amount = (stockAmount == REORDER_AMOUNT) ? item.getReorderAmount() : stockAmount;
-			item.setCurrentAmount(amount);
+			item.setCurrAmount(amount);
 			stock.add(item);
 		}
 		

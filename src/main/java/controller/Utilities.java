@@ -30,9 +30,12 @@ public class Utilities {
 	 * @throws CSVException
 	 */
 	public static String[] readCSV(String fileName, int numCols1, int numCols2) throws IOException, CSVException {
+		if (!fileName.endsWith(".csv")) {
+			throw new IOException();
+		}
 		BufferedReader in = new BufferedReader(new FileReader(fileName));
 		StringBuilder sBuilder = new StringBuilder();
-
+		
 		String line;
 		while ((line = in.readLine()) != null) {
 			String[] firstLine = line.split(",");

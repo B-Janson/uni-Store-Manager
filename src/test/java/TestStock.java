@@ -51,8 +51,8 @@ public class TestStock {
 			newColdItem = MockItem.getRandomColdItem();
 		}
 
-		newItem.setCurrentAmount(random.nextInt(100));
-		newColdItem.setCurrentAmount(random.nextInt(100));
+		newItem.setCurrAmount(random.nextInt(100));
+		newColdItem.setCurrAmount(random.nextInt(100));
 
 		originalStock.add(normalItem);
 		originalStock.add(coldItem);
@@ -76,11 +76,11 @@ public class TestStock {
 		// Copy original item
 		Item newItem = new Item(normalItem.getName(), normalItem.getCost(), normalItem.getCost(),
 				normalItem.getReorderPoint(), normalItem.getReorderAmount());
-		newItem.setCurrentAmount(random.nextInt(50));
+		newItem.setCurrAmount(random.nextInt(50));
 
 		ColdItem newColdItem = new ColdItem(coldItem.getName(), coldItem.getCost(), coldItem.getCost(),
 				coldItem.getReorderPoint(), coldItem.getReorderAmount(), coldItem.getTemperature());
-		newColdItem.setCurrentAmount(random.nextInt(50));
+		newColdItem.setCurrAmount(random.nextInt(50));
 
 		originalStock.add(normalItem);
 		originalStock.add(coldItem);
@@ -104,11 +104,11 @@ public class TestStock {
 		// Copy original item
 		Item newItem = new Item(normalItem.getName(), normalItem.getCost(), normalItem.getCost(),
 				normalItem.getReorderPoint(), normalItem.getReorderAmount());
-		newItem.setCurrentAmount(1000);
+		newItem.setCurrAmount(1000);
 
 		ColdItem newColdItem = new ColdItem(coldItem.getName(), coldItem.getCost(), coldItem.getCost(),
 				coldItem.getReorderPoint(), coldItem.getReorderAmount(), coldItem.getTemperature());
-		newColdItem.setCurrentAmount(1000);
+		newColdItem.setCurrAmount(1000);
 
 		originalStock.add(normalItem);
 		originalStock.add(coldItem);
@@ -125,7 +125,7 @@ public class TestStock {
 	@Test
 	public void testAdd() throws StockException {
 		Item banana = new Item("banana", 1, 1.5, 10, 15);
-		banana.setCurrentAmount(15);
+		banana.setCurrAmount(15);
 
 		assertFalse("Stock.add does not funtion correctly", originalStock.contains(banana));
 
@@ -157,7 +157,7 @@ public class TestStock {
 		assertEquals("Stock.size does not function correctly", 0, originalStock.size());
 
 		Item banana = new Item("banana", 1, 1.5, 10, 15);
-		banana.setCurrentAmount(15);
+		banana.setCurrAmount(15);
 		originalStock.add(banana);
 
 		assertEquals(1, originalStock.size());
@@ -168,10 +168,10 @@ public class TestStock {
 		assertEquals(0, originalStock.getQuantity());
 
 		int normalAmount = random.nextInt(1000);
-		normalItem.setCurrentAmount(normalAmount);
+		normalItem.setCurrAmount(normalAmount);
 
 		int coldAmount = random.nextInt(1000);
-		coldItem.setCurrentAmount(coldAmount);
+		coldItem.setCurrAmount(coldAmount);
 
 		originalStock.add(normalItem);
 		originalStock.add(coldItem);
@@ -186,10 +186,10 @@ public class TestStock {
 		assertEquals(newStock, originalStock);
 
 		int normalAmount = random.nextInt(1000);
-		normalItem.setCurrentAmount(normalAmount);
+		normalItem.setCurrAmount(normalAmount);
 
 		int coldAmount = random.nextInt(1000);
-		coldItem.setCurrentAmount(coldAmount);
+		coldItem.setCurrAmount(coldAmount);
 
 		originalStock.add(normalItem);
 		originalStock.add(coldItem);

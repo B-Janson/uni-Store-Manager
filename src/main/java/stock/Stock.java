@@ -91,9 +91,9 @@ public class Stock {
 		for (Item item : otherStock.getItems()) {
 			if (contains(item)) {
 				if (add) {
-					itemList.get(item.getName()).adjustAmount(item.getCurrentAmount());
+					itemList.get(item.getName()).adjustAmount(item.getCurrAmount());
 				} else {
-					itemList.get(item.getName()).adjustAmount(-item.getCurrentAmount());
+					itemList.get(item.getName()).adjustAmount(-item.getCurrAmount());
 				}
 			} else {
 				add(item);
@@ -111,7 +111,7 @@ public class Stock {
 		int quantity = 0;
 
 		for (Item item : itemList.values()) {
-			quantity += item.getCurrentAmount();
+			quantity += item.getCurrAmount();
 		}
 
 		return quantity;
@@ -147,7 +147,7 @@ public class Stock {
 		String retVal = "";
 
 		for (Item item : itemList.values()) {
-			retVal += String.format("%s:%d,", item.getName(), item.getCurrentAmount());
+			retVal += String.format("%s:%d,", item.getName(), item.getCurrAmount());
 		}
 
 		return String.format("{%s}", retVal);
@@ -161,7 +161,7 @@ public class Stock {
 	 * @return the amount of the specified item
 	 */
 	private int getItemAmount(Item item) {
-		return itemList.get(item.getName()).getCurrentAmount();
+		return itemList.get(item.getName()).getCurrAmount();
 	}
 
 	/**

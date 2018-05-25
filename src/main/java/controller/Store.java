@@ -30,9 +30,9 @@ public class Store {
 	 * @throws CSVException
 	 */
 	public void reset() throws IOException, CSVException {
-		loadItems();
 		capital = 100000; // starting capital
 		name = "SuperMart";
+		inventory = new Stock();
 	}
 
 	/**
@@ -112,8 +112,8 @@ public class Store {
 			int numSold = Integer.parseInt(details[1]);
 
 			Item soldItem = inventory.get(itemName);
-			int newAmount = soldItem.getCurrentAmount() - numSold;
-			soldItem.setCurrentAmount(newAmount);
+			int newAmount = soldItem.getCurrAmount() - numSold;
+			soldItem.setCurrAmount(newAmount);
 
 			capital += numSold * soldItem.getPrice();
 		}
@@ -152,10 +152,10 @@ public class Store {
 	 * @throws IOException
 	 * @throws CSVException
 	 */
-	public void loadItems() throws IOException, CSVException {
+	public void loadItems(String filename) throws IOException, CSVException {
 		inventory = new Stock();
 
-		String[] itemProperties = Utilities.readCSV("item_properties.csv", 5, 6);
+		String[] itemProperties = Utilities.readCSV(filename, 5, 6);
 		for (String line : itemProperties) {
 			String[] properties = line.split(",");
 			Item item;
