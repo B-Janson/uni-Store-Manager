@@ -177,7 +177,7 @@ public class ApplicationInterface {
 
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					try {
-						Store.getInstance().loadItems(chooser.getSelectedFile().getName());
+						Store.getInstance().loadItems(chooser.getSelectedFile().getCanonicalPath());
 						updateTable(tableInventory, true);
 						btnItemProperties.setEnabled(false);
 						btnOrder.setEnabled(true);
@@ -219,7 +219,7 @@ public class ApplicationInterface {
 
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					try {
-						Store.getInstance().doSale(chooser.getSelectedFile().getName());
+						Store.getInstance().doSale(chooser.getSelectedFile().getCanonicalPath());
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(null,
 								"Unable to read this file. Make sure the csv file actually exists or that it is not in use.",
