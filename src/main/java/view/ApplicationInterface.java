@@ -25,7 +25,6 @@ import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
-import jdk.internal.dynalink.support.BottomGuardingDynamicLinker;
 import main.java.controller.Store;
 import main.java.exceptions.CSVException;
 import main.java.exceptions.StockException;
@@ -137,9 +136,7 @@ public class ApplicationInterface {
 						return columnTypes[columnIndex];
 					}
 				});
-		boolean firstTable = true;
-		updateTable(tableInventory, firstTable);
-		firstTable = false;
+		updateTable(tableInventory, true);
 
 		/*
 		 * Make the table vertically scrollable
@@ -246,9 +243,11 @@ public class ApplicationInterface {
 	/**
 	 * Internal function to update the state of the table. Used to prevent repeated
 	 * code.
-	 * 
+	 *
 	 * @param tableInventory
 	 *            the table to update
+	 * @param firstTable
+	 *            true if this is the first time setting up, false if editing
 	 * @return true if the generateOrder button should be enabled.
 	 */
 	private boolean updateTable(JTable tableInventory, boolean firstTable) {
@@ -267,13 +266,13 @@ public class ApplicationInterface {
 			}
 			if (firstTable) {
 				model.addRow(rowData);
-			}else {
+			} else {
 				for (int i = 0; i < rowData.length; i++) {
-		            model.setValueAt(rowData[i], itemCount, i);
-		          }
-		          itemCount++;
+					model.setValueAt(rowData[i], itemCount, i);
+				}
+				itemCount++;
 			}
-			
+
 		}
 
 		return enableGenerateOrder;
