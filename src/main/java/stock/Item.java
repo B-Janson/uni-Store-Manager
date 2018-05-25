@@ -136,8 +136,13 @@ public class Item {
 	/**
 	 * @param currAmount
 	 *            the currAmount to set
+	 * @throws StockException
+	 *             if this number is negative
 	 */
-	public void setCurrAmount(int currAmount) {
+	public void setCurrAmount(int currAmount) throws StockException {
+		if (currAmount < 0) {
+			throw new StockException();
+		}
 		this.currAmount = currAmount;
 	}
 
