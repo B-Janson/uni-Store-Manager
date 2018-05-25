@@ -112,8 +112,7 @@ public class Store {
 			int numSold = Integer.parseInt(details[1]);
 
 			Item soldItem = inventory.get(itemName);
-			int newAmount = soldItem.getCurrAmount() - numSold;
-			soldItem.setCurrAmount(newAmount);
+			soldItem.adjustAmount(-numSold);
 
 			capital += numSold * soldItem.getPrice();
 		}
