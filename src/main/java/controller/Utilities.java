@@ -8,7 +8,12 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import main.java.exceptions.CSVException;
+
 /**
+ * Utilities class used for assorted useful methods such as reading and writing
+ * CSV as well as rounding decimal numbers
+ * 
  * @author Brandon Janson
  */
 public class Utilities {
@@ -22,19 +27,29 @@ public class Utilities {
 	 * @return string array, each element being one line in the file
 	 * @throws IOException
 	 *             catch this in the front end
+	 * @throws CSVException
 	 */
-	public static String[] readCSV(String fileName) throws IOException {
-		// To read the file
+	public static String[] readCSV(String fileName, int numCols1, int numCols2) throws IOException, CSVException {
+		if (!fileName.endsWith(".csv")) {
+			throw new IOException();
+		}
 		BufferedReader in = new BufferedReader(new FileReader(fileName));
-		// To construct the output string
 		StringBuilder sBuilder = new StringBuilder();
-
-		// To store each line that is read
+		
 		String line;
 		while ((line = in.readLine()) != null) {
+			String[] firstLine = line.split(",");
+			if (firstLine.length != numCols1 && firstLine.length != numCols2) {
+				in.close();
+				String message = "This file expects " + numCols1;
+				if (numCols2 != -1) {
+					message += " or " + numCols2;
+				}
+				message += " columns.";
+				throw new CSVException(message);
+			}
 			sBuilder.append(line + "\n");
 		}
-		// Close file reader to prevent leaking resources
 		in.close();
 
 		return sBuilder.toString().split("\n");

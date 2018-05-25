@@ -2,7 +2,8 @@ package main.java.delivery;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Comparator;
 
 import main.java.controller.Utilities;
 import main.java.stock.ColdItem;
@@ -10,105 +11,196 @@ import main.java.stock.Item;
 import main.java.stock.Stock;
 
 /**
+ * Manifest object used for storing and handling orders
+ * 
  * @author Brandon Janson
  */
 public class Manifest {
-	
-	// TODO this class should take in items and divvy them up onto trucks
-	
+
+	/**
+	 * List of normal trucks needed to fulfil the order
+	 */
 	private ArrayList<Truck> normalTrucks;
+
+	/**
+	 * List of cold trucks needed to fulfil the order
+	 */
 	private ArrayList<Truck> coldTrucks;
+
+	/**
+	 * Internal stock object to model the order
+	 */
 	private Stock order;
 
-	public Manifest(Stock order) {
+	/**
+	 * Constructor used to set up the internal fields
+	 */
+	public Manifest() {
 		normalTrucks = new ArrayList<>();
 		coldTrucks = new ArrayList<>();
-		this.order = order;
-		organiseTrucks();
+		order = new Stock();
 	}
-	
+
+	/**
+	 * Returns the total cost of the order defined by the sum of the cost of each
+	 * truck
+	 * 
+	 * @return total cost of the order
+	 */
 	public double getTotalCost() {
 		double totalCost = 0;
-		
+
 		for (Truck truck : normalTrucks) {
 			totalCost += truck.getCost();
 		}
-		
+
+		for (Truck truck : coldTrucks) {
+			totalCost += truck.getCost();
+		}
+
 		return totalCost;
 	}
-	
-	public Stock getOrder() {
-		return order;
+
+	/**
+	 * Add item to this order
+	 * 
+	 * @param item
+	 *            item to be added to order
+	 */
+	public void addItem(Item item) {
+		Item toAdd;
+		if (item instanceof ColdItem) {
+			toAdd = new ColdItem(item.getName(), item.getCost(), item.getPrice(), item.getReorderPoint(),
+					item.getReorderAmount(), ((ColdItem) item).getTemperature());
+		} else {
+			toAdd = new Item(item.getName(), item.getCost(), item.getPrice(), item.getReorderPoint(),
+					item.getReorderAmount());
+		}
+
+		toAdd.setToReorder();
+		order.add(toAdd);
+		organiseTrucks();
 	}
-	
-	public void addItem() {
-		
-	}
-	
-	private void organiseTrucks() {
-		@SuppressWarnings("unused")
-		int sizeOfOrder = order.getQuantity();
-		HashMap<String, Item> items = order.getItemList();
-		
-		ArrayList<Item> normalItems = new ArrayList<>();		
-		ArrayList<Item> coldItems = new ArrayList<>();
-		
-		for (Item item : items.values()) {
+
+	/**
+	 * 
+	 */
+	public void organiseTrucks() {
+		ArrayList<Item> normalItems = new ArrayList<>();
+		ArrayList<ColdItem> coldItems = new ArrayList<>();
+
+		normalTrucks = new ArrayList<>();
+		coldTrucks = new ArrayList<>();
+
+		// turn all items into individual cold and non-cold lists
+		for (Item item : order.getItems()) {
 			if (item instanceof ColdItem) {
-				coldItems.add(item);
+				coldItems.add((ColdItem) item);
 			} else {
 				normalItems.add(item);
 			}
 		}
-		
-//		Truck firstTruck = new ColdTruck(null, temperature);
-		
-//		for (Item item : coldItems) {
-//			for (Truck truck : coldTrucks) {
-//				
-//			}
-//		}
-		
-		for (int i = 0; i < normalItems.size(); i++) {
-			Truck truck = new OrdinaryTruck();
-			normalTrucks.add(truck);
-		}
-		
-		for (Item item : normalItems) {
-			for (Truck truck : normalTrucks) {
-				if (truck.addItem(item)) {
-					break;
-				}
+
+		// This method sorts the coldItems list by temperature in ascending order
+		Collections.sort(coldItems, new Comparator<ColdItem>() {
+			@Override
+			public int compare(ColdItem o1, ColdItem o2) {
+				return (int) (o1.getTemperature() - o2.getTemperature());
 			}
+
+		});
+
+		// array to keep track of whether item at index i has been put onto a truck
+		boolean[] itemAdded = new boolean[coldItems.size()];
+
+		for (int i = 0; i < coldItems.size(); i++) {
+			// if current item has already been added, skip it
+			if (itemAdded[i]) {
+				continue;
+			}
+
+			ColdItem firstItem = coldItems.get(i);
+			int firstItemIndex = i;
+			ColdItem secondItem = null;
+			int secondItemIndex = -1;
+
+			boolean sortedTruck = false;
+			int diff = 0;
+
+			while (!sortedTruck) {
+				// This loop checks through all following items until the two items would both
+				// fit onto one truck exactly, or with increasing difference `diff`.
+				for (int j = i + 1; j < coldItems.size(); j++) {
+					secondItem = coldItems.get(j);
+					if (!itemAdded[j] && ColdTruck.CAPACITY - firstItem.getReorderAmount()
+							- secondItem.getReorderAmount() == diff) {
+						sortedTruck = true;
+						secondItemIndex = j;
+						break;
+					}
+				}
+				// Check if this item won't fit with any other item to prevent infinite loop.
+				if (diff > 400) {
+					sortedTruck = true;
+				}
+				diff += 25;
+			}
+
+			ColdTruck newTruck = new ColdTruck(firstItem.getTemperature());
+			newTruck.addItem(firstItem);
+			itemAdded[firstItemIndex] = true;
+
+			if (secondItemIndex != -1) {
+				newTruck.addItem(secondItem);
+				itemAdded[secondItemIndex] = true;
+			}
+
+			coldTrucks.add(newTruck);
 		}
-		
-		
+
+		for (Item item : normalItems) {
+			int i = 0;
+			do {
+				if (normalTrucks.size() == i) {
+					normalTrucks.add(new OrdinaryTruck());
+				}
+			} while (!normalTrucks.get(i++).addItem(item));
+		}
 	}
-	
+
+	/**
+	 * Returns all of the trucks needed to fill this order
+	 * 
+	 * @return list of all trucks in manifest
+	 */
 	public ArrayList<Truck> getTrucks() {
 		ArrayList<Truck> trucks = new ArrayList<>();
 		trucks.addAll(coldTrucks);
 		trucks.addAll(normalTrucks);
-		
-		for (Truck truck : trucks) {
-			if(truck.getCargo() == null) {
-				trucks.remove(truck);
-			}
-		}
 		return trucks;
 	}
-	
+
+	/**
+	 * Saves the current state of the manifest to file. This method also organises
+	 * the trucks as it is the first thing that should be called after the order has
+	 * been completed.
+	 * 
+	 * @param fileName
+	 *            name of the file to save the manifest to
+	 * @throws IOException
+	 *             if can't write to specified file
+	 */
 	public void saveToFile(String fileName) throws IOException {
 		String toWrite = "";
-		
+
 		for (Truck truck : normalTrucks) {
-			toWrite += truck.toString() + "\n";
+			toWrite += truck.toString();
 		}
-		
+
 		for (Truck truck : coldTrucks) {
 			toWrite += truck.toString();
 		}
-		
+
 		Utilities.writeCSV(fileName, toWrite);
 	}
 
