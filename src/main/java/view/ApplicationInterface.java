@@ -33,7 +33,7 @@ import main.java.stock.ColdItem;
 import main.java.stock.Item;
 import net.miginfocom.swing.MigLayout;
 
-/*
+/**
  * Front-end class displays store name, capital and current inventory. Allows
  * user to generate an order when items require reordering or select a weekly
  * sales log to read. Inventory and capital adjusts accordingly.
@@ -96,7 +96,7 @@ public class ApplicationInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new MigLayout("", "[100px:n,grow,fill]", "[][grow,center][grow]"));
 
-		/*
+		/**
 		 * Two labels created to display store name and capital. Capital label adjusts
 		 * accordingly throughout use. Labels added into panel.
 		 */
@@ -121,7 +121,7 @@ public class ApplicationInterface {
 		panelLbls.add(horizontalStrut);
 		panelLbls.add(lblCapital);
 
-		/*
+		/**
 		 * JTable created to display inventory in GUI. Consists of three rows: item
 		 * name; item quantity; whether or not item needs to be reordered. Table is
 		 * updated as manifests are added and weekly sales logs are taken away.
@@ -145,7 +145,7 @@ public class ApplicationInterface {
 				});
 		updateTable(tableInventory, true);
 
-		/*
+		/**
 		 * Make the table vertically scrollable
 		 */
 		JScrollPane scrollPane = new JScrollPane(tableInventory);
@@ -153,7 +153,7 @@ public class ApplicationInterface {
 		scrollPane.setSize(frame.getContentPane().getWidth(), frame.getContentPane().getHeight());
 		frame.getContentPane().add(scrollPane, "cell 0 1,alignx center");
 
-		/*
+		/**
 		 * Buttons created to implement doSale and generateOrder method. Upon clicking,
 		 * the appropriate method is run, and the capital and inventory is then
 		 * adjusted.
@@ -201,7 +201,7 @@ public class ApplicationInterface {
 		btnSales.setEnabled(false);
 		btnSales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*
+				/**
 				 * If the Sales button is pressed: 
 				 * Open a FileChooser 
 				 * Return the path and file name of the sales log 
@@ -251,7 +251,7 @@ public class ApplicationInterface {
 		btnOrder.setEnabled(false);
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*
+				/**
 				 * If the Generate Order button is pressed: 
 				 * Generate a Manifest based on the current state of the store's inventory 
 				 * Print this manifest to manifest.csv

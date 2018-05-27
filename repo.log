@@ -1,0 +1,1948 @@
+B-Janson (14):
+      Merge pull request #2 from B-Janson/add-circleci
+      Merge pull request #3 from B-Janson/add-circleci
+      Merge pull request #4 from B-Janson/add-circleci
+      Merge branch 'master' into csv-utilities
+      Merge pull request #1 from B-Janson/csv-utilities
+      Merge pull request #6 from B-Janson/test-data-classes
+      Merge pull request #9 from B-Janson/stock-adjust
+      Merge pull request #10 from B-Janson/stock-adjust
+      Merge pull request #7 from B-Janson/add-ordinary-truck
+      Merge pull request #11 from B-Janson/make-tests-pass
+      Merge pull request #13 from B-Janson/manifest
+      Update README to include build status
+      Merge branch 'master' into develop
+      Merge pull request #15 from B-Janson/develop
+
+Brandon (88):
+      test update git config
+      remove gitkeep files
+      fix indentation circleci
+      add ability to write to file
+      start adding javadocs
+      Merge branch 'add-stock-data-class'
+      fix test error
+      Merge remote-tracking branch 'origin/master'
+      remove old test files
+      Try to keep tests running
+      add ordinary truck
+      calculate cost of ordinary truck
+      add manifest object
+      adjust by stock
+      fix gradle again whoops
+      fix up some syntax issues
+      remove trailing commas csv
+      fix up truck tests
+      clean up truck class
+      make item tests pass
+      fix tests to pass
+      fix truck refactor
+      fix method renamed
+      add stockexception
+      throw another stockexception
+      refactored some test cases
+      fix tests
+      fix test again...
+      more item tests
+      add test for item setAmount
+      create test cases for store object
+      add deliveryexception and csvException
+      add javadocs to repo
+      add package-info for javadocs
+      add test cases for all methods in item class
+      add comment to round utility function
+      add more test cases to coldtruck
+      Merge branch 'truck-tests'
+      fix truck tests to make them pass circleci
+      add mock item class for ease of testing
+      Merge branch 'mock-test-items'
+      make store test use mockitems
+      add some fixmes for refactor work
+      manifest now attempts to organise order onto trucks
+      add mockstock class for testing
+      add manifest csv printing
+      adding more to manifest and using to test store
+      error fixes and debugging failing tests
+      add fake front end to ensure flow of backend correct
+      fix mock front end to use only store's methods
+      add javadocs to mock class
+      Merge branch 'mock-frontend'
+      add items to initial inventory test
+      Merge remote-tracking branch 'origin/master'
+      Merge branch 'fix-manifest'
+      fix merge issues
+      Fix store not adding cold item properly
+      fix issue with plurals causing test to fail
+      remove unneeded tests
+      Merge remote-tracking branch 'origin/master'
+      make all tests pass
+      add all items to mock items for testing
+      fix tests
+      Merge remote-tracking branch 'origin/develop' into develop
+      clean imports
+      make manifest produce csv
+      Merge remote-tracking branch 'origin/develop' into develop
+      fix manifest to correctly generate the manifest file
+      test branch protection
+      fix issue
+      refactor mockitem class
+      add javadocs and fix more tests
+      import coverage tool and fix up some tests
+      update javadocs
+      update manifest calculation
+      Merge remote-tracking branch 'origin/develop' into develop
+      small refactor and add error messages to GUI
+      small refactor and add error messages to GUI
+      Merge remote-tracking branch 'origin/develop' into develop
+      refactor and fix some bugs in the process
+      fix error with adding too many rows
+      fix another bug that I made
+      Merge remote-tracking branch 'origin/develop' into develop
+      fix up comments
+      Merge remote-tracking branch 'origin/develop' into develop
+      Merge remote-tracking branch 'origin/develop' into develop
+      fix exception test
+      fix final test
+
+Brandon Janson (19):
+      add readme
+      add license file
+      fixed license
+      started project structure
+      add gitignore file
+      started utilities class
+      readCSV complete
+      updated readCSV to return as string array
+      removed tracking of csv files
+      add circleci
+      test circleci
+      try to make tests
+      remove gradle build file
+      add gradle again
+      make test pass
+      add gradle completely (hopefully doesn't break
+      add build directory to gitignore
+      add EOF character to gitignore
+      fix gradle boi to test
+
+Chris (45):
+      Testing for Item and ColdItem updated.
+      TestColdItem removed as now included in TestDataClasses
+      Merge branch 'test-colditem'
+      General template to test trucks
+      Added temperature to ColdTruck input
+      Merge branch 'test-ordinary-truck'
+      Reorganising packages and classes
+      Creating Store
+      adjusting store capital and inventory
+      test for Stock class
+      Formatted
+      Merge branch 'master' into store-class
+      Merge branch 'stock-adjust-test'
+      fixed ColdTruck and TestTrucks for tests to pass
+      Merge branch 'fix-truck-test'
+      fixed store class to pass tests
+      fixed store class
+      Merge remote-tracking branch 'origin/master'
+      added reset method
+      added final methods to Store class
+      begun GUI development
+      GUI further devloped
+      Merge remote-tracking branch 'origin/changing-tests-for-store' into add-store-methods
+      Merge branch 'add-store-methods' into develop
+      finished GUIs
+      added javadocs
+      fixed GUIs
+      updated javadocs
+      Merge branch 'add-javadocs' into develop
+      Merge remote-tracking branch 'origin/develop' into develop
+      generate order  updates table
+      sales selection updates table
+      add capital to gui
+      updated capital display
+      first attempt at updating capital
+      update capital similarly to table
+      fixed GUI displaying old version
+      sales now selected through dialog
+      deleted leftover file from trialing code
+      added javadocs, updated GUI, added exceptions
+      table in GUI updates at button press
+      fixed manifest to have no blank lines
+      finalise GUI, add javadocs
+      add student number to README
+      fixed file path in application interface
+
+Chris Martin (1):
+      changes JUnit
+
+ChrisMartin97 (2):
+      Merge pull request #5 from B-Janson/ItemClass
+      Merge pull request #8 from B-Janson/store-class
+
+Unknown (15):
+      wowwoweewowo
+      remove .gradle folder from tracking
+      Made data class for items
+      add first real test class
+      Merge branch 'master' into test-data-classes
+      add test cases for item
+      Merge branch 'master' into test-data-classes
+      add test for csv file reading
+      add stock object and stocktype enum
+      slight update to readme
+      restructure project for gradle
+      remove gradle files that don't need to be tracked
+      pull update
+      Merge branch 'master' into truck-class
+      Auto stash before merge of "truck-class" and "master"
+
+* 67e35b3 fixed file path in application interface
+*   6c66659 Merge pull request #15 from B-Janson/develop
+|\  
+| *   c80ccdb Merge branch 'master' into develop
+| |\  
+| |/  
+|/|   
+* | aa3e3ed fix issue
+* | f78163c test branch protection
+* | 048aeb2 Update README to include build status
+| * 8297dc2 fix final test
+| * b9d4438 fix exception test
+| *   56f63c6 Merge remote-tracking branch 'origin/develop' into develop
+| |\  
+| | * 9e88b2f add student number to README
+| * |   dc75d67 Merge remote-tracking branch 'origin/develop' into develop
+| |\ \  
+| | |/  
+| | * 6a70c89 finalise GUI, add javadocs
+| | * de32891 fixed manifest to have no blank lines
+| * | 620466a fix up comments
+| * |   e6e7b50 Merge remote-tracking branch 'origin/develop' into develop
+| |\ \  
+| | |/  
+| | * d5fa1f8 table in GUI updates at button press
+| * | 3f1db84 fix another bug that I made
+| * | 361d54b fix error with adding too many rows
+| |/  
+| * 0cc5feb refactor and fix some bugs in the process
+| *   4e48cbb Merge remote-tracking branch 'origin/develop' into develop
+| |\  
+| | * 672b3ad small refactor and add error messages to GUI
+| * | d8be75d small refactor and add error messages to GUI
+| |/  
+| * 9b44b0c added javadocs, updated GUI, added exceptions
+| *   7eaf0f9 Merge remote-tracking branch 'origin/develop' into develop
+| |\  
+| | * c72f1ad deleted leftover file from trialing code
+| | * b8d0d90 sales now selected through dialog
+| | * 2495fa0 fixed GUI displaying old version
+| * | 9b15c3c update manifest calculation
+| |/  
+| * 32c9b1d update capital similarly to table
+| * fe2db0c first attempt at updating capital
+| * eff39b4 updated capital display
+| * ea35b7a add capital to gui
+| * 436a817 update javadocs
+| * f298a07 import coverage tool and fix up some tests
+| * da2fa0e add javadocs and fix more tests
+| * 1d59a0b refactor mockitem class
+| * 4b080fd sales selection updates table
+| * bc29c28 generate order  updates table
+| * ebe78bd fix manifest to correctly generate the manifest file
+| *   04c9074 Merge remote-tracking branch 'origin/develop' into develop
+| |\  
+| | *   ceffe82 Merge remote-tracking branch 'origin/develop' into develop
+| | |\  
+| | * | ef7a7d8 make manifest produce csv
+| | * | 8c4fb92 clean imports
+| * | |   86ff665 Merge branch 'add-javadocs' into develop
+| |\ \ \  
+| | |_|/  
+| |/| |   
+| | * | 6f7dfe2 updated javadocs
+| |/ /  
+| * | a427376 fixed GUIs
+| * | c234f2e added javadocs
+| |/  
+| *   77f29cb Merge remote-tracking branch 'origin/develop' into develop
+| |\  
+| | * c84f528 finished GUIs
+| * | 69d4c2e fix tests
+| |/  
+| *   3b81122 Merge branch 'add-store-methods' into develop
+| |\  
+| | *   22dcda6 Merge remote-tracking branch 'origin/changing-tests-for-store' into add-store-methods
+| | |\  
+| | | * be683c5 add all items to mock items for testing
+| |_|/  
+|/| |   
+| | * c57cb32 GUI further devloped
+| | * c50d5ac begun GUI development
+| | * 80a2445 added final methods to Store class
+| |/  
+|/|   
+* | 7258eac make all tests pass
+* |   edd3c3a Merge remote-tracking branch 'origin/master'
+|\ \  
+| * | 2c2f3f4 added reset method
+* | | 3c15dd9 remove unneeded tests
+|/ /  
+* | 1d70724 fix issue with plurals causing test to fail
+* | 46777b3 Fix store not adding cold item properly
+* | 355c7d7 fix merge issues
+* |   72af17a Merge branch 'fix-manifest'
+|\ \  
+| * | 64cd16d error fixes and debugging failing tests
+| * | 8c5c568 adding more to manifest and using to test store
+| * | afd041b add manifest csv printing
+| * | 09c819e manifest now attempts to organise order onto trucks
+* | |   edc52fd Merge remote-tracking branch 'origin/master'
+|\ \ \  
+| * \ \   9fe80d1 Merge remote-tracking branch 'origin/master'
+| |\ \ \  
+| * | | | ea36de4 fixed store class
+* | | | | cc3b257 add items to initial inventory test
+| |/ / /  
+|/| | |   
+* | | | 92ba9de fixed store class to pass tests
+|/ / /  
+* | |   1adec2a Merge branch 'fix-truck-test'
+|\ \ \  
+| * | | b5cf544 fixed ColdTruck and TestTrucks for tests to pass
+* | | |   49a17e1 Merge branch 'mock-frontend'
+|\ \ \ \  
+| |/ / /  
+|/| | |   
+| * | | ec795fb add javadocs to mock class
+| * | | ca13022 fix mock front end to use only store's methods
+| * | | 40dee9d add fake front end to ensure flow of backend correct
+|/ / /  
+* | | 2e8b289 add mockstock class for testing
+|/ /  
+* | 5eb194c add some fixmes for refactor work
+* | d54c59e make store test use mockitems
+* |   f0f9bda Merge branch 'mock-test-items'
+|\ \  
+| * | 0a0396b add mock item class for ease of testing
+|/ /  
+* | 3d319aa fix truck tests to make them pass circleci
+* |   f752012 Merge branch 'truck-tests'
+|\ \  
+| * | 5c0ddad add more test cases to coldtruck
+| * | 3a80a4f add comment to round utility function
+|/ /  
+* | f3cce3d add test cases for all methods in item class
+* | 26d1f52 add package-info for javadocs
+* | 2e7fbe4 add javadocs to repo
+* | 74d8fda add deliveryexception and csvException
+* | b792143 create test cases for store object
+* | c90e4eb add test for item setAmount
+* | 67ac52f more item tests
+* | 56c651a fix test again...
+* | 478d384 fix tests
+* | 2a6bf3e refactored some test cases
+* | ac0da14 throw another stockexception
+* | 2a65cca add stockexception
+* | 12d30bf fix method renamed
+* |   4525767 Merge pull request #13 from B-Janson/manifest
+|\ \  
+| * | b4bdbd3 fix truck refactor
+| * | 6043eca add manifest object
+* | | 4546968 fix tests to pass
+* | |   465335e Merge pull request #11 from B-Janson/make-tests-pass
+|\ \ \  
+| * | | ac4a960 make item tests pass
+| * | | 482eae2 clean up truck class
+| * | | ce9b721 fix up truck tests
+| * | | 715d759 remove trailing commas csv
+| * | | e1392f8 fix up some syntax issues
+* | | |   6d922bf Merge branch 'stock-adjust-test'
+|\ \ \ \  
+| * | | | 52f4918 Formatted
+| * | | | 9454e32 test for Stock class
+* | | | |   060cc8b Merge pull request #8 from B-Janson/store-class
+|\ \ \ \ \  
+| |_|/ / /  
+|/| | | |   
+| * | | |   a76736c Merge branch 'master' into store-class
+| |\ \ \ \  
+| |/ / / /  
+|/| | | |   
+* | | | |   4b8a2f2 Merge pull request #7 from B-Janson/add-ordinary-truck
+|\ \ \ \ \  
+| * | | | | 40ed8ea calculate cost of ordinary truck
+| * | | | | 02d0f6f add ordinary truck
+| | |_|/ /  
+| |/| | |   
+* | | | |   a366f2c Merge pull request #10 from B-Janson/stock-adjust
+|\ \ \ \ \  
+| |_|_|/ /  
+|/| | | |   
+| * | | | 30763da fix gradle again whoops
+* | | | |   484c6fb Merge pull request #9 from B-Janson/stock-adjust
+|\ \ \ \ \  
+| |/ / / /  
+| | / / /   
+| |/ / /    
+|/| | |     
+| * | | 979b655 adjust by stock
+|/ / /  
+* | | 91260d5 Try to keep tests running
+* | | 7d30a67 remove old test files
+* | |   3516f93 Merge remote-tracking branch 'origin/master'
+|\ \ \  
+| * | | 2d3d4a7 Reorganising packages and classes
+* | | | a6bd600 fix test error
+|/ / /  
+| * | 5b89c56 adjusting store capital and inventory
+| * | b53266b Creating Store
+|/ /  
+* |   2f9dabd Merge branch 'test-ordinary-truck'
+|\ \  
+| * | f07005e Added temperature to ColdTruck input
+| * | 9595458 General template to test trucks
+|/ /  
+* |   54fb17d Merge branch 'test-colditem'
+|\ \  
+| * | 13473c0 TestColdItem removed as now included in TestDataClasses
+| * | c1c690b Testing for Item and ColdItem updated.
+| * | a07c635 Auto stash before merge of "truck-class" and "master"
+| * |   977e769 Merge branch 'master' into truck-class
+| |\ \  
+| |/ /  
+|/| |   
+* | |   1e69cfd Merge branch 'add-stock-data-class'
+|\ \ \  
+| |/ /  
+|/| |   
+| * | e862dfa add stock object and stocktype enum
+* | | 95de7fa pull update
+| |/  
+|/|   
+* | a878fc9 start adding javadocs
+* | eeb29ec add ability to write to file
+* | 2b20163 fix indentation circleci
+* | 37ca14d remove gitkeep files
+* | 1824beb test update git config
+* |   e42b472 Merge pull request #6 from B-Janson/test-data-classes
+|\ \  
+| * | 27559fa remove gradle files that don't need to be tracked
+| * | 1b35a3c restructure project for gradle
+| * | 2b07c49 add test for csv file reading
+| * |   80dcb93 Merge branch 'master' into test-data-classes
+| |\ \  
+| | |/  
+| * | bf6a325 add test cases for item
+| * |   45cff69 Merge branch 'master' into test-data-classes
+| |\ \  
+| * | | 56c6a93 add first real test class
+* | | | 63c02aa slight update to readme
+| |_|/  
+|/| |   
+* | |   8c8d323 Merge pull request #1 from B-Janson/csv-utilities
+|\ \ \  
+| |_|/  
+|/| |   
+| * |   0574211 Merge branch 'master' into csv-utilities
+| |\ \  
+| |/ /  
+|/| |   
+* | |   e66625a Merge pull request #5 from B-Janson/ItemClass
+|\ \ \  
+| |_|/  
+|/| |   
+| * | 8ce601e Made data class for items
+* | |   bae369e Merge pull request #4 from B-Janson/add-circleci
+|\ \ \  
+| |/ /  
+|/| |   
+| * | 0a69a90 remove .gradle folder from tracking
+| * | d1047fe wowwoweewowo
+* | |   d988b9f Merge pull request #3 from B-Janson/add-circleci
+|\ \ \  
+| |/ /  
+| * | b49c433 fix gradle boi to test
+| * | 314dd12 changes JUnit
+* | |   ccbe7c1 Merge pull request #2 from B-Janson/add-circleci
+|\ \ \  
+| |/ /  
+| * | cb69280 add EOF character to gitignore
+| * | 2f0fe26 add build directory to gitignore
+| * | 89c347e add gradle completely (hopefully doesn't break
+| * | 41ed07b make test pass
+| * | 7bd8477 add gradle again
+| * | bec5cff remove gradle build file
+| * | 1192ab5 try to make tests
+| * | e6d820d test circleci
+| * | a613b56 add circleci
+|/ /  
+* | 76b197c removed tracking of csv files
+| * e38468e updated readCSV to return as string array
+| * d70dcac readCSV complete
+| * d73b194 started utilities class
+|/  
+* b0383b4 add gitignore file
+* 4ea79f2 started project structure
+* 4a95519 fixed license
+* be1be80 add license file
+* ace1c62 add readme
+commit 67e35b38146876b0894db73c9940852726d042fb
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Fri May 25 23:37:09 2018 +1000
+
+    fixed file path in application interface
+
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 6c666591ab800651441818b57ef6e55d45fa285f
+Merge: aa3e3ed c80ccdb
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Fri May 25 23:26:05 2018 +1000
+
+    Merge pull request #15 from B-Janson/develop
+    
+    Develop
+
+commit c80ccdbb1781179be5859921797a60c8782ea7db
+Merge: 8297dc2 aa3e3ed
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Fri May 25 23:23:50 2018 +1000
+
+    Merge branch 'master' into develop
+
+commit 8297dc27288e8908637ba2cb828afc9bf9cefbc6
+Author: Brandon <bjanson28@gmail.com>
+Date:   Fri May 25 23:22:56 2018 +1000
+
+    fix final test
+
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+commit b9d44389b4fd123e84f8066dd1a41b7f8cc78c0b
+Author: Brandon <bjanson28@gmail.com>
+Date:   Fri May 25 23:17:53 2018 +1000
+
+    fix exception test
+
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 56f63c6f682b7b9715dda732c93cc736f9ba8af2
+Merge: dc75d67 9e88b2f
+Author: Brandon <bjanson28@gmail.com>
+Date:   Fri May 25 23:14:27 2018 +1000
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+commit 9e88b2f71f78cf1aacd8397079d1f200e9b148b6
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Fri May 25 23:05:17 2018 +1000
+
+    add student number to README
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit dc75d67044f556b8ab4999354b6b6a78074929af
+Merge: 620466a 6a70c89
+Author: Brandon <bjanson28@gmail.com>
+Date:   Fri May 25 18:46:04 2018 +1000
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+commit 620466a3d388b7983407681a72f3e2ec03208012
+Author: Brandon <bjanson28@gmail.com>
+Date:   Fri May 25 18:43:55 2018 +1000
+
+    fix up comments
+
+ 1 file changed, 9 insertions(+), 10 deletions(-)
+
+commit 6a70c8907d1ef8feeccc928df309ccba28230a71
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Fri May 25 17:57:31 2018 +1000
+
+    finalise GUI, add javadocs
+
+ 11 files changed, 212 insertions(+), 147 deletions(-)
+
+commit de32891a0db5467ed313565168c8e570aeca0337
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Fri May 25 12:39:29 2018 +1000
+
+    fixed manifest to have no blank lines
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e6e7b50743f8ffd5b9f21598448ec49726ced372
+Merge: 3f1db84 d5fa1f8
+Author: Brandon <bjanson28@gmail.com>
+Date:   Thu May 24 22:46:22 2018 +1000
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+commit 3f1db84708894402e570df64a1f702279f7e0b53
+Author: Brandon <bjanson28@gmail.com>
+Date:   Thu May 24 22:42:15 2018 +1000
+
+    fix another bug that I made
+
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+commit 361d54b64676dc1b3b31cab77ecb2a7b6c87531e
+Author: Brandon <bjanson28@gmail.com>
+Date:   Thu May 24 22:40:19 2018 +1000
+
+    fix error with adding too many rows
+
+ 1 file changed, 19 insertions(+), 13 deletions(-)
+
+commit d5fa1f8f919338eb123a77ef14049fc20058dd67
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Thu May 24 22:39:36 2018 +1000
+
+    table in GUI updates at button press
+
+ 1 file changed, 19 insertions(+), 8 deletions(-)
+
+commit 0cc5feb9b681247927f0273fe2d180e283f2525f
+Author: Brandon <bjanson28@gmail.com>
+Date:   Thu May 24 22:18:02 2018 +1000
+
+    refactor and fix some bugs in the process
+
+ 9 files changed, 332 insertions(+), 147 deletions(-)
+
+commit 4e48cbbe035516ce607ae6695f74fa028cda55fb
+Merge: d8be75d 672b3ad
+Author: Brandon <bjanson28@gmail.com>
+Date:   Thu May 24 20:49:53 2018 +1000
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+commit d8be75d78d952682fb066020da10bdf255c46160
+Author: Brandon <bjanson28@gmail.com>
+Date:   Thu May 24 20:47:38 2018 +1000
+
+    small refactor and add error messages to GUI
+    
+    remove unneeded import
+
+ 5 files changed, 109 insertions(+), 118 deletions(-)
+
+commit 672b3ad5661feada4b6a2f340dcef68fa597ac6a
+Author: Brandon <bjanson28@gmail.com>
+Date:   Thu May 24 20:47:38 2018 +1000
+
+    small refactor and add error messages to GUI
+
+ 4 files changed, 109 insertions(+), 113 deletions(-)
+
+commit 9b44b0c469404a457599572de5649163981049c0
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Thu May 24 00:18:42 2018 +1000
+
+    added javadocs, updated GUI, added exceptions
+
+ 11 files changed, 168 insertions(+), 1153 deletions(-)
+
+commit 7eaf0f9d6f12e098a3a9be25507c542090762168
+Merge: 9b15c3c c72f1ad
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 23 16:46:17 2018 +1000
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+commit 9b15c3cccd37c0b0ce5f27faf705ea5a3861770d
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 23 16:44:29 2018 +1000
+
+    update manifest calculation
+
+ 2 files changed, 35 insertions(+), 28 deletions(-)
+
+commit c72f1ade073774cdf6fdcaa62d7ecdd2069947ed
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 23 12:34:12 2018 +1000
+
+    deleted leftover file from trialing code
+
+ 1 file changed, 26 deletions(-)
+
+commit b8d0d901073d5dedd6418112e26ce4bc8e0cb9ec
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 23 12:17:09 2018 +1000
+
+    sales now selected through dialog
+
+ 2 files changed, 37 insertions(+), 151 deletions(-)
+
+commit 2495fa00d34530609f5aafb47d9b683be54d8d2c
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 23 11:42:26 2018 +1000
+
+    fixed GUI displaying old version
+
+ 2 files changed, 8 insertions(+), 31 deletions(-)
+
+commit 32c9b1d9169cb1d5ef0d44778bc73c1d29aeb5f4
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Tue May 22 16:06:20 2018 +1000
+
+    update capital similarly to table
+    
+    ApplicationInterface.java not displaying correct GUI
+
+ 2 files changed, 9 insertions(+), 6 deletions(-)
+
+commit fe2db0c53c5f5080a86cec0316215e5660ecc71c
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Tue May 22 15:57:53 2018 +1000
+
+    first attempt at updating capital
+
+ 2 files changed, 10 insertions(+), 2 deletions(-)
+
+commit eff39b453fdb23be1bae9ffadd6d5294cf8307d4
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Tue May 22 15:38:07 2018 +1000
+
+    updated capital display
+
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit ea35b7aa3e11ba04137a7fa9c90efb8c3597995b
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Tue May 22 15:28:32 2018 +1000
+
+    add capital to gui
+
+ 1 file changed, 45 insertions(+), 14 deletions(-)
+
+commit 436a817c107b270e9be4d60be8de7e864a8ebc25
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sun May 20 15:31:20 2018 +1000
+
+    update javadocs
+
+ 20 files changed, 425 insertions(+), 216 deletions(-)
+
+commit f298a073f8846b93297c6de76fecd3a075574571
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sun May 20 13:55:43 2018 +1000
+
+    import coverage tool and fix up some tests
+
+ 19 files changed, 252 insertions(+), 234 deletions(-)
+
+commit da2fa0ea8b02ed45f4e3e8ec052a0391a72d529b
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sun May 20 12:00:31 2018 +1000
+
+    add javadocs and fix more tests
+
+ 5 files changed, 111 insertions(+), 94 deletions(-)
+
+commit 1d59a0b339774538d692bbabafcff2f4c7bd5ebb
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sun May 20 11:32:20 2018 +1000
+
+    refactor mockitem class
+
+ 3 files changed, 79 insertions(+), 264 deletions(-)
+
+commit 4b080fdc32b3f953f24fa7a024fe1e6a05031da9
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Sat May 19 20:12:10 2018 +1000
+
+    sales selection updates table
+
+ 3 files changed, 25 insertions(+), 22 deletions(-)
+
+commit bc29c2881dbeb8b625819620c875479dfc7d827b
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Sat May 19 19:52:55 2018 +1000
+
+    generate order  updates table
+
+ 1 file changed, 66 insertions(+), 33 deletions(-)
+
+commit aa3e3edbbd1347891e34d3bc2e14bb8c822ba1fe
+Author: Brandon <bjanson28@gmail.com>
+Date:   Fri May 18 17:06:03 2018 +1000
+
+    fix issue
+
+ 1 file changed, 2 deletions(-)
+
+commit f78163c449eadadc783ae1f4cd6b00fdf206a7a2
+Author: Brandon <bjanson28@gmail.com>
+Date:   Fri May 18 17:01:28 2018 +1000
+
+    test branch protection
+
+ 1 file changed, 2 insertions(+)
+
+commit 048aeb2c6b2d741830d76f22ef3d58520cc8341c
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Fri May 18 16:59:51 2018 +1000
+
+    Update README to include build status
+
+ 1 file changed, 2 insertions(+)
+
+commit ebe78bddb612f33b617f5d8c5e56b94c5a727deb
+Author: Brandon <bjanson28@gmail.com>
+Date:   Fri May 18 16:55:34 2018 +1000
+
+    fix manifest to correctly generate the manifest file
+
+ 5 files changed, 34 insertions(+), 45 deletions(-)
+
+commit 04c90749c4b7c40dba2898b78668a330da368a45
+Merge: 86ff665 ceffe82
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Thu May 17 00:02:11 2018 +1000
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+commit 86ff665351964ca6d74a4431e5e6138222dbb301
+Merge: a427376 6f7dfe2
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Thu May 17 00:01:30 2018 +1000
+
+    Merge branch 'add-javadocs' into develop
+
+commit ceffe828c5593b3cc3de573735e1f98a18f62369
+Merge: ef7a7d8 a427376
+Author: Brandon <bjanson28@gmail.com>
+Date:   Thu May 17 00:00:08 2018 +1000
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+commit ef7a7d80c3ff7fb58289fef1a1ea5dc66d84fb80
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 23:58:22 2018 +1000
+
+    make manifest produce csv
+
+ 6 files changed, 127 insertions(+), 66 deletions(-)
+
+commit 6f7dfe2d7cb3012c781391740cd330d016c212fa
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 23:57:10 2018 +1000
+
+    updated javadocs
+
+ 3 files changed, 116 insertions(+), 30 deletions(-)
+
+commit a42737616171f889b2ac1728eec73b81845cab27
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 23:20:42 2018 +1000
+
+    fixed GUIs
+
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit c234f2e42f5ac302176c5efe0bc1720c3e74bee9
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 22:46:49 2018 +1000
+
+    added javadocs
+
+ 1 file changed, 30 insertions(+), 1 deletion(-)
+
+commit 8c4fb926c250a7b4ca7c2b72471f6f260f2c1e9b
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 22:24:48 2018 +1000
+
+    clean imports
+
+ 2 files changed, 11 insertions(+), 17 deletions(-)
+
+commit 77f29cb23b3034155827ff7b182f56a8f9c9ca91
+Merge: 69d4c2e c84f528
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 22:18:45 2018 +1000
+
+    Merge remote-tracking branch 'origin/develop' into develop
+
+commit 69d4c2e0c2411055195565abbd81525d44871efe
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 22:18:36 2018 +1000
+
+    fix tests
+
+ 53 files changed, 1423 insertions(+), 172 deletions(-)
+
+commit c84f528ca48fd96584526b8754fe06addb412e2b
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 22:13:51 2018 +1000
+
+    finished GUIs
+
+ 2 files changed, 69 insertions(+), 6 deletions(-)
+
+commit 3b8112260f63aec8e65c7d0b488a36b15b0b66e4
+Merge: a878fc9 22dcda6
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 21:34:08 2018 +1000
+
+    Merge branch 'add-store-methods' into develop
+
+commit 22dcda6c6e918876d55842752a159c23a07da8b3
+Merge: c57cb32 be683c5
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 21:16:05 2018 +1000
+
+    Merge remote-tracking branch 'origin/changing-tests-for-store' into add-store-methods
+
+commit be683c56e076c111d8b6b9729bb1bfc499a06fd4
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 20:49:38 2018 +1000
+
+    add all items to mock items for testing
+
+ 7 files changed, 427 insertions(+), 21 deletions(-)
+
+commit c57cb32c7cc8f56d61e1d61ee9e120ab481894d4
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 20:42:34 2018 +1000
+
+    GUI further devloped
+
+ 3 files changed, 100 insertions(+), 52 deletions(-)
+
+commit c50d5ac78c9928fd02004b06380f85daa57f27d9
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 17:02:57 2018 +1000
+
+    begun GUI development
+
+ 5 files changed, 154 insertions(+)
+
+commit 80a2445b70dc8263482e44e6ede6ab9fe11cdc32
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 17:02:42 2018 +1000
+
+    added final methods to Store class
+
+ 3 files changed, 43 insertions(+), 6 deletions(-)
+
+commit 7258eacea2998aea31fe24dd2e62bf215b732e48
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 13:30:31 2018 +1000
+
+    make all tests pass
+    
+    maybe
+
+ 2 files changed, 1 insertion(+), 4 deletions(-)
+
+commit edd3c3af1a3a4cd59da35f041048b14f47c4432d
+Merge: 3c15dd9 2c2f3f4
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 13:29:05 2018 +1000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 2c2f3f47f53d13b50e25db3745d3c541a398c151
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 13:28:35 2018 +1000
+
+    added reset method
+
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 3c15dd930b2e03c6cd4cdda02b73a0b252b44d76
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 13:28:27 2018 +1000
+
+    remove unneeded tests
+
+ 1 file changed, 66 insertions(+), 53 deletions(-)
+
+commit 1d707247b589f546545fee9cc0accff2ae1153c1
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 13:13:50 2018 +1000
+
+    fix issue with plurals causing test to fail
+
+ 1 file changed, 17 insertions(+), 19 deletions(-)
+
+commit 46777b31ce89d15fbee77c0003d9fe4212d9213b
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 13:04:18 2018 +1000
+
+    Fix store not adding cold item properly
+
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+
+commit 355c7d73340149558b3b32eda12d99384f0bb476
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 13:00:48 2018 +1000
+
+    fix merge issues
+
+ 2 files changed, 6 insertions(+), 4 deletions(-)
+
+commit 72af17a600c931e3bd9b34069cbeb13fde24c1ba
+Merge: edc52fd 64cd16d
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 12:57:28 2018 +1000
+
+    Merge branch 'fix-manifest'
+
+commit edc52fd25fa6f89062e2ee6cfc23736682eb8d09
+Merge: cc3b257 9fe80d1
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 12:52:21 2018 +1000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit cc3b257869cceec9175b915511622dff38a1fa94
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 12:52:13 2018 +1000
+
+    add items to initial inventory test
+
+ 1 file changed, 28 insertions(+)
+
+commit 9fe80d1e761baf490887ce365895c3ed1d5608dd
+Merge: ea36de4 92ba9de
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 12:43:54 2018 +1000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit ea36de41b2406ae23346bd692b3eeab0222c37aa
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 12:42:26 2018 +1000
+
+    fixed store class
+
+ 2 files changed, 33 insertions(+), 17 deletions(-)
+
+commit 92ba9def47530d9eafb9fc3f1aa7d7993ace6d6e
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 12:42:26 2018 +1000
+
+    fixed store class to pass tests
+
+ 2 files changed, 33 insertions(+), 17 deletions(-)
+
+commit 1adec2aa8f84984808269f17c81f2662b17d1ff7
+Merge: 49a17e1 b5cf544
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed May 16 12:31:28 2018 +1000
+
+    Merge branch 'fix-truck-test'
+
+commit 49a17e19867bd9ff1d0df479a3076f070514f9a5
+Merge: 2e8b289 ec795fb
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 12:21:39 2018 +1000
+
+    Merge branch 'mock-frontend'
+
+commit ec795fb15ce6f42b282ca7bfd85e60b9b5af165e
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 12:21:20 2018 +1000
+
+    add javadocs to mock class
+
+ 1 file changed, 59 insertions(+), 26 deletions(-)
+
+commit ca13022ccd23d2cb93c1c5815c188d6273254d53
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 11:23:35 2018 +1000
+
+    fix mock front end to use only store's methods
+
+ 2 files changed, 32 insertions(+), 34 deletions(-)
+
+commit 40dee9d9e8029c34c6538dd9d417bd676c7a86cf
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed May 16 11:15:50 2018 +1000
+
+    add fake front end to ensure flow of backend correct
+
+ 3 files changed, 136 insertions(+)
+
+commit 64cd16d669dda075f05d8dcc044f0faac99e3a41
+Author: Brandon <bjanson28@gmail.com>
+Date:   Fri May 11 17:02:04 2018 +1000
+
+    error fixes and debugging failing tests
+
+ 4 files changed, 10 insertions(+), 3 deletions(-)
+
+commit 8c5c5680570499804601d07b1d2317300c76d7ac
+Author: Brandon <bjanson28@gmail.com>
+Date:   Fri May 11 16:55:29 2018 +1000
+
+    adding more to manifest and using to test store
+
+ 4 files changed, 93 insertions(+), 25 deletions(-)
+
+commit b5cf5446e8d77c1c234f91e2aa4bda64d0cfe9e1
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Fri May 11 15:47:13 2018 +1000
+
+    fixed ColdTruck and TestTrucks for tests to pass
+
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+commit afd041b96902ab7db0712fbd01dfc9835cb6d76f
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sun May 6 16:25:54 2018 +1000
+
+    add manifest csv printing
+
+ 2 files changed, 27 insertions(+), 16 deletions(-)
+
+commit 2e8b28946b7e96a61b0b093b197366ea7d3d2623
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sun May 6 14:31:35 2018 +1000
+
+    add mockstock class for testing
+
+ 4 files changed, 115 insertions(+), 4 deletions(-)
+
+commit 09c819e7b125b1c664b3fb96a85baf9b155507c8
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sun May 6 13:58:07 2018 +1000
+
+    manifest now attempts to organise order onto trucks
+
+ 4 files changed, 82 insertions(+), 24 deletions(-)
+
+commit 5eb194ce075a7350ec2533d14698e4eb178ea3ce
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sat May 5 23:22:38 2018 +1000
+
+    add some fixmes for refactor work
+
+ 2 files changed, 4 insertions(+)
+
+commit d54c59ee71f0ac3745b6e348a6b45c4ac63d28fe
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sat May 5 23:22:17 2018 +1000
+
+    make store test use mockitems
+
+ 1 file changed, 14 insertions(+), 6 deletions(-)
+
+commit f0f9bda64d12eb5537c91dc834f9b9085f318aec
+Merge: 3d319aa 0a0396b
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sat May 5 22:51:31 2018 +1000
+
+    Merge branch 'mock-test-items'
+
+commit 0a0396baa386660e76ad4643d0e4cfeac0675f07
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sat May 5 22:50:49 2018 +1000
+
+    add mock item class for ease of testing
+
+ 3 files changed, 96 insertions(+), 47 deletions(-)
+
+commit 3d319aaa3b8bcf85e32535b67389e0bb63917171
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sat May 5 22:29:38 2018 +1000
+
+    fix truck tests to make them pass circleci
+
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit f752012a1ea9d90319cb178efc6c19fc2deacd12
+Merge: f3cce3d 5c0ddad
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sat May 5 22:21:17 2018 +1000
+
+    Merge branch 'truck-tests'
+
+commit 5c0ddadfcd8758d8c8bcd119ad6f2d205c4a10b4
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sat May 5 22:20:38 2018 +1000
+
+    add more test cases to coldtruck
+
+ 1 file changed, 69 insertions(+), 3 deletions(-)
+
+commit 3a80a4ff403a8928e0a83cd66d0285e3d02d6784
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sat May 5 22:20:17 2018 +1000
+
+    add comment to round utility function
+
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+commit f3cce3da71a5e151d5343da293f80b9f0cd3d0a5
+Author: Brandon <bjanson28@gmail.com>
+Date:   Sat May 5 21:47:31 2018 +1000
+
+    add test cases for all methods in item class
+
+ 1 file changed, 66 insertions(+), 30 deletions(-)
+
+commit 26d1f52542411c42f98ce9f3de5896be63176d8f
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 20:09:49 2018 +1000
+
+    add package-info for javadocs
+
+ 45 files changed, 135 insertions(+), 50 deletions(-)
+
+commit 2e7fbe474d85b8e099778b09794dfb9579faf098
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 20:00:35 2018 +1000
+
+    add javadocs to repo
+
+ 48 files changed, 8367 insertions(+), 38 deletions(-)
+
+commit 74d8fdafeecd317c6183ed13ce7057df399d669f
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 19:51:29 2018 +1000
+
+    add deliveryexception and csvException
+
+ 2 files changed, 68 insertions(+)
+
+commit b79214328da0b5531a1349dd9714ca81762b9c24
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 19:48:34 2018 +1000
+
+    create test cases for store object
+
+ 5 files changed, 143 insertions(+), 6 deletions(-)
+
+commit c90e4eb57583af69a05e95d3be919179f8946052
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 18:49:47 2018 +1000
+
+    add test for item setAmount
+
+ 1 file changed, 5 insertions(+)
+
+commit 67ac52f96fc7bd4bea92c39f5fe4b01a2b910759
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 18:43:21 2018 +1000
+
+    more item tests
+
+ 7 files changed, 40 insertions(+), 26 deletions(-)
+
+commit 56c651a21d2cd9b9935731904ad4f4ae96240609
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 18:28:03 2018 +1000
+
+    fix test again...
+
+ 6 files changed, 4 insertions(+), 3 deletions(-)
+
+commit 478d384f77f792e57c4a880260f10955cb7c5ed4
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 18:23:58 2018 +1000
+
+    fix tests
+
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 2a6bf3e53b021ac72ae1bd430c705058888500e5
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 18:20:59 2018 +1000
+
+    refactored some test cases
+
+ 3 files changed, 43 insertions(+), 15 deletions(-)
+
+commit ac0da14a8c61d2945eb495233eb58358c51164a3
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 18:01:23 2018 +1000
+
+    throw another stockexception
+
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 2a65cca1eb28063d6719f4b736214eef76e92815
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 18:00:38 2018 +1000
+
+    add stockexception
+
+ 5 files changed, 108 insertions(+), 12 deletions(-)
+
+commit 12d30bf6ef2b8016fe22f380cd7646c4a994dd4c
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 17:29:25 2018 +1000
+
+    fix method renamed
+
+ 2 files changed, 2 insertions(+), 4 deletions(-)
+
+commit 452576728cb81d0475e12c27efd0a40f523c476c
+Merge: 4546968 b4bdbd3
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Wed Apr 25 17:27:24 2018 +1000
+
+    Merge pull request #13 from B-Janson/manifest
+    
+    Manifest
+
+commit b4bdbd38ec8476d48692027208f1cd3d4a2b1f21
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 17:26:42 2018 +1000
+
+    fix truck refactor
+
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+commit 4546968a1fbcd60b1345d0530e54b417a0f378dc
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 17:24:55 2018 +1000
+
+    fix tests to pass
+
+ 1 file changed, 12 insertions(+), 13 deletions(-)
+
+commit 465335e9ead1e4f4f3fc0008e54b972940830860
+Merge: 6d922bf ac4a960
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Wed Apr 25 17:21:09 2018 +1000
+
+    Merge pull request #11 from B-Janson/make-tests-pass
+    
+    Make tests pass
+
+commit 6d922bf4bc7667fb042f138e13aecc8bb6b9cbed
+Merge: 060cc8b 52f4918
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 17:17:53 2018 +1000
+
+    Merge branch 'stock-adjust-test'
+
+commit 060cc8ba679025ef1b59be3cc6ba247a4076cebb
+Merge: 4b8a2f2 a76736c
+Author: ChrisMartin97 <38598283+ChrisMartin97@users.noreply.github.com>
+Date:   Wed Apr 25 17:13:34 2018 +1000
+
+    Merge pull request #8 from B-Janson/store-class
+    
+    Store class
+
+commit a76736c89ae193a15358c09374498198bcb870ac
+Merge: 5b89c56 4b8a2f2
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 17:12:45 2018 +1000
+
+    Merge branch 'master' into store-class
+
+commit 52f4918312743220127ce8fbb3691f81f2fa66d6
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 17:10:27 2018 +1000
+
+    Formatted
+
+ 1 file changed, 11 insertions(+), 13 deletions(-)
+
+commit 9454e32de8105feef1ac31c3325ea7b517382c48
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 17:06:14 2018 +1000
+
+    test for Stock class
+
+ 2 files changed, 110 insertions(+)
+
+commit ac4a96008a86614d7fbce09f95ce91cb76e77f3c
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 17:05:58 2018 +1000
+
+    make item tests pass
+
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+
+commit 482eae291a3585af20100e398a90daec63841a24
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 16:58:07 2018 +1000
+
+    clean up truck class
+
+ 9 files changed, 21 insertions(+), 18 deletions(-)
+
+commit ce9b721d4db21b04b5a7a2ef1aae4023342b0afb
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 16:57:34 2018 +1000
+
+    fix up truck tests
+
+ 2 files changed, 49 insertions(+), 17 deletions(-)
+
+commit 715d7591949fb3d450a279fb88fa649ed23d10f6
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 16:03:31 2018 +1000
+
+    remove trailing commas csv
+
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+commit e1392f80966ea16c2c46e2922caa3ffbdf195a9e
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 16:01:37 2018 +1000
+
+    fix up some syntax issues
+
+ 7 files changed, 39 insertions(+), 21 deletions(-)
+
+commit 4b8a2f2691fed353a0122292bfdb2a4284a90306
+Merge: a366f2c 40ed8ea
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Wed Apr 25 15:45:45 2018 +1000
+
+    Merge pull request #7 from B-Janson/add-ordinary-truck
+    
+    Add ordinary truck
+
+commit a366f2ccb90c831cc8e64086b0bb1f8d7975b467
+Merge: 484c6fb 30763da
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Wed Apr 25 15:43:50 2018 +1000
+
+    Merge pull request #10 from B-Janson/stock-adjust
+    
+    fix gradle again whoops
+
+commit 30763dac198d40a3896966db86819c1a09210864
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 15:38:09 2018 +1000
+
+    fix gradle again whoops
+
+ 12 files changed, 2 insertions(+), 10 deletions(-)
+
+commit 484c6fbdc04f91fadf22a813e4a0ed3fffd346cd
+Merge: 91260d5 979b655
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Wed Apr 25 15:33:42 2018 +1000
+
+    Merge pull request #9 from B-Janson/stock-adjust
+    
+    adjust by stock
+
+commit 979b6557b219a12e270b452fcee33a7205746c33
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 15:21:47 2018 +1000
+
+    adjust by stock
+
+ 2 files changed, 25 insertions(+), 6 deletions(-)
+
+commit 5b89c568dc607f68433de3a7db7af572a145e9a8
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 15:20:18 2018 +1000
+
+    adjusting store capital and inventory
+
+ 1 file changed, 17 insertions(+), 5 deletions(-)
+
+commit 6043eca9e626e8209bfb0ca219982731a2748fab
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 14:57:25 2018 +1000
+
+    add manifest object
+
+ 1 file changed, 36 insertions(+)
+
+commit 40ed8eaeb58cf37ffeb4a3fb4a6646e03c9afeed
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 14:39:35 2018 +1000
+
+    calculate cost of ordinary truck
+
+ 5 files changed, 23 insertions(+), 15 deletions(-)
+
+commit 02d0f6f6488b28fc68953bdef370c2cd7daa19c5
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 13:11:57 2018 +1000
+
+    add ordinary truck
+
+ 3 files changed, 27 insertions(+), 11 deletions(-)
+
+commit b53266b01ad8ad496c6f16c7f2e2c46eb405b871
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 13:03:43 2018 +1000
+
+    Creating Store
+
+ 1 file changed, 52 insertions(+)
+
+commit 91260d57abcfda9cda6e02222640135180372d09
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 12:54:20 2018 +1000
+
+    Try to keep tests running
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7d30a670aef7c4ec09d14acbd7dc1064e102af33
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 12:50:34 2018 +1000
+
+    remove old test files
+
+ 4 files changed, 2 insertions(+), 40 deletions(-)
+
+commit 3516f93374e2b1622e9592bc5ad646f2daa598ce
+Merge: a6bd600 2d3d4a7
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 12:45:37 2018 +1000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 2d3d4a73c7ba2ad28a5eeab50127e4965924a4b4
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 12:44:50 2018 +1000
+
+    Reorganising packages and classes
+
+ 11 files changed, 42 insertions(+), 11 deletions(-)
+
+commit a6bd60025817adbf18b6b34b4c283b4d2bf653a7
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 12:37:38 2018 +1000
+
+    fix test error
+
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+
+commit 2f9dabd38b13e8fa4ac4f601094eefbaf0e90dc2
+Merge: 54fb17d f07005e
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 12:35:07 2018 +1000
+
+    Merge branch 'test-ordinary-truck'
+
+commit f07005e8a9f44f78a78d3a4f4fb741bf0c9a318f
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 12:33:20 2018 +1000
+
+    Added temperature to ColdTruck input
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9595458af5372d7764473672de5f1dee739b1618
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 12:31:23 2018 +1000
+
+    General template to test trucks
+
+ 1 file changed, 31 insertions(+)
+
+commit 54fb17dc245098671af295455f7ac4e1ac96628e
+Merge: 1e69cfd 13473c0
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 12:10:38 2018 +1000
+
+    Merge branch 'test-colditem'
+
+commit 13473c03f33ad65df2f91eeb604d9e34287799c4
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 12:05:51 2018 +1000
+
+    TestColdItem removed as now included in TestDataClasses
+
+ 1 file changed, 19 deletions(-)
+
+commit c1c690bd0991fde547313b1e12a500932cf2aa6c
+Author: Chris <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 12:03:54 2018 +1000
+
+    Testing for Item and ColdItem updated.
+
+ 4 files changed, 62 insertions(+), 2 deletions(-)
+
+commit a07c635137eeaffd87120902282873112884d523
+Author: Unknown <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 10:33:18 2018 +1000
+
+    Auto stash before merge of "truck-class" and "master"
+
+ 4 files changed, 64 insertions(+), 2 deletions(-)
+
+commit 977e769eaab14d053b5bf456cd51035485f866d9
+Merge: 95de7fa 1e69cfd
+Author: Unknown <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 10:16:53 2018 +1000
+
+    Merge branch 'master' into truck-class
+
+commit 1e69cfd69901f0e385cf44f0ac0c07ecc648b244
+Merge: 95de7fa e862dfa
+Author: Brandon <bjanson28@gmail.com>
+Date:   Wed Apr 25 10:15:42 2018 +1000
+
+    Merge branch 'add-stock-data-class'
+
+commit 95de7fa368303933a5c61ef4d141a0ca5efb9ef3
+Author: Unknown <c28.martin@connect.qut.edu.au>
+Date:   Wed Apr 25 10:06:27 2018 +1000
+
+    pull update
+
+ 1 file changed, 24 insertions(+), 24 deletions(-)
+
+commit a878fc93be5c7a795bd0368250f63a976ea51d3c
+Author: Brandon <bjanson28@gmail.com>
+Date:   Mon Apr 23 22:18:04 2018 +1000
+
+    start adding javadocs
+
+ 7 files changed, 53 insertions(+), 17 deletions(-)
+
+commit eeb29ec6c0cc322c9e36a069cd7ab028250cc0a6
+Author: Brandon <bjanson28@gmail.com>
+Date:   Mon Apr 23 21:34:41 2018 +1000
+
+    add ability to write to file
+
+ 3 files changed, 15 insertions(+), 2 deletions(-)
+
+commit 2b20163421d612c65596bfacf9a434907c9128d6
+Author: Brandon <bjanson28@gmail.com>
+Date:   Mon Apr 23 21:25:33 2018 +1000
+
+    fix indentation circleci
+
+ 2 files changed, 12 insertions(+), 13 deletions(-)
+
+commit 37ca14d63f1aa1df8858ccae28c2d3aa9aeaa479
+Author: Brandon <bjanson28@gmail.com>
+Date:   Mon Apr 23 21:22:50 2018 +1000
+
+    remove gitkeep files
+
+ 4 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 1824beb8888254ab384001823a88ec3058ef9ddf
+Author: Brandon <bjanson28@gmail.com>
+Date:   Mon Apr 23 21:20:56 2018 +1000
+
+    test update git config
+
+ 1 file changed, 4 insertions(+)
+
+commit e42b472d3855de3f626a2e534e764fe95d11436d
+Merge: 63c02aa 27559fa
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Mon Apr 23 21:04:38 2018 +1000
+
+    Merge pull request #6 from B-Janson/test-data-classes
+    
+    Test data classes
+
+commit 27559fa73b7ccbf85ff761afd8781630ec50592a
+Author: Unknown <brandon.janson@smg-corporate.com>
+Date:   Mon Apr 23 21:02:49 2018 +1000
+
+    remove gradle files that don't need to be tracked
+
+ 2 files changed, 2 deletions(-)
+
+commit 1b35a3c14fffe26fa9fdb55a665ce18d98341cc3
+Author: Unknown <brandon.janson@smg-corporate.com>
+Date:   Mon Apr 23 20:59:18 2018 +1000
+
+    restructure project for gradle
+
+ 8 files changed, 7 insertions(+), 8 deletions(-)
+
+commit 63c02aa6d3ca73fee0fa96260b618a8938e515ac
+Author: Unknown <brandon.janson@smg-corporate.com>
+Date:   Mon Apr 23 20:32:17 2018 +1000
+
+    slight update to readme
+
+ 1 file changed, 4 insertions(+)
+
+commit e862dfaf97f8098c4157dbfd8fa1e26426cb5e1e
+Author: Unknown <brandon.janson@smg-corporate.com>
+Date:   Mon Apr 23 20:27:03 2018 +1000
+
+    add stock object and stocktype enum
+
+ 2 files changed, 35 insertions(+)
+
+commit 2b07c49d4d730cba9be98a6498e315686392b12d
+Author: Unknown <brandon.janson@smg-corporate.com>
+Date:   Mon Apr 23 20:19:01 2018 +1000
+
+    add test for csv file reading
+
+ 3 files changed, 38 insertions(+), 2 deletions(-)
+
+commit 80dcb930f7a1cba02caf8ee4477f9e2a74ca6df3
+Merge: bf6a325 8c8d323
+Author: Unknown <brandon.janson@smg-corporate.com>
+Date:   Mon Apr 23 20:13:23 2018 +1000
+
+    Merge branch 'master' into test-data-classes
+
+commit bf6a325ed3b3b34f4f216fea6c024919b8bec094
+Author: Unknown <brandon.janson@smg-corporate.com>
+Date:   Mon Apr 23 20:12:52 2018 +1000
+
+    add test cases for item
+
+ 3 files changed, 54 insertions(+), 19 deletions(-)
+
+commit 8c8d323886751f9595cac98d9c02f921382f3496
+Merge: e66625a 0574211
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Mon Apr 23 20:12:18 2018 +1000
+
+    Merge pull request #1 from B-Janson/csv-utilities
+    
+    Csv utilities
+
+commit 057421105f1bff2b07fb22f6d80323687060d55a
+Merge: e38468e e66625a
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Mon Apr 23 20:11:34 2018 +1000
+
+    Merge branch 'master' into csv-utilities
+
+commit 45cff69a12c70a43fa0f506b222d75bc5daa1a1c
+Merge: 56c6a93 e66625a
+Author: Unknown <brandon.janson@smg-corporate.com>
+Date:   Mon Apr 23 19:54:45 2018 +1000
+
+    Merge branch 'master' into test-data-classes
+
+commit 56c6a936ff214b08bceba5dc527366507998426e
+Author: Unknown <brandon.janson@smg-corporate.com>
+Date:   Mon Apr 23 19:54:27 2018 +1000
+
+    add first real test class
+
+ 1 file changed, 19 insertions(+)
+
+commit e66625ac5136f858f6179edfcfd39f801968e46e
+Merge: bae369e 8ce601e
+Author: ChrisMartin97 <38598283+ChrisMartin97@users.noreply.github.com>
+Date:   Sun Apr 22 16:35:17 2018 +1000
+
+    Merge pull request #5 from B-Janson/ItemClass
+    
+    Made data class for items
+
+commit 8ce601e799929f4174940db2d6676e65f4312833
+Author: Unknown <c28.martin@connect.qut.edu.au>
+Date:   Sun Apr 22 16:31:25 2018 +1000
+
+    Made data class for items
+
+ 1 file changed, 82 insertions(+)
+
+commit bae369edb666dc572a53e10dfa7b74c2454f2985
+Merge: d988b9f 0a69a90
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sun Apr 22 16:26:26 2018 +1000
+
+    Merge pull request #4 from B-Janson/add-circleci
+    
+    Stop tracking gradle files
+
+commit 0a69a903019e6b35b19cefcafd50888259df2807
+Author: Unknown <brandon.janson@smg-corporate.com>
+Date:   Sun Apr 22 16:24:49 2018 +1000
+
+    remove .gradle folder from tracking
+
+ 9 files changed, 8 insertions(+)
+
+commit d1047fe2a5350fe7927d37b66206ebee6ef9a9ff
+Author: Unknown <brandon.janson@smg-corporate.com>
+Date:   Sun Apr 22 14:41:19 2018 +1000
+
+    wowwoweewowo
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d988b9fa4d0bbc12371b32fbae924a5859d44ea9
+Merge: ccbe7c1 b49c433
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sun Apr 22 14:35:34 2018 +1000
+
+    Merge pull request #3 from B-Janson/add-circleci
+    
+    Fix Gradle
+
+commit b49c43367f994cac0e59d9e531e2f16f25012530
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sun Apr 22 14:33:33 2018 +1000
+
+    fix gradle boi to test
+
+ 3 files changed, 9 insertions(+), 14 deletions(-)
+
+commit 314dd12b261215a42400a6b58ba90995576a23c8
+Author: Chris Martin <c28.martin@connect.edu.au>
+Date:   Sun Apr 22 14:12:01 2018 +1000
+
+    changes JUnit
+
+ 1 file changed, 19 insertions(+)
+
+commit ccbe7c1baa378c7dd50a34bfd6be83b3f3b7dd88
+Merge: 76b197c cb69280
+Author: B-Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sun Apr 22 13:51:10 2018 +1000
+
+    Merge pull request #2 from B-Janson/add-circleci
+    
+    add circleci
+
+commit cb6928002ad73fa75a3e83769e4d697e97a26866
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sat Apr 21 12:56:18 2018 +1000
+
+    add EOF character to gitignore
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2f0fe2682c033daac485a860715e127523640bb4
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sat Apr 21 12:54:46 2018 +1000
+
+    add build directory to gitignore
+
+ 1 file changed, 1 insertion(+)
+
+commit 89c347e5de8d069f3e606882e80cad942cc3fcd4
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sat Apr 21 12:54:13 2018 +1000
+
+    add gradle completely (hopefully doesn't break
+
+ 16 files changed, 263 insertions(+)
+
+commit 41ed07b9085ec560b1ae666d566df5746c56c31e
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sat Apr 21 12:50:40 2018 +1000
+
+    make test pass
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7bd84771baa0c5037e88bd56b099391f34ed4179
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sat Apr 21 12:49:26 2018 +1000
+
+    add gradle again
+
+ 3 files changed, 25 insertions(+), 1 deletion(-)
+
+commit bec5cffded4c7af1446430f997c5e94a7dfe61e0
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sat Apr 21 12:35:52 2018 +1000
+
+    remove gradle build file
+
+ 1 file changed, 3 deletions(-)
+
+commit 1192ab577a29e3172702410855814e461df40897
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sat Apr 21 12:28:20 2018 +1000
+
+    try to make tests
+
+ 2 files changed, 22 insertions(+)
+
+commit e6d820da02c3bb7745c05fba0718c3465142c07c
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sat Apr 21 12:20:57 2018 +1000
+
+    test circleci
+
+ 1 file changed, 1 insertion(+)
+
+commit a613b560754030c8c1b5f46cf521d500b0b3e988
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sat Apr 21 12:18:55 2018 +1000
+
+    add circleci
+
+ 1 file changed, 45 insertions(+)
+
+commit 76b197cdf3efc86be949a64247d104c38c8ce928
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sat Apr 21 12:15:03 2018 +1000
+
+    removed tracking of csv files
+
+ 1 file changed, 1 insertion(+)
+
+commit e38468ebd2daae6bb95689a6ef2ebbda0a089d77
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Sat Apr 21 12:10:15 2018 +1000
+
+    updated readCSV to return as string array
+
+ 2 files changed, 16 insertions(+), 3 deletions(-)
+
+commit d70dcac47d2e562ef7899fb29b0b775708029767
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Thu Apr 19 21:17:01 2018 +1000
+
+    readCSV complete
+
+ 2 files changed, 27 insertions(+), 3 deletions(-)
+
+commit d73b194529b43096626053b7b22ff62909698695
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Thu Apr 19 20:52:57 2018 +1000
+
+    started utilities class
+
+ 1 file changed, 13 insertions(+)
+
+commit b0383b45c8180c1cf16bc35096909c0f3033699e
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Thu Apr 19 09:00:37 2018 +1000
+
+    add gitignore file
+
+ 1 file changed, 3 insertions(+)
+
+commit 4ea79f2e6b6d1abcc4d4b0969714d5b56aa2e891
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Wed Apr 18 17:45:18 2018 +1000
+
+    started project structure
+
+ 5 files changed, 9 insertions(+)
+
+commit 4a955191a52b5d44d1d4c14fbac9833809a8e7bc
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Wed Apr 18 17:35:37 2018 +1000
+
+    fixed license
+
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit be1be80c7b3d12746c5e416ff6b2e9ae1e4d9a32
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Wed Apr 18 17:34:19 2018 +1000
+
+    add license file
+
+ 1 file changed, 21 insertions(+)
+
+commit ace1c624e4c50c7c0ed7f0de651a504e31337ab5
+Author: Brandon Janson <35671333+B-Janson@users.noreply.github.com>
+Date:   Wed Apr 18 17:26:34 2018 +1000
+
+    add readme
+
+ 1 file changed, 1 insertion(+)

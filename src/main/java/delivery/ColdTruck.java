@@ -7,12 +7,12 @@ package main.java.delivery;
  * @author Chris Martin
  */
 public class ColdTruck extends Truck {
-	/*
+	/**
 	 * Specified capacity for ColdTruck
 	 */
 	public static final int CAPACITY = 800;
 	
-	/*
+	/**
 	 * Variable only applicable to ColdTruck. Stores temperature at which this
 	 * specific truck will be kept.
 	 */
@@ -46,7 +46,7 @@ public class ColdTruck extends Truck {
 		this.temperature = temperature;
 	}
 	
-	/*
+	/**
 	 * Uses getCost method from Truck class and overrides to provide accurate
 	 * calculation of cost of ColdTruck.
 	 */
